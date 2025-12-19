@@ -20,9 +20,9 @@ export default function Navbar({ logoSrc, links = [] }: NavbarProps) {
   const location = useLocation();
 
   const mainNav = `fixed top-0 left-0 w-full bg-white/70 backdrop-blur-md
-    shadow-md z-50 transition-transform duration-300
+    shadow-md z-50 transition-transform duration-300 h-20
     ${showNavbar ? 'translate-y-0' : '-translate-y-full'}`;
-  const menu = `fixed top-0 right-0 h-full w-46 md:hidden border-l-2
+  const menu = `fixed top-0 right-0 h-full w-50 md:hidden border-l-2
      bg-white/80 backdrop-blur-xl shadow-xl border-l-gray-400
        p-6 z-60 transform transition-transform duration-300 ease-out
       ${open ? 'translate-x-0' : 'translate-x-full'}`;
@@ -96,7 +96,7 @@ export default function Navbar({ logoSrc, links = [] }: NavbarProps) {
           <ul className="flex flex-col flex-10 gap-5">
             {links.map((l) => (
               <li key={l.label} className="">
-                <Anchor to={l.to} className="text-base w-full">
+                <Anchor to={l.to} className="text-base w-full py-2">
                   {l.label}
                 </Anchor>
               </li>
