@@ -19,7 +19,10 @@ import ProtectedRoute from './features/admin/pages/ProtctedRoute';
 import AdminPage from './features/admin/pages/Admin';
 
 export default function App() {
-  const navLinks = [{ label: 'Home', to: '/' }, { label: 'Posts', to: '/posts' }];
+  const navLinks = [
+    { label: 'Home', to: '/' },
+    { label: 'Posts', to: '/posts' },
+  ];
 
   const router = createBrowserRouter([
     {

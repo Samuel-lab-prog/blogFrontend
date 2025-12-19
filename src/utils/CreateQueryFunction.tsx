@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
-import type { AppError } from "../types";
+import type { AppError } from '../types';
 
 export type FetchHttpOptions<TParams, TBody> = {
   path: string;
-  method?: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
+  method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
   params?: TParams;
   body?: TBody;
   credentials?: RequestCredentials;
@@ -11,17 +11,16 @@ export type FetchHttpOptions<TParams, TBody> = {
   headers?: HeadersInit;
 };
 
-
 export default async function fetchHttp<
   TResponse,
   TParams extends Record<string, string | number | undefined> = {},
-  TBody = unknown
+  TBody = unknown,
 >({
   path,
-  method = "GET",
+  method = 'GET',
   params,
   body,
-  credentials = "same-origin",
+  credentials = 'same-origin',
   signal,
   headers,
 }: FetchHttpOptions<TParams, TBody>): Promise<TResponse> {
@@ -33,16 +32,18 @@ export default async function fetchHttp<
           .filter(([, v]) => v !== undefined)
           .map(([k, v]) => [k, String(v)])
       ).toString()
-    : "";
+    : '';
 
-  const url = query ? `${baseUrl}${path}?${query}` : `${baseUrl}${path}`;
+  const url = query
+    ? `${baseUrl}${path}?${query}`
+    : `${baseUrl}${path}`;
 
   const response = await fetch(url, {
     method,
     credentials,
     signal,
     headers: {
-      ...(body && { "Content-Type": "application/json" }),
+      ...(body && { 'Content-Type': 'application/json' }),
       ...headers,
     },
     body: body ? JSON.stringify(body) : undefined,
@@ -59,8 +60,9 @@ export default async function fetchHttp<
   if (!response.ok) {
     const error: AppError = {
       statusCode: response.status,
-      errorMessages:
-        (parsedBody as AppError)?.errorMessages ?? ["Unknown error"],
+      errorMessages: (parsedBody as AppError)?.errorMessages ?? [
+        'Unknown error',
+      ],
     };
     throw error;
   }

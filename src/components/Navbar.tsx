@@ -103,7 +103,10 @@ export default function Navbar({ logoSrc, links = [] }: NavbarProps) {
           <ul className="flex flex-col flex-1 gap-4">
             {links.map((l) => (
               <li key={l.label}>
-                <Anchor to={l.to} className="block w-full py-2 text-base">
+                <Anchor
+                  to={l.to}
+                  className="block w-full py-2 text-base"
+                >
                   {l.label}
                 </Anchor>
               </li>

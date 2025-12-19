@@ -6,12 +6,17 @@ import type { AppError } from '../../../types';
 
 export default function ProtectedRoute() {
   const navigate = useNavigate();
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState<
+    boolean | null
+  >(null);
 
   const { mutateAsync: authenticate } = useMutation({
     mutationFn: () =>
-      fetchHttp<void>({ path: '/auth', method: 'POST', credentials: 'include' }),
-
+      fetchHttp<void>({
+        path: '/auth',
+        method: 'POST',
+        credentials: 'include',
+      }),
   });
 
   useEffect(() => {

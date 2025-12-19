@@ -14,16 +14,26 @@ import fetchHttp from '../../../utils/CreateQueryFunction';
 import type { AppError } from '../../../types';
 
 const postSchema = z.object({
-  title: z.string().min(3, 'O título deve ter pelo menos 3 caracteres'),
-  excerpt: z.string().min(10, 'O resumo deve ter pelo menos 10 caracteres'),
-  content: z.string().min(10, 'O conteúdo deve ter pelo menos 10 caracteres'),
+  title: z
+    .string()
+    .min(3, 'O título deve ter pelo menos 3 caracteres'),
+  excerpt: z
+    .string()
+    .min(10, 'O resumo deve ter pelo menos 10 caracteres'),
+  content: z
+    .string()
+    .min(10, 'O conteúdo deve ter pelo menos 10 caracteres'),
   tags: z.array(z.string()).optional(),
   status: z.enum(['draft', 'published']),
 });
 
 type PostData = z.infer<typeof postSchema>;
 
-export default function PostForm({ className = '' }: { className?: string }) {
+export default function PostForm({
+  className = '',
+}: {
+  className?: string;
+}) {
   const [generalError, setGeneralError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -40,12 +50,23 @@ export default function PostForm({ className = '' }: { className?: string }) {
   } = useForm<PostData>({
     resolver: zodResolver(postSchema),
     mode: 'onChange',
-    defaultValues: { title: '', excerpt: '', content: '', status: 'draft', tags: [] },
+    defaultValues: {
+      title: '',
+      excerpt: '',
+      content: '',
+      status: 'draft',
+      tags: [],
+    },
   });
 
   const { mutateAsync: createPost } = useMutation({
     mutationFn: (newPost: PostData) =>
-      fetchHttp<{ id: number }>({ path: '/posts', method: 'POST', credentials: 'include', body: newPost }),
+      fetchHttp<{ id: number }>({
+        path: '/posts',
+        method: 'POST',
+        credentials: 'include',
+        body: newPost,
+      }),
   });
 
   const contentValue = watch('content', '');
@@ -64,7 +85,8 @@ export default function PostForm({ className = '' }: { className?: string }) {
 
     const onScroll = () => {
       const isAtBottom =
-        preview.scrollTop + preview.clientHeight >= preview.scrollHeight - 4;
+        preview.scrollTop + preview.clientHeight >=
+        preview.scrollHeight - 4;
       shouldAutoScrollRef.current = isAtBottom;
     };
 
@@ -88,11 +110,18 @@ export default function PostForm({ className = '' }: { className?: string }) {
       if (status === 401) {
         setGeneralError('Você não tem permissão para criar posts.');
       } else if (status === 409 && message?.includes('slug')) {
-        setError('title', { type: 'manual', message: 'Já existe um post com esse título.' });
+        setError('title', {
+          type: 'manual',
+          message: 'Já existe um post com esse título.',
+        });
       } else if (status === 422) {
-        setGeneralError('Dados inválidos. Verifique os campos e tente novamente.');
+        setGeneralError(
+          'Dados inválidos. Verifique os campos e tente novamente.'
+        );
       } else {
-        setGeneralError(message || 'Erro ao criar post. Tente novamente mais tarde.');
+        setGeneralError(
+          message || 'Erro ao criar post. Tente novamente mais tarde.'
+        );
       }
     } finally {
       setLoading(false);
@@ -104,7 +133,9 @@ export default function PostForm({ className = '' }: { className?: string }) {
       onSubmit={handleSubmit(onSubmit)}
       className={`w-full flex flex-col gap-6 ${className}`}
     >
-      {generalError && <p className="text-red-500 text-sm">{generalError}</p>}
+      {generalError && (
+        <p className="text-red-500 text-sm">{generalError}</p>
+      )}
 
       <Input
         label="Título"
@@ -121,7 +152,8 @@ export default function PostForm({ className = '' }: { className?: string }) {
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
-        {(() => { // We need to assign two things from register, so we use a IIFE
+        {(() => {
+          // We need to assign two things from register, so we use a IIFE
           const { ref, onChange, ...rest } = register('content');
           return (
             <Textarea
@@ -135,7 +167,7 @@ export default function PostForm({ className = '' }: { className?: string }) {
                 contentRef.current = el;
               }}
               onChange={(e) => {
-                onChange(e);                     // react-hook-form
+                onChange(e); // react-hook-form
                 shouldAutoScrollRef.current = true; // reativa auto-scroll
                 scrollPreviewToBottom();
               }}
@@ -148,7 +180,8 @@ export default function PostForm({ className = '' }: { className?: string }) {
           className="h-80 wrap-break-word w-full border rounded bg-gray-50 p-4 overflow-y-auto overflow-x-hidden prose whitespace-pre-wrap"
         >
           <ReactMarkdown>
-            {contentValue || 'O preview em Markdown aparecerá aqui...'}
+            {contentValue ||
+              'O preview em Markdown aparecerá aqui...'}
           </ReactMarkdown>
         </div>
       </div>
@@ -159,14 +192,21 @@ export default function PostForm({ className = '' }: { className?: string }) {
         {...register('tags', {
           setValueAs: (v) =>
             typeof v === 'string'
-              ? v.split(',').map((t) => t.trim()).filter(Boolean)
+              ? v
+                  .split(',')
+                  .map((t) => t.trim())
+                  .filter(Boolean)
               : [],
         })}
       />
 
       <Select
-        hint={statusValue === 'draft' ? 'Posts salvos como rascunho não serão visíveis ao público' : undefined}
-        hintClassName='text-red-500 text-xs md:text-sm'
+        hint={
+          statusValue === 'draft'
+            ? 'Posts salvos como rascunho não serão visíveis ao público'
+            : undefined
+        }
+        hintClassName="text-red-500 text-xs md:text-sm"
         label="Status"
         {...register('status')}
         options={[

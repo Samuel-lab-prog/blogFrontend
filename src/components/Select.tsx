@@ -39,7 +39,14 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
             </option>
           ))}
         </select>
-        {hint && !error && <i id={`${id}-hint`} className={`${rest.hintClassName || ''}`}>{hint}</i>}
+        {hint && !error && (
+          <i
+            id={`${id}-hint`}
+            className={`${rest.hintClassName || ''}`}
+          >
+            {hint}
+          </i>
+        )}
         <div className="min-h-5">
           {error && (
             <p

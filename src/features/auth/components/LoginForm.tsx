@@ -5,21 +5,32 @@ import { useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Input from '../../../components/Input';
 import Button from '../../../components/Button';
-import  fetchHttp  from '../../../utils/CreateQueryFunction';
+import fetchHttp from '../../../utils/CreateQueryFunction';
 
 const loginSchema = z.object({
   email: z.string().email('Endereço de e-mail inválido'),
-  password: z.string().min(6, 'A senha deve ter pelo menos 6 caracteres'),
+  password: z
+    .string()
+    .min(6, 'A senha deve ter pelo menos 6 caracteres'),
 });
 
 type LoginData = z.infer<typeof loginSchema>;
 
-export default function LoginForm({ className = '' }: { className?: string }) {
+export default function LoginForm({
+  className = '',
+}: {
+  className?: string;
+}) {
   const [generalError, setGeneralError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const { register, setError, handleSubmit, formState: { errors, isValid } } = useForm<LoginData>({
+  const {
+    register,
+    setError,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm<LoginData>({
     resolver: zodResolver(loginSchema),
     mode: 'onChange',
   });
@@ -42,10 +53,18 @@ export default function LoginForm({ className = '' }: { className?: string }) {
       const code = errTyped.statusCode;
 
       if (code === 401) {
-        setError('email', { type: 'manual', message: 'Credenciais incorretas' });
-        setError('password', { type: 'manual', message: 'Credenciais incorretas' });
+        setError('email', {
+          type: 'manual',
+          message: 'Credenciais incorretas',
+        });
+        setError('password', {
+          type: 'manual',
+          message: 'Credenciais incorretas',
+        });
       } else if (code === 429) {
-        setGeneralError('Muitas tentativas. Por favor, tente novamente mais tarde.');
+        setGeneralError(
+          'Muitas tentativas. Por favor, tente novamente mais tarde.'
+        );
       } else {
         setGeneralError('Erro de rede, por favor tente novamente.');
       }
@@ -55,8 +74,13 @@ export default function LoginForm({ className = '' }: { className?: string }) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={`w-full max-w-md flex flex-col gap-2 ${className}`}>
-      {generalError && <p className="text-red-500 text-sm mb-2">{generalError}</p>}
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className={`w-full max-w-md flex flex-col gap-2 ${className}`}
+    >
+      {generalError && (
+        <p className="text-red-500 text-sm mb-2">{generalError}</p>
+      )}
 
       <Input
         label="E-mail"
@@ -73,7 +97,11 @@ export default function LoginForm({ className = '' }: { className?: string }) {
         {...register('password')}
       />
 
-      <Button disabled={loading || !isValid} variant="primary" htmlType="submit">
+      <Button
+        disabled={loading || !isValid}
+        variant="primary"
+        htmlType="submit"
+      >
         {loading ? 'Entrando...' : 'Entrar'}
       </Button>
     </form>

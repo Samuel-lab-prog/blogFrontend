@@ -9,7 +9,11 @@ export class AppError extends Error {
   public errorMessages: string[];
   public originalError?: Error;
 
-  constructor({ statusCode = 500, errorMessages = ['Application Error'], originalError }: AppErrorType = {}) {
+  constructor({
+    statusCode = 500,
+    errorMessages = ['Application Error'],
+    originalError,
+  }: AppErrorType = {}) {
     super(errorMessages.join(', '));
 
     this.name = 'AppError';

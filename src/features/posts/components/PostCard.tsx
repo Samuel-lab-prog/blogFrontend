@@ -1,8 +1,8 @@
-import Card from "../../../components/Card";
-import Tag from "../components/Tag";
-import Anchor from "../../../components/Anchor";
-import type { PostPreview } from "../../../types";
-import { formatDate } from "../utils";
+import Card from '../../../components/Card';
+import Tag from '../components/Tag';
+import Anchor from '../../../components/Anchor';
+import type { PostPreview } from '../../../types';
+import { formatDate } from '../utils';
 
 type PostCardProps = {
   post: PostPreview;
@@ -11,9 +11,7 @@ type PostCardProps = {
 export function PostCard({ post }: PostCardProps) {
   return (
     <Card className="gap-y-2" variant="outlined">
-      <Card.Title>
-        {post.title}
-      </Card.Title>
+      <Card.Title>{post.title}</Card.Title>
 
       <Card.Description className="font-medium opacity-80 text-sm">
         {post.excerpt}
@@ -21,15 +19,21 @@ export function PostCard({ post }: PostCardProps) {
 
       <Card.Content className="flex flex-col gap-2">
         <div className="flex gap-x-2">
-        {post.tags.map((tag) => (
-          <Tag key={tag.id} name={tag.name} />
-        ))}
+          {post.tags.map((tag) => (
+            <Tag key={tag.id} name={tag.name} />
+          ))}
         </div>
-        <p className="text-sm opacity-70">Criado em {formatDate(post.createdAt)}</p>
+        <p className="text-sm opacity-70">
+          Criado em {formatDate(post.createdAt)}
+        </p>
       </Card.Content>
 
       <Card.Footer className="flex justify-end items-end h-full">
-        <Anchor to={`/posts/${post.slug}`} className="h-fit" variant="btn-primary">
+        <Anchor
+          to={`/posts/${post.slug}`}
+          className="h-fit"
+          variant="btn-primary"
+        >
           Ler mais
         </Anchor>
       </Card.Footer>

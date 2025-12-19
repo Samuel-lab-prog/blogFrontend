@@ -1,55 +1,52 @@
-import type { PaginatedPosts, Tag } from "../../../types";
-import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
-import fetchHttp from "../../../utils/CreateQueryFunction";
-import AsyncState from "../../../utils/AsyncState";
-import { PostCard, PostCardSkeleton } from "../components/PostCard";
-import Button from "../../../components/Button";
-import Select from "../../../components/Select";
-import { useSearchParams } from "react-router-dom";
+import type { PaginatedPosts, Tag } from '../../../types';
+import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
+import fetchHttp from '../../../utils/CreateQueryFunction';
+import AsyncState from '../../../utils/AsyncState';
+import { PostCard, PostCardSkeleton } from '../components/PostCard';
+import Button from '../../../components/Button';
+import Select from '../../../components/Select';
+import { useSearchParams } from 'react-router-dom';
 
 const POSTS_LIMIT = 6;
-type OrderOption = "newest" | "oldest";
+type OrderOption = 'newest' | 'oldest';
 
 export default function Home() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const initialTag = searchParams.get("tag") || undefined;
+  const initialTag = searchParams.get('tag') || undefined;
 
   const [cursor, setCursor] = useState<number | undefined>(undefined);
-  const [prevCursorStack, setPrevCursorStack] = useState<number[]>([]);
+  const [prevCursorStack, setPrevCursorStack] = useState<number[]>(
+    []
+  );
   const [tag, setTag] = useState<string | undefined>(initialTag);
-  const [order, setOrder] = useState<OrderOption>("newest");
+  const [order, setOrder] = useState<OrderOption>('newest');
 
-  const {
-    data,
-    isLoading,
-    isError,
-    isFetching,
-  } = useQuery({
-    queryKey: ["posts", tag, order, cursor],
+  const { data, isLoading, isError, isFetching } = useQuery({
+    queryKey: ['posts', tag, order, cursor],
     staleTime: 1000 * 60 * 30,
     queryFn: () =>
       fetchHttp<PaginatedPosts>({
-        path: "/posts",
+        path: '/posts',
         params: {
           limit: POSTS_LIMIT,
           cursor,
           tag,
-          orderBy: "createdAt",
-          orderDirection: order === "newest" ? "desc" : "asc",
+          orderBy: 'createdAt',
+          orderDirection: order === 'newest' ? 'desc' : 'asc',
         },
       }),
   });
 
   const { data: tags } = useQuery({
-    queryKey: ["tags"],
+    queryKey: ['tags'],
     staleTime: Infinity,
     queryFn: () =>
       fetchHttp<Tag[]>({
-        path: "/posts/tags",
+        path: '/posts/tags',
         params: {
-          deleted: "false",
-          draft: "false",
+          deleted: 'false',
+          draft: 'false',
         },
       }),
   });
@@ -64,9 +61,7 @@ export default function Home() {
   function handleNext() {
     if (!data?.nextCursor) return;
 
-    setPrevCursorStack((prev) =>
-      cursor ? [...prev, cursor] : prev
-    );
+    setPrevCursorStack((prev) => (cursor ? [...prev, cursor] : prev));
     setCursor(data.nextCursor);
   }
 
@@ -84,8 +79,8 @@ export default function Home() {
     setTag(newTag);
 
     setSearchParams((prev) => {
-      if (newTag) prev.set("tag", newTag);
-      else prev.delete("tag");
+      if (newTag) prev.set('tag', newTag);
+      else prev.delete('tag');
       return prev;
     });
   }
@@ -94,14 +89,14 @@ export default function Home() {
     resetPagination();
 
     setSearchParams((prev) => {
-      prev.set("order", value);
+      prev.set('order', value);
       return prev;
     });
     setOrder(value);
   }
 
   const tagOptions = [
-    { value: "", label: "Todas" },
+    { value: '', label: 'Todas' },
     ...(tags?.map((t) => ({
       value: t.name,
       label: t.name,
@@ -109,8 +104,8 @@ export default function Home() {
   ];
 
   const orderOptions = [
-    { value: "newest", label: "Mais recentes" },
-    { value: "oldest", label: "Mais antigos" },
+    { value: 'newest', label: 'Mais recentes' },
+    { value: 'oldest', label: 'Mais antigos' },
   ];
 
   return (
@@ -122,7 +117,7 @@ export default function Home() {
             <Select
               name="tag"
               label="Selecionar tag"
-              value={tag ?? ""}
+              value={tag ?? ''}
               options={tagOptions}
               onChange={(e) =>
                 handleChangeTag(e.target.value || undefined)

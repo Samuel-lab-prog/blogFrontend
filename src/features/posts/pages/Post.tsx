@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import type { FullPost } from '../../../types';
 import { formatDate } from '../utils';
-import fetchHttp  from '../../../utils/CreateQueryFunction';
+import fetchHttp from '../../../utils/CreateQueryFunction';
 import AsyncState from '../../../utils/AsyncState';
 import Anchor from '../../../components/Anchor';
 import Tag from '../components/Tag';
@@ -11,7 +11,11 @@ import Tag from '../components/Tag';
 export default function PostPage() {
   const { slug } = useParams<{ slug: string }>();
 
-  const { data: post, error, isLoading } = useQuery({
+  const {
+    data: post,
+    error,
+    isLoading,
+  } = useQuery({
     queryKey: ['post', slug],
     queryFn: () => fetchHttp<FullPost>({ path: `/posts/${slug}` }),
     enabled: !!slug,
@@ -31,21 +35,27 @@ export default function PostPage() {
             <>
               <i>Criado em {formatDate(post.createdAt)}</i>
               {post.updatedAt !== post.createdAt && (
-              <i>Última atualização: {formatDate(post.updatedAt)}</i>
+                <i>
+                  Última atualização: {formatDate(post.updatedAt)}
+                </i>
               )}
             </>
           )}
         </div>
-        <AsyncState isLoading={isLoading} isError={!!error} isEmpty={!post && !isLoading}>
+        <AsyncState
+          isLoading={isLoading}
+          isError={!!error}
+          isEmpty={!post && !isLoading}
+        >
           {post && (
             <article className="max-w-full text-justify prose whitespace-pre-wrap wrap-break-word">
-              <ReactMarkdown >
-                {post.content}
-              </ReactMarkdown>
+              <ReactMarkdown>{post.content}</ReactMarkdown>
             </article>
           )}
         </AsyncState>
-          <Anchor to  ="/posts" className='p-2 mt-8 w-fit'>← Voltar para publicações</Anchor>
+        <Anchor to="/posts" className="p-2 mt-8 w-fit">
+          ← Voltar para publicações
+        </Anchor>
       </section>
     </main>
   );

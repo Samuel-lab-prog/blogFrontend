@@ -1,4 +1,4 @@
-import type { JSX } from "react/jsx-dev-runtime";
+import type { JSX } from 'react/jsx-dev-runtime';
 
 type CardVariants =
   | 'default'
@@ -29,14 +29,15 @@ const variants: Record<CardVariants, string> = {
   invisible: 'bg-transparent',
 };
 
-
 export default function Card({
   children,
   className = '',
   variant = 'default',
 }: CardProps) {
   return (
-    <div className={`flex flex-col ${variants[variant]} ${cardBaseClasses} ${className}`}>
+    <div
+      className={`flex flex-col ${variants[variant]} ${cardBaseClasses} ${className}`}
+    >
       {children}
     </div>
   );
@@ -53,7 +54,6 @@ Card.Title = function CardTitle({
 }) {
   return <Component className={className}>{children}</Component>;
 };
-
 
 Card.Title = function CardTitle({
   children,
@@ -85,14 +85,12 @@ Card.Content = function CardContent({
   return <div className={`${className}`}>{children}</div>;
 };
 
-Card.Footer = function CardFooter({ children, className = '' }: {
+Card.Footer = function CardFooter({
+  children,
+  className = '',
+}: {
   children: React.ReactNode;
   className?: string;
 }) {
-  return (
-    <div className={`pt-4 ${className}`}>
-      {children}
-    </div>
-  );
+  return <div className={`pt-4 ${className}`}>{children}</div>;
 };
-
