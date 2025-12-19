@@ -10,7 +10,7 @@ type AsyncStateProps = {
   children: React.ReactNode;
 };
 
-export function AsyncState({
+export default function AsyncState({
   isLoading,
   isError,
   isEmpty,

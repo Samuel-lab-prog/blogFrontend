@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Button from '../../../components/Button';
 import PostForm from '../components/CreatePostForm';
-import { fetchHttp } from '../../../utils/CreateQueryFunction';
-import { AsyncState } from '../../../utils/AsyncState';
+import fetchHttp  from '../../../utils/CreateQueryFunction';
+import AsyncState from '../../../utils/AsyncState';
 
 type DraftPost = {
   id: string;

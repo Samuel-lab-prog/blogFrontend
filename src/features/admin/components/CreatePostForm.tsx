@@ -7,7 +7,7 @@ import Input from '../../../components/Input';
 import Textarea from '../../../components/TextArea';
 import Button from '../../../components/Button';
 import Select from '../../../components/Select';
-import { fetchHttp } from '../../../utils/CreateQueryFunction';
+import  fetchHttp  from '../../../utils/CreateQueryFunction';
 import type { AppError } from '../../../types';
 
 const postSchema = z.object({

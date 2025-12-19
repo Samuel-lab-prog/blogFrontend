@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Input from '../../../components/Input';
 import Button from '../../../components/Button';
-import { fetchHttp } from '../../../utils/CreateQueryFunction';
+import  fetchHttp  from '../../../utils/CreateQueryFunction';
 
 const loginSchema = z.object({
   email: z.string().email('Endereço de e-mail inválido'),

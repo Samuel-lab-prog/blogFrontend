@@ -12,7 +12,7 @@ export type FetchHttpOptions<TParams, TBody> = {
 };
 
 
-export async function fetchHttp<
+export default async function fetchHttp<
   TResponse,
   TParams extends Record<string, string | number | undefined> = {},
   TBody = unknown

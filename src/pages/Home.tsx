@@ -1,7 +1,7 @@
 import type { PaginatedPosts } from "../types";
 import { useQuery } from "@tanstack/react-query";
-import { fetchHttp } from "../utils/CreateQueryFunction";
-import { AsyncState } from "../utils/AsyncState";
+import fetchHttp from "../utils/CreateQueryFunction";
+import AsyncState from "../utils/AsyncState";
 import PostCard from "../features/posts/components/PostCard";
 
 export default function Home() {
