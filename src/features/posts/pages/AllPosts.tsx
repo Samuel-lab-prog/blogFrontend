@@ -47,6 +47,10 @@ export default function Home() {
     queryFn: () =>
       fetchHttp<Tag[]>({
         path: "/posts/tags",
+        params: {
+          deleted: "false",
+          draft: "false",
+        },
       }),
   });
 
