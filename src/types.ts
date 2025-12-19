@@ -35,6 +35,11 @@ export type AppError = {
   statusCode: number;
 };
 
+export type PostMinimalData = {
+  id: number;
+  title: string;
+};
+
 export type PaginatedPosts = {
   nextCursor?: number | undefined;
   items: {

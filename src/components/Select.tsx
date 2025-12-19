@@ -12,7 +12,7 @@ type SelectProps = React.SelectHTMLAttributes<HTMLSelectElement> & {
 
 const Select = forwardRef<HTMLSelectElement, SelectProps>(
   (
-    { name, label, error, hint, className = '', options, ...rest },
+    { name, label, error, hint, className = '', options, hintClassName, ...rest },
     ref
   ) => {
     const id = `select-${name}`;
@@ -39,14 +39,15 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
             </option>
           ))}
         </select>
+
+        {/* Hint só aparece se não houver erro */}
         {hint && !error && (
-          <i
-            id={`${id}-hint`}
-            className={`${rest.hintClassName || ''}`}
-          >
+          <i id={`${id}-hint`} className={hintClassName || ''}>
             {hint}
           </i>
         )}
+
+        {/* Espaço para erro */}
         <div className="min-h-5">
           {error && (
             <p
