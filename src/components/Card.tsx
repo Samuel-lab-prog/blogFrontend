@@ -90,9 +90,7 @@ Card.Footer = function CardFooter({
   className?: string;
 }) {
   return (
-    <div
-      className={`border-t border-gray-200 ${className}`}
-    >
+    <div className={`border-t border-gray-200 ${className}`}>
       {children}
     </div>
   );

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Input from '../../../components/Input';
 import Button from '../../../components/Button';
-import usePost from '../../../hooks/usePost';
+import { fetchHttp } from '../../../utils/CreateQueryFunction';
 
 const loginSchema = z.object({
   email: z.string().email('Endereço de e-mail inválido'),
@@ -16,48 +16,46 @@ type LoginData = z.infer<typeof loginSchema>;
 
 export default function LoginForm({ className = '' }: { className?: string }) {
   const [generalError, setGeneralError] = useState('');
-  const { post, loading, error } = usePost<LoginData, void>('/auth/login', { credentials: true });
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const {
-    register,
-    setError,
-    handleSubmit,
-    formState: { errors, isValid },
-  } = useForm<LoginData>({
+  const { register, setError, handleSubmit, formState: { errors, isValid } } = useForm<LoginData>({
     resolver: zodResolver(loginSchema),
     mode: 'onChange',
   });
 
-  const onSubmit = async (loginData: LoginData) => {
+  const onSubmit = async (data: LoginData) => {
     setGeneralError('');
+    setLoading(true);
 
     try {
-      post(loginData);
+      await fetchHttp<void>({
+        path: '/auth/login',
+        method: 'POST',
+        credentials: 'include',
+        body: data,
+      });
 
-      if (!error) {
-        navigate('/admin');
-        return;
-      }
+      navigate('/admin');
+    } catch (err: unknown) {
+      const errTyped = err as { statusCode?: number };
+      const code = errTyped.statusCode;
 
-      const code = error.statusCode;
       if (code === 401) {
-        setError('password', { type: 'manual', message: 'Credenciais incorretas' });
         setError('email', { type: 'manual', message: 'Credenciais incorretas' });
-      }
-      if (code === 429) {
+        setError('password', { type: 'manual', message: 'Credenciais incorretas' });
+      } else if (code === 429) {
         setGeneralError('Muitas tentativas. Por favor, tente novamente mais tarde.');
+      } else {
+        setGeneralError('Erro de rede, por favor tente novamente.');
       }
-    } catch {
-      setGeneralError('Erro de rede, por favor tente novamente.');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className={`w-full max-w-md flex flex-col gap-2 ${className}`}
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className={`w-full max-w-md flex flex-col gap-2 ${className}`}>
       {generalError && <p className="text-red-500 text-sm mb-2">{generalError}</p>}
 
       <Input

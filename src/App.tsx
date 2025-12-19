@@ -18,9 +18,7 @@ import ProtectedRoute from './features/admin/pages/ProtctedRoute';
 import AdminPage from './features/admin/pages/Admin';
 
 export default function App() {
-  const navLinks = [
-    { label: 'Home', to: '/' },
-  ];
+  const navLinks = [{ label: 'Home', to: '/' }];
 
   const router = createBrowserRouter([
     {
@@ -35,20 +33,21 @@ export default function App() {
         {
           path: 'posts/:slug',
           element: <PostPage />,
-        }, {
+        },
+        {
           path: 'login',
-          element: <LoginPage />
-        }, {
+          element: <LoginPage />,
+        },
+        {
           path: 'admin',
           element: <ProtectedRoute />,
           children: [
             {
               index: true,
               element: <AdminPage />,
-            }
-          ]
-        }
-
+            },
+          ],
+        },
       ],
     },
   ]);

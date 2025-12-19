@@ -1,4 +1,4 @@
-import Button from "./Button";
+import Button from './Button';
 
 interface ConfirmModalProps {
   open: boolean;
@@ -12,8 +12,8 @@ function ConfirmModal({
   open,
   onClose,
   onConfirm,
-  title = "Are you sure?",
-  description = "",
+  title = 'Are you sure?',
+  description = '',
 }: ConfirmModalProps) {
   if (!open) return null;
 
@@ -29,16 +29,8 @@ function ConfirmModal({
           <p className="mt-2 opacity-80">{description}</p>
         )}
         <div className="flex justify-end gap-3 mt-6">
-          <Button
-            onClick={onClose}
-          >
-            Cancel
-          </Button>
-          <Button
-            onClick={onConfirm}
-          >
-            Confirm
-          </Button>
+          <Button onClick={onClose}>Cancel</Button>
+          <Button onClick={onConfirm}>Confirm</Button>
         </div>
       </div>
     </div>

@@ -25,7 +25,7 @@ export default function Navbar({ logoSrc, links = [] }: NavbarProps) {
   const menu = `fixed top-0 right-0 h-full w-46 md:hidden border-l-2
      bg-white/80 backdrop-blur-xl shadow-xl border-l-gray-400
        p-6 z-60 transform transition-transform duration-300 ease-out
-      ${open ? 'translate-x-0' : 'translate-x-full'}`
+      ${open ? 'translate-x-0' : 'translate-x-full'}`;
 
   // show/hide on scroll
   useEffect(() => {
@@ -61,8 +61,8 @@ export default function Navbar({ logoSrc, links = [] }: NavbarProps) {
             <img src={logoSrc} alt="Logo" />
 
             <ul className="hidden md:flex items-center gap-6 px-4">
-              {links.map(l => (
-                <li key={l.label} className=''>
+              {links.map((l) => (
+                <li key={l.label} className="">
                   <Anchor to={l.to}>{l.label}</Anchor>
                 </li>
               ))}
@@ -79,10 +79,7 @@ export default function Navbar({ logoSrc, links = [] }: NavbarProps) {
         </nav>
       </header>
 
-      <aside
-        className={menu}
-        aria-label="Mobile menu"
-      >
+      <aside className={menu} aria-label="Mobile menu">
         <header className="flex items-center justify-between mb-6">
           <h3>Menu</h3>
 
@@ -95,11 +92,13 @@ export default function Navbar({ logoSrc, links = [] }: NavbarProps) {
           </button>
         </header>
 
-        <nav className=''>
+        <nav className="">
           <ul className="flex flex-col flex-10 gap-5">
-            {links.map(l => (
-              <li key={l.label} className=''>
-                <Anchor to={l.to} className='text-base w-full'>{l.label}</Anchor>
+            {links.map((l) => (
+              <li key={l.label} className="">
+                <Anchor to={l.to} className="text-base w-full">
+                  {l.label}
+                </Anchor>
               </li>
             ))}
           </ul>

@@ -1,16 +1,20 @@
 import React, { forwardRef } from 'react';
 
-type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
-  name: string;
-  label: string;
-  error?: string | null;
-  hint?: string;
-  className?: string;
-  rows?: number; 
-};
+type TextareaProps =
+  React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
+    name: string;
+    label: string;
+    error?: string | null;
+    hint?: string;
+    className?: string;
+    rows?: number;
+  };
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ name, label, error, hint, className = '', rows = 6, ...rest }, ref) => {
+  (
+    { name, label, error, hint, className = '', rows = 6, ...rest },
+    ref
+  ) => {
     const id = `textarea-${name}`;
 
     return (
@@ -26,7 +30,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           aria-describedby={
             error ? `${id}-error` : hint ? `${id}-hint` : undefined
           }
-          rows={rows} 
+          rows={rows}
           className={`input ${
             error ? 'input-error' : 'input-base'
           } resize-none`}

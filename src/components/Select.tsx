@@ -10,7 +10,10 @@ type SelectProps = React.SelectHTMLAttributes<HTMLSelectElement> & {
 };
 
 const Select = forwardRef<HTMLSelectElement, SelectProps>(
-  ({ name, label, error, hint, className = '', options, ...rest }, ref) => {
+  (
+    { name, label, error, hint, className = '', options, ...rest },
+    ref
+  ) => {
     const id = `select-${name}`;
 
     return (

@@ -6,7 +6,8 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   error?: string | null;
   hint?: string;
   className?: string;
-  options?: { value: string; label: string }[];  type?: 'text' | 'email' | 'password' | 'date' | 'radio';
+  options?: { value: string; label: string }[];
+  type?: 'text' | 'email' | 'password' | 'date' | 'radio';
 };
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -26,11 +27,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           aria-describedby={
             error ? `${id}-error` : hint ? `${id}-hint` : undefined
           }
-          className={`input ${
-            error
-              ? 'input-error'
-              : 'input-base'
-          }`}
+          className={`input ${error ? 'input-error' : 'input-base'}`}
           {...rest}
         />
         {hint && !error && <p id={`${id}-hint`}>{hint}</p>}

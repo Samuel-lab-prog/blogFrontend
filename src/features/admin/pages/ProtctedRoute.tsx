@@ -1,5 +1,5 @@
-import { Outlet } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProtectedRoute() {
   const raw = localStorage.getItem('user');
@@ -16,7 +16,9 @@ export default function ProtectedRoute() {
         <Outlet />
       ) : (
         <section className="flex flex-col items-center justify-center min-h-screen px-4">
-          <h2 className="mb-4 text-2xl font-semibold">Boa tentativa!</h2>
+          <h2 className="mb-4 text-2xl font-semibold">
+            Boa tentativa!
+          </h2>
         </section>
       )}
     </>

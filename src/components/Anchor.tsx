@@ -9,7 +9,7 @@ type AnchorProps = {
 };
 
 const variants: Record<string, string> = {
-  'link': 'link',
+  link: 'link',
   'btn-primary': 'btn btn-primary',
   'btn-secondary': 'btn btn-secondary',
   'btn-ghost': 'btn btn-ghost',
@@ -41,9 +41,7 @@ export default function Anchor({
     <NavLink
       to={to || '#'}
       className={({ isActive }) =>
-        isActive
-          ? `${classes} active-link`
-          : classes
+        isActive ? `${classes} active-link` : classes
       }
     >
       {children}
