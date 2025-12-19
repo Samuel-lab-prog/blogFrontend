@@ -1,2 +1,5 @@
-export const formatDate = (date: Date) =>
-  new Date(date).toLocaleDateString('pt-BR', { dateStyle: 'medium' });
+export const formatDate = (date: Date | string) =>
+  new Date(date).toLocaleString("pt-BR", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });

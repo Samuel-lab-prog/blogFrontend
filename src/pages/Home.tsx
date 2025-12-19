@@ -2,7 +2,7 @@ import type { PaginatedPosts } from "../types";
 import { useQuery } from "@tanstack/react-query";
 import fetchHttp from "../utils/CreateQueryFunction";
 import AsyncState from "../utils/AsyncState";
-import PostCard from "../features/posts/components/PostCard";
+import { PostCard } from "../features/posts/components/PostCard";
 
 export default function Home() {
   const {
@@ -21,8 +21,8 @@ export default function Home() {
   const posts = data?.items ?? [];
 
   return (
-    <main className="flex flex-col">
-      <section className="flex flex-col justify-end gap-2 h-50 lg:h-60 px-4 lg:px-16 pt-4 md:pb-4 lg:pb-8">
+    <main className="flex flex-col mb-16">
+      <section className="flex flex-col justify-end gap-2 pt-16 lg:pt-32 pb-8">
         <h2>Bem-vindo(a) ao Blog SA</h2>
         <p className="md:w-4/5">
           Neste blog, você encontrará muitas citações interessantes de

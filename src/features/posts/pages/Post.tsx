@@ -45,7 +45,7 @@ export default function PostPage() {
             </article>
           )}
         </AsyncState>
-          <Anchor to  ="/" className='p-2 mt-8 w-fit'>← Voltar para publicações</Anchor>
+          <Anchor to  ="/posts" className='p-2 mt-8 w-fit'>← Voltar para publicações</Anchor>
       </section>
     </main>
   );

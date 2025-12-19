@@ -1,18 +1,23 @@
+import type { JSX } from "react/jsx-dev-runtime";
+
+type CardVariants =
+  | 'default'
+  | 'outlined'
+  | 'elevated'
+  | 'ghost'
+  | 'hover'
+  | 'gradient'
+  | 'invisible';
+
 type CardProps = {
   children: React.ReactNode;
   className?: string;
-  variant?:
-    | 'default'
-    | 'outlined'
-    | 'elevated'
-    | 'ghost'
-    | 'hover'
-    | 'gradient'
-    | 'invisible';
+  variant?: CardVariants;
 };
-const cardBaseClasses = 'overflow-hidden p-4';
 
-const variants: Record<string, string> = {
+const cardBaseClasses = 'p-4'; // 🔥 removi overflow-hidden
+
+const variants: Record<CardVariants, string> = {
   default: 'bg-white rounded-xl shadow-sm border border-gray-200',
   outlined: 'bg-white rounded-xl border border-gray-300',
   elevated: 'bg-white rounded-xl shadow-md',
@@ -24,33 +29,31 @@ const variants: Record<string, string> = {
   invisible: 'bg-transparent',
 };
 
+
 export default function Card({
   children,
   className = '',
   variant = 'default',
 }: CardProps) {
   return (
-    <div
-      className={`${variants[variant]} ${cardBaseClasses} ${className}`}
-    >
+    <div className={`flex flex-col ${variants[variant]} ${cardBaseClasses} ${className}`}>
       {children}
     </div>
   );
 }
 
-Card.Header = function CardHeader({
+Card.Title = function CardTitle({
+  as: Component = 'h4',
   children,
   className = '',
 }: {
+  as?: keyof JSX.IntrinsicElements;
   children: React.ReactNode;
   className?: string;
 }) {
-  return (
-    <div className={`flex flex-col gap-1 ${className}`}>
-      {children}
-    </div>
-  );
+  return <Component className={className}>{children}</Component>;
 };
+
 
 Card.Title = function CardTitle({
   children,
@@ -69,7 +72,7 @@ Card.Description = function CardDescription({
   children: React.ReactNode;
   className?: string;
 }) {
-  return <strong className={`${className}`}>{children}</strong>;
+  return <p className={`${className}`}>{children}</p>;
 };
 
 Card.Content = function CardContent({
@@ -82,16 +85,14 @@ Card.Content = function CardContent({
   return <div className={`${className}`}>{children}</div>;
 };
 
-Card.Footer = function CardFooter({
-  children,
-  className = '',
-}: {
+Card.Footer = function CardFooter({ children, className = '' }: {
   children: React.ReactNode;
   className?: string;
 }) {
   return (
-    <div className={`border-t border-gray-200 ${className}`}>
+    <div className={`pt-4 ${className}`}>
       {children}
     </div>
   );
 };
+

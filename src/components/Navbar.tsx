@@ -22,19 +22,22 @@ export default function Navbar({ logoSrc, links = [] }: NavbarProps) {
   const mainNav = `fixed top-0 left-0 w-full bg-white/70 backdrop-blur-md
     shadow-md z-50 transition-transform duration-300 h-20
     ${showNavbar ? 'translate-y-0' : '-translate-y-full'}`;
-  const menu = `fixed top-0 right-0 h-full w-50 md:hidden border-l-2
-     bg-white/80 backdrop-blur-xl shadow-xl border-l-gray-400
-       p-6 z-60 transform transition-transform duration-300 ease-out
-      ${open ? 'translate-x-0' : 'translate-x-full'}`;
 
-  // show/hide on scroll
+  const menu = `fixed top-0 right-0 h-full w-64 md:hidden border-l
+    bg-white/90 backdrop-blur-xl shadow-xl border-gray-200
+    p-6 z-50 transform transition-transform duration-300 ease-out
+    ${open ? 'translate-x-0' : 'translate-x-full'}`;
+
+  // show/hide on scroll (mais suave)
   useEffect(() => {
     let lastY = window.scrollY;
+
     const onScroll = () => {
       const current = window.scrollY;
-      setShowNavbar(current < lastY);
+      setShowNavbar(current < lastY || current < 40);
       lastY = current;
     };
+
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -48,21 +51,23 @@ export default function Navbar({ logoSrc, links = [] }: NavbarProps) {
   }, [open]);
 
   // close drawer on route change
-  useEffect(() => setOpen(false), [location.pathname]);
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
 
   return (
     <>
       <header className={mainNav}>
         <nav
-          className="max-w-6xl mx-auto px-8 flex items-center justify-between h-20"
+          className="max-w-6xl mx-auto px-6 flex items-center justify-between h-20"
           aria-label="Main navigation"
         >
           <section className="flex items-center gap-6">
-            <img src={logoSrc} alt="Logo" />
+            <img src={logoSrc} alt="Logo" className="h-8 w-auto" />
 
             <ul className="hidden md:flex items-center gap-6 px-4">
               {links.map((l) => (
-                <li key={l.label} className="">
+                <li key={l.label}>
                   <Anchor to={l.to}>{l.label}</Anchor>
                 </li>
               ))}
@@ -70,33 +75,35 @@ export default function Navbar({ logoSrc, links = [] }: NavbarProps) {
           </section>
 
           <button
+            type="button"
             aria-label="Open menu"
-            className="md:hidden rounded-lg hover:bg-gray-200 active:scale-95 transition cursor-pointer"
+            className="md:hidden rounded-lg p-2 hover:bg-gray-200 active:scale-95 transition"
             onClick={() => setOpen(true)}
           >
-            <Menu size={60} />
+            <Menu size={32} />
           </button>
         </nav>
       </header>
 
       <aside className={menu} aria-label="Mobile menu">
         <header className="flex items-center justify-between mb-6">
-          <h3>Menu</h3>
+          <h3 className="text-lg font-medium">Menu</h3>
 
           <button
+            type="button"
             aria-label="Close menu"
             onClick={() => setOpen(false)}
-            className="rounded-l active:scale-95 transition cursor-pointer hover:bg-gray-300"
+            className="rounded-lg p-2 hover:bg-gray-200 active:scale-95 transition"
           >
-            <X size={60} />
+            <X size={32} />
           </button>
         </header>
 
-        <nav className="">
-          <ul className="flex flex-col flex-10 gap-5">
+        <nav>
+          <ul className="flex flex-col flex-1 gap-4">
             {links.map((l) => (
-              <li key={l.label} className="">
-                <Anchor to={l.to} className="text-base w-full py-2">
+              <li key={l.label}>
+                <Anchor to={l.to} className="block w-full py-2 text-base">
                   {l.label}
                 </Anchor>
               </li>
@@ -106,10 +113,10 @@ export default function Navbar({ logoSrc, links = [] }: NavbarProps) {
       </aside>
 
       {open && (
-        <div
-          role="button"
+        <button
+          type="button"
           aria-label="Close menu"
-          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 md:hidden"
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 md:hidden"
           onClick={() => setOpen(false)}
         />
       )}

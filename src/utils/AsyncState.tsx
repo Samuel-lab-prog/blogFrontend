@@ -1,5 +1,5 @@
 type AsyncStateProps = {
-  isLoading: boolean;
+  isLoading?: boolean;
   isError: boolean;
   isEmpty: boolean;
 
