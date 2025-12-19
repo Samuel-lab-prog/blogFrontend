@@ -19,7 +19,7 @@ export default function PostPage() {
 
   return (
     <main className="flex flex-col items-center">
-      <section className="max-w-4xl flex flex-col py-16 xl:py-24">
+      <section className="max-w-4xl w-full flex flex-col py-16 xl:py-24">
         <h2>{post?.title}</h2>
         <div className="flex mt-4 gap-2">
           {post?.tags.map((tag) => (
@@ -38,7 +38,7 @@ export default function PostPage() {
         </div>
         <AsyncState isLoading={isLoading} isError={!!error} isEmpty={!post && !isLoading}>
           {post && (
-            <article className="max-w-full text-justify prose whitespace-pre-wrap">
+            <article className="max-w-full text-justify prose whitespace-pre-wrap wrap-break-word">
               <ReactMarkdown >
                 {post.content}
               </ReactMarkdown>
