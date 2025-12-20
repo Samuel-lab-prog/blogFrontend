@@ -3,9 +3,9 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
-import Input from '../../../components/Input';
-import Button from '../../../components/Button';
-import fetchHttp from '../../../utils/CreateQueryFunction';
+import Input from './Input';
+import { Button } from '@chakra-ui/react';
+import fetchHttp from '../utils/CreateQueryFunction';
 
 const loginSchema = z.object({
   email: z.string().email('Endereço de e-mail inválido'),
@@ -99,8 +99,7 @@ export default function LoginForm({
 
       <Button
         disabled={loading || !isValid}
-        variant="primary"
-        htmlType="submit"
+        variant="ghost"
       >
         {loading ? 'Entrando...' : 'Entrar'}
       </Button>

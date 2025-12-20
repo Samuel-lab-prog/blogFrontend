@@ -2,9 +2,9 @@ import { useState, Fragment } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Combobox, ComboboxInput, ComboboxOptions, ComboboxOption, Transition } from '@headlessui/react';
-import Button from '../../../components/Button';
-import fetchHttp from '../../../utils/CreateQueryFunction';
-import type { AppError, PostMinimalData } from '../../../types';
+import { Button } from '@chakra-ui/react';
+import fetchHttp from '@utils/CreateQueryFunction';
+import type { AppError, PostMinimalData } from '@types';
 
 type DeleteFormData = {
   postId: string;
@@ -97,7 +97,7 @@ export default function DeletePostForm({ className = '' }: { className?: string 
         )}
       />
 
-      <Button disabled={deleting} variant="primary" htmlType="submit">
+      <Button disabled={deleting} variant="ghost">
         {deleting ? 'Deletando...' : 'Deletar Post'}
       </Button>
     </form>

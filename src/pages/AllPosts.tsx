@@ -1,11 +1,10 @@
-import type { PaginatedPosts, Tag } from '../../../types';
+import type { PaginatedPosts, Tag } from '@types';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
-import fetchHttp from '../../../utils/CreateQueryFunction';
-import AsyncState from '../../../utils/AsyncState';
-import { PostCard, PostCardSkeleton } from '../components/PostCard';
-import Button from '../../../components/Button';
-import Select from '../../../components/Select';
+import fetchHttp from '@utils/CreateQueryFunction';
+import AsyncState from '@utils/AsyncState';
+import { Button } from '@chakra-ui/react';
+import Select from '@components/Select';
 import { useSearchParams } from 'react-router-dom';
 
 const POSTS_LIMIT = 6;
@@ -146,27 +145,21 @@ export default function Home() {
           isEmpty={!posts.length && !isLoading}
         >
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {posts.length === 0 && isLoading
-              ? Array.from({ length: POSTS_LIMIT }).map((_, i) => (
-                  <PostCardSkeleton key={i} />
-                ))
-              : posts.map((post) => (
-                  <PostCard key={post.id} post={post} />
-                ))}
+           
           </div>
 
           <div className="flex justify-center gap-4 mt-10">
             <Button
               onClick={handlePrevious}
               disabled={prevCursorStack.length === 0 || isFetching}
-              variant="secondary"
+              variant='ghost'
             >
               Anterior
             </Button>
             <Button
               onClick={handleNext}
               disabled={isFetching || !data?.nextCursor}
-              variant="secondary"
+              variant='ghost'
             >
               Próxima
             </Button>

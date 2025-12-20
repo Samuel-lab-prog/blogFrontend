@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
-import fetchHttp from '../../../utils/CreateQueryFunction';
-import type { AppError } from '../../../types';
+import fetchHttp from '@utils/CreateQueryFunction';
+import type { AppError } from '@types';
 
 export default function ProtectedRoute() {
   const navigate = useNavigate();

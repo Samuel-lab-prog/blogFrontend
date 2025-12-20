@@ -1,4 +1,3 @@
-import logo from './assets/logo.svg';
 
 import {
   createBrowserRouter,
@@ -10,13 +9,11 @@ import Navbar from './components/Navbar';
 import HomePage from './pages/Home';
 import ErrorPage from './pages/Error';
 
-import PostPage from './features/posts/pages/Post';
-import AllPosts from './features/posts/pages/AllPosts';
+import PostPage from '@pages/Post';
+import AllPosts from '@pages/AllPosts';
 
-import LoginPage from './features/auth/pages/Login';
-
-import ProtectedRoute from './features/admin/pages/ProtctedRoute';
-import AdminPage from './features/admin/pages/Admin';
+import ProtectedRoute from '@pages/ProtctedRoute';
+import AdminPage from '@pages/Admin';
 
 export default function App() {
   const navLinks = [
@@ -27,7 +24,7 @@ export default function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Navbar links={navLinks} logoSrc={logo} />,
+      element: <Navbar links={navLinks} />,
       errorElement: <ErrorPage />,
       children: [
         {
@@ -43,10 +40,6 @@ export default function App() {
           element: <PostPage />,
         },
         {
-          path: 'login',
-          element: <LoginPage />,
-        },
-        {
           path: 'admin',
           element: <ProtectedRoute />,
           children: [
@@ -60,5 +53,7 @@ export default function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+      <RouterProvider router={router} />
+  )
 }

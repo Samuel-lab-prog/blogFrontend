@@ -5,13 +5,13 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import ReactMarkdown from 'react-markdown';
 
-import Input from '../../../components/Input';
-import Textarea from '../../../components/TextArea';
-import Button from '../../../components/Button';
-import Select from '../../../components/Select';
-import fetchHttp from '../../../utils/CreateQueryFunction';
+import Input from '@components/Input';
+import Textarea from '@components/TextArea';
+import { Button }from '@chakra-ui/react';
+import Select from '@components/Select';
+import fetchHttp from '@utils/CreateQueryFunction';
 
-import type { AppError } from '../../../types';
+import type { AppError } from '@types';
 
 const postSchema = z.object({
   title: z
@@ -216,8 +216,6 @@ export default function PostForm({
       />
       <Button
         disabled={loading || !isValid}
-        variant="primary"
-        htmlType="submit"
       >
         {loading ? 'Salvando...' : 'Criar Post'}
       </Button>

@@ -1,4 +1,4 @@
-import Anchor from '../components/Anchor';
+import { NavigationLink } from '../components/NavigationLink/component';
 
 export default function ErrorPage() {
   return (
@@ -11,13 +11,11 @@ export default function ErrorPage() {
         <p className="text-sm text-gray-500 mt-1">
           Try returning to the homepage or checking the URL.
         </p>
-        <Anchor
+        <NavigationLink
           to="/"
-          variant="btn-primary"
-          className="mt-6 px-6 py-3 text-base"
         >
           Go back home
-        </Anchor>
+        </NavigationLink>
       </div>
     </main>
   );

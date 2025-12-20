@@ -1,12 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
-import type { FullPost } from '../../../types';
-import { formatDate } from '../utils';
-import fetchHttp from '../../../utils/CreateQueryFunction';
-import AsyncState from '../../../utils/AsyncState';
-import Anchor from '../../../components/Anchor';
-import Tag from '../components/Tag';
+import type { FullPost } from '@types';
+import { formatDate } from '@utils/functions';
+import fetchHttp from '@utils/CreateQueryFunction';
+import AsyncState from '@utils/AsyncState';
+import { NavigationLink } from '@components/NavigationLink/component';
 
 export default function PostPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -26,9 +25,7 @@ export default function PostPage() {
       <section className="max-w-4xl w-full flex flex-col py-16 xl:py-24">
         <h2>{post?.title}</h2>
         <div className="flex mt-4 gap-2">
-          {post?.tags.map((tag) => (
-            <Tag key={tag.id} name={tag.name} />
-          ))}
+
         </div>
         <div className="flex flex-col gap-1 mb-8 mt-2 text-xs md:text-sm">
           {post && (
@@ -53,9 +50,9 @@ export default function PostPage() {
             </article>
           )}
         </AsyncState>
-        <Anchor to="/posts" className="p-2 mt-8 w-fit">
+        <NavigationLink to="/posts">
           ← Voltar para publicações
-        </Anchor>
+        </NavigationLink>
       </section>
     </main>
   );

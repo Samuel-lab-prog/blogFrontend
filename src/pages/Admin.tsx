@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import Button2 from '../../../components/Button';
+import { Button } from '@chakra-ui/react';
 import PostForm from '../components/CreatePostForm';
 import DeletePostForm from '../components/DeletePostForm';
-import { Button } from "@chakra-ui/react"
 
 export default function AdminPage() {
   const [activeForm, setActiveForm] = useState<
@@ -15,18 +14,18 @@ export default function AdminPage() {
         <h2 className="mb-6">Admin Dashboard</h2>
 
         <div className="flex gap-2 mb-8 justify-center">
-          <Button2
-            variant="primary"
+          <Button
+            variant="ghost"
             onClick={() => setActiveForm('create')}
           >
             Criar Post
-          </Button2>
-          <Button2
-            variant="primary"
+          </Button>
+          <Button
+            variant="ghost"
             onClick={() => setActiveForm('update')}
           >
             Atualizar Post
-          </Button2>
+          </Button>
           <Button
             onClick={() => setActiveForm('delete')}
           >

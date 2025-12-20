@@ -1,46 +1,39 @@
 import type { PaginatedPosts } from '../types';
 import { useQuery } from '@tanstack/react-query';
 import fetchHttp from '../utils/CreateQueryFunction';
-import AsyncState from '../utils/AsyncState';
-import { PostCard } from '../features/posts/components/PostCard';
+import { PostCard } from '@components/PostCard/component';
+import { Flex, Heading, Text, Grid } from '@chakra-ui/react';
 
 export default function Home() {
-  const { data, isLoading, isError } = useQuery({
+  const { data } = useQuery({
     queryKey: ['posts'],
     queryFn: () =>
       fetchHttp<PaginatedPosts>({
         path: '/posts',
-        params: { limit: 3 },
+        params: { limit: 2 },
       }),
   });
-
   const posts = data?.items ?? [];
 
   return (
-    <main className="flex flex-col mb-16">
-      <section className="flex flex-col justify-end gap-2 pt-16 lg:pt-32 pb-8">
-        <h2>Bem-vindo(a) ao Blog SA</h2>
-        <p className="md:w-4/5">
+    <Flex as="main" direction="column" px={['4', undefined, undefined, '16']}>
+      <Flex as="section" direction="column" gap={2} pt={16} pb={4}>
+        <Heading as="h1" textStyle='h2'>Bem-vindo(a) ao Blog SA</Heading>
+        <Text textStyle='body' >
           Neste blog, você encontrará muitas citações interessantes de
           um indivíduo chamado Samuel Gomes.
-        </p>
-      </section>
-
-      <section className="flex flex-col px-4 lg:px-16 py-4">
-        <h3 className="mb-2">Últimas Publicações</h3>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-          <AsyncState
-            isLoading={isLoading}
-            isError={isError}
-            isEmpty={!isLoading && posts.length === 0}
-          >
-            {posts.map((post) => (
-              <PostCard key={post.id} post={post} />
-            ))}
-          </AsyncState>
-        </div>
-      </section>
-    </main>
+        </Text>
+      </Flex>
+      <Flex as="section" direction="column" py={4}>
+        <Heading as="h2" textStyle='h3' mb={2}> Últimas Publicações</Heading>
+        <Grid
+          as='div' templateColumns={['1fr', undefined, '1fr 1fr']}
+          gap={[2, undefined, undefined, undefined, 4]}>
+          {posts.map((post) => (
+            <PostCard post={post} />
+          ))}
+        </Grid>
+      </Flex>
+    </Flex>
   );
 }
