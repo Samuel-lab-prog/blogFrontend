@@ -1,59 +1,42 @@
-
 import {
   createBrowserRouter,
   RouterProvider,
 } from 'react-router-dom';
 
-import Navbar from './components/Navbar';
+import { BaseLayout } from '@features/base';
+import { HomePage } from '@features/base';
+import { ErrorPage } from '@features/base';
 
-import HomePage from './pages/Home';
-import ErrorPage from './pages/Error';
+import { Post } from '@features/posts';
+import { Posts } from '@features/posts';
 
-import PostPage from '@pages/Post';
-import AllPosts from '@pages/AllPosts';
+import { Login } from '@features/auth';
 
-import ProtectedRoute from '@pages/ProtctedRoute';
-import AdminPage from '@pages/Admin';
+import { AdminPage } from '@features/admin';
+import { ProtectedRoutePage } from '@features/admin';
 
 export default function App() {
-  const navLinks = [
-    { label: 'Home', to: '/' },
-    { label: 'Posts', to: '/posts' },
-  ];
 
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Navbar links={navLinks} />,
+      element: <BaseLayout />,
       errorElement: <ErrorPage />,
       children: [
-        {
-          index: true,
-          element: <HomePage />,
-        },
-        {
-          path: 'posts',
-          element: <AllPosts />,
-        },
-        {
-          path: 'posts/:slug',
-          element: <PostPage />,
-        },
+        { index: true, element: <HomePage /> },
+        { path: 'posts', element: <Posts /> },
+        { path: 'posts/:slug', element: <Post /> },
+        { path: '/login', element: <Login /> },
         {
           path: 'admin',
-          element: <ProtectedRoute />,
-          children: [
-            {
-              index: true,
-              element: <AdminPage />,
-            },
-          ],
+          element: <ProtectedRoutePage />,
+          children: [{
+            index: true, element: <AdminPage />
+          }],
         },
       ],
     },
   ]);
 
-  return (
-      <RouterProvider router={router} />
-  )
+  return <RouterProvider router={router} />;
 }

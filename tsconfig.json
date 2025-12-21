@@ -6,14 +6,11 @@
   ],
   "compilerOptions": {
     "baseUrl": "./src",
-     "paths": {
-       "@components/*": ["components/*"],
-       "@features/*": ["features/*"],
-       "@types": ["./types"],
-       "@utils/*": ["utils/*"],
-       "@themes/*": ["themes/*"],
-       "@pages/*": ["pages/*"]
-     },
-  },
+    "paths": {
+      "@root/*": ["./*"],
+      "@features/*": ["features/*"],
+      "@assets/*": ["assets/*"],
+    
+    }
+  }
 }
-  

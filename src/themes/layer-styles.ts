@@ -1,12 +1,13 @@
-import { defineLayerStyles } from "@chakra-ui/react"
+import { defineLayerStyles } from '@chakra-ui/react';
 
 export const layerStyles = defineLayerStyles({
-  container: {
-    description: "container styles",
+  main: {
+    description: 'Default main styling',
     value: {
-      background: "gray.50",
-      border: "2px solid",
-      borderColor: "gray.500",
+      paddingLeft: ['4', undefined, '8', '12', '16'],
+      paddingRight: ['4', undefined, '8', '12', '16'],
+      paddingTop: ['12', undefined, '16', '20', '24'],
+      paddingBottom: ['12', undefined, '16', '20', '24'],
     },
   },
-})
+});
