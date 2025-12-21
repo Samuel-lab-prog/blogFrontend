@@ -1,10 +1,4 @@
-import {
-  Flex,
-  Input,
-  Field,
-  Button,
-  Text,
-} from '@chakra-ui/react';
+import { Flex, Input, Field, Button, Text } from '@chakra-ui/react';
 
 import { useLoginForm } from '@features/auth';
 

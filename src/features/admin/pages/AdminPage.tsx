@@ -8,12 +8,13 @@ export function AdminPage() {
   const [activeForm, setActiveForm] = useState<ActiveForm>('create');
 
   return (
-    <Flex as="main" direction="column" layerStyle="main">
+    <>
       <Flex
         as="section"
         direction="column"
         align="center"
         justify="center"
+        w="full"
       >
         <Heading as="h1" textStyle="h1" mb={6}>
           Admin Dashboard
@@ -30,11 +31,17 @@ export function AdminPage() {
           </Button>
         </ButtonGroup>
       </Flex>
-      <Flex as="section" direction="column" align="center">
+      <Flex
+        as="section"
+        direction="column"
+        align="center"
+        justify="center"
+        w="full"
+      >
         <Flex direction="column" w="full" maxW="4xl">
           {activeForm === 'create' && (
             <>
-              <Heading as="h3" textStyle="h3" mb={4}>
+              <Heading as="h2" textStyle="h2" mb={4}>
                 Criar Post
               </Heading>
               <CreatePostForm />
@@ -43,7 +50,7 @@ export function AdminPage() {
 
           {activeForm === 'update' && (
             <>
-              <Heading as="h3" textStyle="h3" mb={4}>
+              <Heading as="h2" textStyle="h2" mb={4}>
                 Atualizar Post
               </Heading>
               Formulário de atualização em breve...
@@ -52,7 +59,7 @@ export function AdminPage() {
 
           {activeForm === 'delete' && (
             <>
-              <Heading as="h3" textStyle="h3" mb={4}>
+              <Heading as="h2" textStyle="h2" mb={4}>
                 Deletar Post
               </Heading>
               Formulário de deleção em breve...
@@ -60,6 +67,6 @@ export function AdminPage() {
           )}
         </Flex>
       </Flex>
-    </Flex>
+    </>
   );
 }

@@ -6,7 +6,7 @@ export function HomePage() {
   const { posts, isError, isLoading } = useRecentPosts({ limit: 4 });
   return (
     <>
-      <Flex as="section" direction="column" gap={2} pb={4}>
+      <Flex as="section" direction="column" w="full" gap={2} pb={4}>
         <Heading as="h1" textStyle="h1">
           Bem-vindo(a) ao Blog SA
         </Heading>
@@ -20,7 +20,11 @@ export function HomePage() {
           Últimas Publicações
         </Heading>
         <PostGrid>
-          <AsyncState isLoading={isLoading} isError={isError} isEmpty={!posts || posts.length === 0}>
+          <AsyncState
+            isLoading={isLoading}
+            isError={isError}
+            isEmpty={!posts || posts.length === 0}
+          >
             {posts.map((post) => (
               <PostCard key={post.id} post={post} />
             ))}

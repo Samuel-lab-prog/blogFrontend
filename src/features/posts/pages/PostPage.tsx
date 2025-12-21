@@ -1,15 +1,19 @@
 import { useParams } from 'react-router-dom';
-import { Flex, Box } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 
-import { AsyncState, NavigationLink, MarkdownRenderer } from '@features/base';
+import {
+  AsyncState,
+  NavigationLink,
+  MarkdownRenderer,
+} from '@features/base';
 import { usePost, PostHeader } from '@features/posts';
 
-export function Post() {
+export function PostPage() {
   const { slug } = useParams<{ slug: string }>();
   const { data: post, isError, isLoading } = usePost(slug);
 
   return (
-    <Flex as="main" justify="center" layerStyle="main">
+    <>
       <Box as="section" maxW="4xl" w="full">
         <AsyncState
           isLoading={isLoading}
@@ -29,6 +33,6 @@ export function Post() {
           <NavigationLink to="/">← Início</NavigationLink>
         </Box>
       </Box>
-    </Flex>
+    </>
   );
 }

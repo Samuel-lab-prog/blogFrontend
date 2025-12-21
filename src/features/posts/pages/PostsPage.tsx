@@ -1,11 +1,11 @@
 import { AsyncState } from '@features/base';
-import { 
+import {
   useInfinitePosts,
   useTags,
   useFilters,
   PostCard,
   PostGrid,
- } from '@features/posts';
+} from '@features/posts';
 import {
   Flex,
   Heading,
@@ -15,7 +15,7 @@ import {
 
 type OrderOption = 'newest' | 'oldest';
 
-export function Posts() {
+export function PostsPage() {
   const { tag, order, setTag, setOrder } = useFilters();
 
   /* ----------------------------- Queries ----------------------------- */
@@ -49,13 +49,12 @@ export function Posts() {
   /* ------------------------------ UI ------------------------------ */
 
   return (
-    <Flex as="main" direction="column" layerStyle="main">
-      <Heading as="h1" textStyle="h1" mb={6}>
-        Todas as Publicações
-      </Heading>
-
+    <>
       {/* ---------------------------- Filters ---------------------------- */}
-      <Flex as="section" mb={6} gap={8} direction="column">
+      <Flex as="section" mb={6} gap={8} direction="column" w="full">
+        <Heading as="h1" textStyle="h1">
+          Todas as Publicações
+        </Heading>
         <Flex
           direction={['column', undefined, 'row']}
           gap={[4, undefined, 8]}
@@ -138,6 +137,6 @@ export function Posts() {
           {isFetchingNextPage ? 'Carregando...' : 'Carregar mais'}
         </Button>
       )}
-    </Flex>
+    </>
   );
 }

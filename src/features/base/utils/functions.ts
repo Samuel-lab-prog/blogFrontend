@@ -35,10 +35,10 @@ export async function fetchHttp<
 
   const query = params
     ? new URLSearchParams(
-      Object.entries(params)
-        .filter(([, v]) => v !== undefined)
-        .map(([k, v]) => [k, String(v)])
-    ).toString()
+        Object.entries(params)
+          .filter(([, v]) => v !== undefined)
+          .map(([k, v]) => [k, String(v)])
+      ).toString()
     : '';
 
   const url = query

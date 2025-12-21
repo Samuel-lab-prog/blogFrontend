@@ -2,13 +2,9 @@ import {
   createSystem,
   defaultConfig,
   defineConfig,
-} from "@chakra-ui/react"
+} from '@chakra-ui/react';
 
-import {
-  animationStyles,
-  textStyles,
-  layerStyles
-} from './index'
+import { animationStyles, textStyles, layerStyles } from './index';
 
 const config = defineConfig({
   globalCss: {
@@ -19,9 +15,9 @@ const config = defineConfig({
       bg: 'gray.200',
       color: 'gray.700',
     },
-    "*": {
+    '*': {
       color: 'gray.700',
-    }
+    },
   },
   theme: {
     tokens: {
@@ -31,7 +27,6 @@ const config = defineConfig({
     textStyles,
     animationStyles,
   },
-})
+});
 
-export const system = createSystem(defaultConfig, config)
-
+export const system = createSystem(defaultConfig, config);

@@ -3,6 +3,6 @@ import { tagRecipe, type TagProps } from './recipe';
 
 const Component = chakra('span', tagRecipe);
 
-export function Tag ({ children, ...props }: TagProps) {
+export function Tag({ children, ...props }: TagProps) {
   return <Component {...props}>{children}</Component>;
-};
+}

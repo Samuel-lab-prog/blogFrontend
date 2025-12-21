@@ -8,7 +8,7 @@
     "skipLibCheck": true,
     "baseUrl": "./src",
     "paths": {
-      "@root/*": ["./*"],    
+      "@root/*": ["./*"],
       "@features/*": ["features/*"],
       "@assets/*": ["assets/*"]
     },

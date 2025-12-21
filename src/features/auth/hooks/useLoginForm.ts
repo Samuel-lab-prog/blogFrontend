@@ -7,8 +7,6 @@ import { useMutation } from '@tanstack/react-query';
 import { fetchHttp, type AppErrorType } from '@features/base';
 import { loginSchema, type LoginDataType } from '@features/auth';
 
-
-
 export function useLoginForm() {
   const [generalError, setGeneralError] = useState('');
   const navigate = useNavigate();

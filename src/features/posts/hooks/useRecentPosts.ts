@@ -6,7 +6,9 @@ type UseRecentPostsOptions = {
   limit?: number;
 };
 
-export function useRecentPosts({ limit = 4 }: UseRecentPostsOptions = {}) {
+export function useRecentPosts({
+  limit = 4,
+}: UseRecentPostsOptions = {}) {
   const query = useQuery({
     queryKey: ['posts', 'recent', limit],
     queryFn: () =>

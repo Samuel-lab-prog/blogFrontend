@@ -1,10 +1,18 @@
 import { Flex, Heading, Text } from '@chakra-ui/react';
 import { LoginForm } from '@features/auth';
 
-export function Login() {
+export function LoginPage() {
   return (
-    <Flex as="main" direction="column" justify="center" h="80vh">
-      <Flex as="section" px={4} direction="column" align="center">
+    <>
+      <Flex
+        as="section"
+        px={4}
+        direction="column"
+        align="center"
+        justify="start"
+        w="full"
+        h="70vh"
+      >
         <Flex
           direction="column"
           align="center"
@@ -23,6 +31,6 @@ export function Login() {
 
         <LoginForm />
       </Flex>
-    </Flex>
+    </>
   );
 }

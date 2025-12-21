@@ -17,6 +17,5 @@ export class AppError extends Error {
     this.name = 'AppError';
     this.statusCode = statusCode;
     this.errorMessages = errorMessages;
-
   }
 }

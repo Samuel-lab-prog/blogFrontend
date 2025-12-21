@@ -6,7 +6,7 @@ export function useAuth() {
     queryKey: ['auth'],
     queryFn: async () => {
       try {
-        await fetchHttp<{id: number}>({
+        await fetchHttp<{ id: number }>({
           path: '/auth',
           method: 'POST',
           credentials: 'include',
@@ -19,10 +19,10 @@ export function useAuth() {
           return false;
         }
 
-        throw err; 
+        throw err;
       }
     },
-    staleTime: 1000 * 60 * 5, 
-    retry: false,             
+    staleTime: 1000 * 60 * 5,
+    retry: false,
   });
 }

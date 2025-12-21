@@ -56,7 +56,3 @@ export function ProtectedRoutePage() {
     </Center>
   );
 }
-
-/**
- * Função que pode ser usada em qualquer lugar para checar autenticação
- */

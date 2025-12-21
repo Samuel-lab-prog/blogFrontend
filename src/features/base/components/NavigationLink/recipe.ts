@@ -67,7 +67,9 @@ export const recipe = defineRecipe({
   },
 });
 
-export type NavigationLinkProps = RecipeVariantProps<typeof recipe> & {
+export type NavigationLinkProps = RecipeVariantProps<
+  typeof recipe
+> & {
   to: string;
   children: React.ReactNode;
   onClick?: () => void;

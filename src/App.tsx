@@ -7,16 +7,15 @@ import { BaseLayout } from '@features/base';
 import { HomePage } from '@features/base';
 import { ErrorPage } from '@features/base';
 
-import { Post } from '@features/posts';
-import { Posts } from '@features/posts';
+import { PostPage } from '@features/posts';
+import { PostsPage } from '@features/posts';
 
-import { Login } from '@features/auth';
+import { LoginPage } from '@features/auth';
 
 import { AdminPage } from '@features/admin';
 import { ProtectedRoutePage } from '@features/admin';
 
 export default function App() {
-
   const router = createBrowserRouter([
     {
       path: '/',
@@ -24,15 +23,18 @@ export default function App() {
       errorElement: <ErrorPage />,
       children: [
         { index: true, element: <HomePage /> },
-        { path: 'posts', element: <Posts /> },
-        { path: 'posts/:slug', element: <Post /> },
-        { path: '/login', element: <Login /> },
+        { path: 'posts', element: <PostsPage /> },
+        { path: 'posts/:slug', element: <PostPage /> },
+        { path: '/login', element: <LoginPage /> },
         {
           path: 'admin',
           element: <ProtectedRoutePage />,
-          children: [{
-            index: true, element: <AdminPage />
-          }],
+          children: [
+            {
+              index: true,
+              element: <AdminPage />,
+            },
+          ],
         },
       ],
     },

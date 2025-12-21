@@ -30,6 +30,7 @@ export function CreatePostForm({
   return (
     <Flex
       as="form"
+      w="full"
       onSubmit={handleSubmit(onSubmit)}
       direction="column"
       gap={6}

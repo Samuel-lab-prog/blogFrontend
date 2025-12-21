@@ -11,7 +11,13 @@ export function BaseLayout() {
   return (
     <>
       <Navbar links={navLinks} />
-      <Flex as="main" direction="column" layerStyle='main'>
+      <Flex
+        as="main"
+        direction="column"
+        justify="center"
+        align="center"
+        layerStyle="main"
+      >
         <Outlet />
       </Flex>
     </>

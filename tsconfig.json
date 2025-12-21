@@ -9,8 +9,7 @@
     "paths": {
       "@root/*": ["./*"],
       "@features/*": ["features/*"],
-      "@assets/*": ["assets/*"],
-    
+      "@assets/*": ["assets/*"]
     }
   }
 }
