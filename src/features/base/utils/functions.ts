@@ -1,76 +1,80 @@
-/* eslint-disable @typescript-eslint/no-empty-object-type */
-
-export const formatDate = (date: Date | string) =>
-  new Date(date).toLocaleString('pt-BR', {
-    dateStyle: 'medium',
-    timeStyle: 'short',
-  });
-
 import type { AppErrorType } from '@features/base';
 
-export type FetchHttpOptions<TParams, TBody> = {
+export function formatDate(
+  date: Date | string,
+  options?: Intl.DateTimeFormatOptions,
+  locale: string = 'pt-BR'
+): string {
+  const parsedDate = typeof date === 'string' ? new Date(date) : date;
+
+  if (Number.isNaN(parsedDate.getTime())) {
+    return 'Data inválida';
+  }
+
+  return parsedDate.toLocaleString(locale, {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+    ...options,
+  });
+}
+
+export type FetchHttpOptions<TBody> = {
   path: string;
   method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
-  params?: TParams;
+  query?: Record<string, string | number | boolean | undefined>;
+  params?: string[] | number[] | boolean[];
   body?: TBody;
   credentials?: RequestCredentials;
   signal?: AbortSignal;
   headers?: HeadersInit;
 };
 
-export async function fetchHttp<
-  TResponse,
-  TParams extends Record<string, string | number | undefined> = {},
-  TBody = unknown,
->({
+export async function fetchHttp<TResponse, TBody = undefined>({
   path,
   method = 'GET',
+  query,
   params,
   body,
   credentials = 'same-origin',
   signal,
   headers,
-}: FetchHttpOptions<TParams, TBody>): Promise<TResponse> {
+}: FetchHttpOptions<TBody>): Promise<TResponse> {
   const baseUrl = import.meta.env.VITE_API_URL;
 
-  const query = params
+  const searchParams = query
     ? new URLSearchParams(
-        Object.entries(params)
-          .filter(([, v]) => v !== undefined)
-          .map(([k, v]) => [k, String(v)])
+        Object.entries(query)
+          .filter(([, value]) => value !== undefined)
+          .map(([key, value]) => [key, String(value)])
       ).toString()
     : '';
 
-  const url = query
-    ? `${baseUrl}${path}?${query}`
-    : `${baseUrl}${path}`;
+  const url = `${baseUrl}${path}${params ? `/${params.join('/')}` : ''}${searchParams ? `?${searchParams}` : ''}`;
 
   const response = await fetch(url, {
     method,
     credentials,
     signal,
     headers: {
-      ...(body && { 'Content-Type': 'application/json' }),
+      ...(body ? { 'Content-Type': 'application/json' } : {}),
       ...headers,
     },
     body: body ? JSON.stringify(body) : undefined,
   });
 
-  let parsedBody: unknown = null;
+  const contentType = response.headers.get('content-type');
+  const hasJson = contentType?.includes('application/json');
 
-  try {
-    parsedBody = await response.json();
-  } catch {
-    // No JSON body
-  }
+  const parsedBody = hasJson ? await response.json() : null;
 
   if (!response.ok) {
     const error: AppErrorType = {
       statusCode: response.status,
-      errorMessages: (parsedBody as AppErrorType)?.errorMessages ?? [
-        'Unknown error',
+      errorMessages: parsedBody?.errorMessages ?? [
+        `Erro HTTP ${response.status}`,
       ],
     };
+
     throw error;
   }
 

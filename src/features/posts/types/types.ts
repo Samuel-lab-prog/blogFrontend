@@ -37,7 +37,7 @@ export type PostMinimalDataType = {
 
 export type PaginatedPostsType = {
   nextCursor?: number | undefined;
-  items: {
+  posts: {
     status: 'published' | 'draft';
     id: number;
     tags: {
@@ -52,4 +52,13 @@ export type PaginatedPostsType = {
     content: string;
   }[];
   hasMore: boolean;
+};
+
+export type PaginatedMinimalPostsType = {
+  nextCursor?: number | undefined;
+  hasMore: boolean;
+  posts: {
+    id: number;
+    title: string;
+  }[];
 };

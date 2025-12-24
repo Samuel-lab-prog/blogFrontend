@@ -21,7 +21,7 @@ export function useInfinitePosts({
     queryFn: ({ pageParam }) =>
       fetchHttp<PaginatedPostsType>({
         path: '/posts',
-        params: {
+        query: {
           limit: POSTS_LIMIT,
           cursor: pageParam,
           tag,
@@ -33,7 +33,7 @@ export function useInfinitePosts({
     getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined,
   });
 
-  const posts = query.data?.pages.flatMap((page) => page.items) ?? [];
+  const posts = query.data?.pages.flatMap((page) => page.posts) ?? [];
 
   return {
     ...query,

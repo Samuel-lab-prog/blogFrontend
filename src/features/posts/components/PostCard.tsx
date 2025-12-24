@@ -43,7 +43,10 @@ export function PostCard({ post }: PostCardProps) {
       </Card.Body>
 
       <Card.Footer p={0} justifyContent="flex-end" mt={3}>
-        <NavigationLink to={`/posts/${post.slug}`} variant="outline">
+        <NavigationLink
+          to={`/posts/${post.slug}/${post.id}`}
+          variant="outline"
+        >
           Ler mais
         </NavigationLink>
       </Card.Footer>

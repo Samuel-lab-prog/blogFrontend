@@ -12,7 +12,7 @@ import {
   Flex,
   Image,
 } from '@chakra-ui/react';
-import { NavigationLink } from '@root/features/base/components/NavigationLink/Component';
+import { NavigationLink } from '@root/features/base/components/NavigationLink';
 import { Menu } from 'lucide-react';
 
 /* ---------------- LOGO ---------------- */

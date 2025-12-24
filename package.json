@@ -10,7 +10,7 @@
     "lint": "eslint --fix .",
     "format": "prettier --write .",
     "generate": "cd ./src/themes/ && npx @chakra-ui/cli typegen ./index.ts",
-    "barrels": "barrelsby --delete --location all --extensions .ts,.tsx src/features"
+    "barrels": "barrelsby --config barrels.config.json"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.30.0",

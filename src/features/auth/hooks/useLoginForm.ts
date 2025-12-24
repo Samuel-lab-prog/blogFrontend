@@ -18,7 +18,7 @@ export function useLoginForm() {
 
   const loginMutation = useMutation({
     mutationFn: (data: LoginDataType) =>
-      fetchHttp<void>({
+      fetchHttp<void, LoginDataType>({
         path: '/auth/login',
         method: 'POST',
         credentials: 'include',

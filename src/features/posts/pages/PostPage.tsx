@@ -9,8 +9,8 @@ import {
 import { usePost, PostHeader } from '@features/posts';
 
 export function PostPage() {
-  const { slug } = useParams<{ slug: string }>();
-  const { data: post, isError, isLoading } = usePost(slug);
+  const { id } = useParams<{ id: string }>();
+  const { data: post, isError, isLoading } = usePost(Number(id));
 
   return (
     <>
@@ -19,11 +19,28 @@ export function PostPage() {
           isLoading={isLoading}
           isError={!!isError}
           isEmpty={!post}
+          emptyElement={
+            <Box textStyle="body">Post não encontrado</Box>
+          }
+          errorElement={
+            <Box textStyle="body">
+              Erro ao carregar o post. Tente novamente mais tarde
+            </Box>
+          }
+          loadingElement={
+            <Box textStyle="body">Carregando post...</Box>
+          }
         >
           {post && (
             <>
               <PostHeader post={post} />
-              <Box as="article" textAlign="justify" mt={50}>
+              <Box
+                as="article"
+                textAlign="justify"
+                mt={50}
+                whiteSpace="pre-wrap"
+                wordBreak="break-word"
+              >
                 <MarkdownRenderer content={post.content} />
               </Box>
             </>

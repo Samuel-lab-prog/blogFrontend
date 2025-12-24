@@ -14,12 +14,12 @@ export function useRecentPosts({
     queryFn: () =>
       fetchHttp<PaginatedPostsType>({
         path: '/posts',
-        params: { limit },
+        query: { limit },
       }),
   });
 
   return {
-    posts: query.data?.items ?? [],
+    posts: query.data?.posts ?? [],
     ...query,
   };
 }

@@ -1,3 +1,7 @@
+/* eslint-disable react-refresh/only-export-components */
+import { NavLink } from 'react-router-dom';
+import { chakra } from '@chakra-ui/react';
+
 import { defineRecipe } from '@chakra-ui/react';
 import type { RecipeVariantProps } from '@chakra-ui/react';
 
@@ -73,4 +77,10 @@ export type NavigationLinkProps = RecipeVariantProps<
   to: string;
   children: React.ReactNode;
   onClick?: () => void;
+};
+
+const Component = chakra(NavLink, recipe);
+
+export const NavigationLink = (props: NavigationLinkProps) => {
+  return <Component to={props.to}>{props.children}</Component>;
 };

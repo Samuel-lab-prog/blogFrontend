@@ -3,3 +3,5 @@
  */
 
 export * from './CreatePostForm';
+export * from './DeletePostForm';
+export * from './UpdatePostForm';

@@ -1,123 +1,81 @@
-import {
-  Flex,
-  Input,
-  Textarea,
-  Field,
-  NativeSelect,
-  Button,
-  Text,
-} from '@chakra-ui/react';
+import { Flex, Button, Text } from '@chakra-ui/react';
+import { useCreatePostForm } from '@features/admin';
+import { FormField, SelectField } from '@features/base';
 
-import { usePostForm } from '@features/admin';
-
-export function CreatePostForm({
-  className,
-}: {
-  className?: string;
-}) {
+export function CreatePostForm() {
   const {
-    register,
     handleSubmit,
-    watch,
     formState: { errors, isValid },
     onSubmit,
     isPending,
     generalError,
-  } = usePostForm();
-
-  const statusValue = watch('status');
+    control,
+  } = useCreatePostForm();
 
   return (
     <Flex
       as="form"
       w="full"
-      onSubmit={handleSubmit(onSubmit)}
       direction="column"
       gap={6}
-      className={className}
+      onSubmit={handleSubmit(onSubmit)}
     >
       {generalError && <Text color="red.500">{generalError}</Text>}
 
-      <Field.Root required invalid={!!errors.title}>
-        <Field.Label>
-          Título <Field.RequiredIndicator />
-        </Field.Label>
-        <Input
-          placeholder="Digite o título do post"
-          {...register('title')}
-        />
-        <Field.ErrorText>{errors.title?.message}</Field.ErrorText>
-      </Field.Root>
+      <FormField
+        label="Título"
+        required
+        error={errors.title}
+        control={control}
+        name="title"
+      />
 
-      <Field.Root required invalid={!!errors.excerpt}>
-        <Field.Label>
-          Resumo <Field.RequiredIndicator />
-        </Field.Label>
-        <Textarea
-          placeholder="Digite um breve resumo"
-          {...register('excerpt')}
-        />
-        <Field.ErrorText>{errors.excerpt?.message}</Field.ErrorText>
-      </Field.Root>
+      <FormField
+        label="Resumo"
+        required
+        as="textarea"
+        control={control}
+        name="excerpt"
+        error={errors.excerpt}
+      />
 
-      <Field.Root required invalid={!!errors.content}>
-        <Field.Label>
-          Conteúdo (Markdown) <Field.RequiredIndicator />
-        </Field.Label>
-        <Textarea
-          rows={10}
-          placeholder="Escreva o conteúdo completo em Markdown"
-          variant="outline"
-          {...register('content')}
-        />
-        <Field.ErrorText>{errors.content?.message}</Field.ErrorText>
-      </Field.Root>
+      <FormField
+        label="Conteúdo (Markdown)"
+        required
+        as="textarea"
+        rows={10}
+        control={control}
+        name="content"
+        error={errors.content}
+      />
 
-      <Field.Root>
-        <Field.Label>Tags</Field.Label>
-        <Input
-          placeholder="Ex: Tecnologia, React"
-          {...register('tags', {
-            setValueAs: (v) =>
-              typeof v === 'string'
-                ? v
-                    .split(',')
-                    .map((t) => t.trim())
-                    .filter(Boolean)
-                : [],
-          })}
-        />
-      </Field.Root>
+      <FormField
+        label="Tags"
+        control={control}
+        name="tags"
+        setValueAs={(v) =>
+          typeof v === 'string'
+            ? v
+                .split(',')
+                .map((tag) => tag.trim())
+                .filter((tag) => tag.length > 0)
+            : []
+        }
+        error={errors.tags}
+      />
 
-      <Field.Root required>
-        <Field.Label>
-          Status <Field.RequiredIndicator />
-        </Field.Label>
-        <NativeSelect.Root>
-          <NativeSelect.Field {...register('status')}>
-            <option
-              style={{ backgroundColor: 'white' }}
-              value="draft"
-            >
-              Rascunho
-            </option>
-            <option
-              style={{ backgroundColor: 'white' }}
-              value="published"
-            >
-              Publicado
-            </option>
-          </NativeSelect.Field>
-        </NativeSelect.Root>
+      <SelectField
+        label="Status"
+        name="status"
+        control={control}
+        options={[
+          { value: 'draft', label: 'Rascunho' },
+          { value: 'published', label: 'Publicado' },
+        ]}
+        error={errors.status}
+        required
+      />
 
-        <Text textStyle="sm" mt={1}>
-          {statusValue === 'draft'
-            ? 'O post será salvo como rascunho e não ficará visível publicamente.'
-            : 'O post será publicado e ficará visível para todos os usuários.'}
-        </Text>
-      </Field.Root>
-
-      {/* Botão */}
       <Button
         type="submit"
         variant="surface"

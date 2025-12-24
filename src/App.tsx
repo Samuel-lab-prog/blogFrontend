@@ -24,7 +24,7 @@ export default function App() {
       children: [
         { index: true, element: <HomePage /> },
         { path: 'posts', element: <PostsPage /> },
-        { path: 'posts/:slug', element: <PostPage /> },
+        { path: 'posts/:slug/:id', element: <PostPage /> },
         { path: '/login', element: <LoginPage /> },
         {
           path: 'admin',

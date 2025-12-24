@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { Flex, Heading, Button, ButtonGroup } from '@chakra-ui/react';
-import { CreatePostForm } from '@features/admin';
+import {
+  CreatePostForm,
+  DeletePostForm,
+  UpdatePostForm,
+} from '@features/admin';
 
 type ActiveForm = 'create' | 'update' | 'delete';
 
@@ -53,7 +57,7 @@ export function AdminPage() {
               <Heading as="h2" textStyle="h2" mb={4}>
                 Atualizar Post
               </Heading>
-              Formulário de atualização em breve...
+              <UpdatePostForm />
             </>
           )}
 
@@ -62,7 +66,7 @@ export function AdminPage() {
               <Heading as="h2" textStyle="h2" mb={4}>
                 Deletar Post
               </Heading>
-              Formulário de deleção em breve...
+              <DeletePostForm />
             </>
           )}
         </Flex>

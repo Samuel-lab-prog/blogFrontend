@@ -1,12 +1,8 @@
-import { Flex, Input, Field, Button, Text } from '@chakra-ui/react';
-
+import { Flex, Button, Text } from '@chakra-ui/react';
 import { useLoginForm } from '@features/auth';
+import { FormField } from '@features/base';
 
-type LoginFormProps = {
-  className?: string;
-};
-
-export function LoginForm({ className }: LoginFormProps) {
+export function LoginForm() {
   const {
     register,
     handleSubmit,
@@ -25,7 +21,6 @@ export function LoginForm({ className }: LoginFormProps) {
       gap={2}
       w="full"
       maxW="md"
-      className={className}
     >
       {generalError && (
         <Text color="red.500" fontSize="sm" mb={2}>
@@ -33,24 +28,22 @@ export function LoginForm({ className }: LoginFormProps) {
         </Text>
       )}
 
-      <Field.Root required invalid={!!errors.email}>
-        <Field.Label>E-mail</Field.Label>
-        <Input
-          placeholder="Digite seu e-mail"
-          {...register('email')}
-        />
-        <Field.ErrorText>{errors.email?.message}</Field.ErrorText>
-      </Field.Root>
+      <FormField
+        label="E-mail"
+        required
+        placeholder="Digite seu e-mail"
+        {...register('email')}
+        error={errors.email?.message}
+      />
 
-      <Field.Root required invalid={!!errors.password}>
-        <Field.Label>Senha</Field.Label>
-        <Input
-          type="password"
-          placeholder="Digite sua senha"
-          {...register('password')}
-        />
-        <Field.ErrorText>{errors.password?.message}</Field.ErrorText>
-      </Field.Root>
+      <FormField
+        label="Senha"
+        required
+        type="password"
+        placeholder="Digite sua senha"
+        {...register('password')}
+        error={errors.password?.message}
+      />
 
       <Button
         type="submit"

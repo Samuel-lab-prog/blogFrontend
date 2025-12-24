@@ -1,0 +1,7 @@
+{
+  "directory": "./src",
+  "singleQuotes": true,
+  "delete": true,
+  "name": "index",
+  "location": "all"
+}

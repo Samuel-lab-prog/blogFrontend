@@ -9,7 +9,7 @@ export function useTags() {
     queryFn: () =>
       fetchHttp<TagType[]>({
         path: '/posts/tags',
-        params: {
+        query: {
           deleted: 'false',
           draft: 'false',
         },

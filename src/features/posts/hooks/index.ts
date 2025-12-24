@@ -4,6 +4,5 @@
 
 export * from './useInfinitePosts';
 export * from './usePost';
-export * from './usePostFilters';
 export * from './useRecentPosts';
 export * from './useTags';

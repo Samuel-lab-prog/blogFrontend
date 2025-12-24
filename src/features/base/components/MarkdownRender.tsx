@@ -7,14 +7,14 @@ type MarkdownRendererProps = {
 };
 
 const components: Components = {
-  h1: (p) => <Heading as="h1" textStyle="h1" my={4} {...p} />,
-  h2: (p) => <Heading as="h2" textStyle="h2" my={6} {...p} />,
-  h3: (p) => <Heading as="h3" textStyle="h3" my={4} {...p} />,
-  h4: (p) => <Heading as="h4" textStyle="h4" my={4} {...p} />,
-  h5: (p) => <Heading as="h5" textStyle="h5" my={4} {...p} />,
-  h6: (p) => <Heading as="h6" textStyle="h6" my={4} {...p} />,
+  h1: (p) => <Heading as="h1" textStyle="h1" {...p} />,
+  h2: (p) => <Heading as="h2" textStyle="h2" {...p} />,
+  h3: (p) => <Heading as="h3" textStyle="h3" {...p} />,
+  h4: (p) => <Heading as="h4" textStyle="h4" {...p} />,
+  h5: (p) => <Heading as="h5" textStyle="h5" {...p} />,
+  h6: (p) => <Heading as="h6" textStyle="h6" {...p} />,
 
-  p: (p) => <Text as="p" my={0} textStyle="body" {...p} />,
+  p: (p) => <Text as="p" textStyle="body" {...p} />,
 
   strong: (p) => <Mark as="strong" fontWeight="bold" {...p} />,
   em: (p) => <Mark as="em" fontStyle="italic" {...p} />,

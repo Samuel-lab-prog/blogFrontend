@@ -2,24 +2,53 @@ import { AsyncState } from '@features/base';
 import {
   useInfinitePosts,
   useTags,
-  useFilters,
   PostCard,
   PostGrid,
 } from '@features/posts';
-import {
-  Flex,
-  Heading,
-  Button,
-  NativeSelect,
-} from '@chakra-ui/react';
+import { Flex, Heading, Button } from '@chakra-ui/react';
+import { SelectField } from '@features/base';
+import { useSearchParams } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
 
 type OrderOption = 'newest' | 'oldest';
 
 export function PostsPage() {
-  const { tag, order, setTag, setOrder } = useFilters();
+  // Custom local hook to manage filters and sync with URL search params
+  function useFilters() {
+    const [searchParams, setSearchParams] = useSearchParams();
 
-  /* ----------------------------- Queries ----------------------------- */
+    const initialTag = searchParams.get('tag') || undefined;
+    const initialOrder =
+      (searchParams.get('order') as OrderOption) || 'newest';
 
+    const form = useForm<{ tag?: string; order: OrderOption }>({
+      defaultValues: {
+        tag: initialTag,
+        order: initialOrder,
+      },
+      mode: 'onChange',
+    });
+
+    const tag = form.watch('tag');
+    const order = form.watch('order');
+
+    useEffect(() => {
+      const newParams = new URLSearchParams();
+      if (tag) newParams.set('tag', tag);
+      if (order) newParams.set('order', order);
+      setSearchParams(newParams);
+    }, [tag, order, setSearchParams]);
+
+    return {
+      control: form.control,
+      tag,
+      order,
+    };
+  }
+
+  const { control, tag, order } = useFilters();
+  const { tags, isLoading: isTagsLoading } = useTags();
   const {
     posts,
     isError,
@@ -27,94 +56,62 @@ export function PostsPage() {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useInfinitePosts({ tag, order });
-
-  const { tags } = useTags();
-
-  /* ----------------------------- Options ----------------------------- */
+  } = useInfinitePosts({ tag: tag || undefined, order });
 
   const tagOptions = [
     { value: '', label: 'Todas' },
-    ...tags.map((t) => ({
-      value: t.name,
-      label: t.name,
-    })),
+    ...tags.map((t) => ({ value: t.name, label: t.name })),
   ];
 
-  const orderOptions = [
+  const orderOptions: { value: OrderOption; label: string }[] = [
     { value: 'newest', label: 'Mais recentes' },
     { value: 'oldest', label: 'Mais antigos' },
   ];
 
-  /* ------------------------------ UI ------------------------------ */
-
   return (
     <>
-      {/* ---------------------------- Filters ---------------------------- */}
       <Flex as="section" mb={6} gap={8} direction="column" w="full">
         <Heading as="h1" textStyle="h1">
           Todas as Publicações
         </Heading>
+
         <Flex
+          as="form"
           direction={['column', undefined, 'row']}
           gap={[4, undefined, 8]}
           w="full"
         >
-          <Flex direction="column" w="full">
-            <Heading as="h3" textStyle="h3" mb={2}>
-              Filtrar por tag
-            </Heading>
+          <SelectField
+            label="Filtrar por tag"
+            name="tag"
+            disabled={isTagsLoading}
+            control={control}
+            options={tagOptions}
+          />
 
-            <NativeSelect.Root>
-              <NativeSelect.Field
-                value={tag ?? ''}
-                onChange={(e) => setTag(e.target.value || undefined)}
-              >
-                {tagOptions.map((option) => (
-                  <option
-                    key={option.value}
-                    value={option.value}
-                    style={{ backgroundColor: 'white' }}
-                  >
-                    {option.label}
-                  </option>
-                ))}
-              </NativeSelect.Field>
-            </NativeSelect.Root>
-          </Flex>
-
-          <Flex direction="column" w="full">
-            <Heading as="h3" textStyle="h3" mb={2}>
-              Ordenar por
-            </Heading>
-
-            <NativeSelect.Root>
-              <NativeSelect.Field
-                value={order}
-                onChange={(e) =>
-                  setOrder(e.target.value as OrderOption)
-                }
-              >
-                {orderOptions.map((option) => (
-                  <option
-                    key={option.value}
-                    value={option.value}
-                    style={{ backgroundColor: 'white' }}
-                  >
-                    {option.label}
-                  </option>
-                ))}
-              </NativeSelect.Field>
-            </NativeSelect.Root>
-          </Flex>
+          <SelectField
+            label="Ordenar por"
+            name="order"
+            control={control}
+            options={orderOptions}
+          />
         </Flex>
       </Flex>
 
-      {/* ----------------------------- Posts ----------------------------- */}
       <Flex as="section" w="full" direction="column" gap={4}>
         <AsyncState
           isError={isError}
-          isEmpty={!posts.length && !isLoading}
+          isEmpty={posts?.length === 0 && !isLoading}
+          isLoading={isLoading}
+          emptyElement={
+            <Flex textStyle="body">Nenhum post encontrado</Flex>
+          }
+          errorElement={
+            <Flex textStyle="body">Erro ao carregar posts</Flex>
+          }
+          loadingElement={
+            <Flex textStyle="body">Carregando posts...</Flex>
+          }
         >
           <PostGrid>
             {posts.map((post) => (
@@ -124,13 +121,13 @@ export function PostsPage() {
         </AsyncState>
       </Flex>
 
-      {/* ------------------------- Load More ------------------------- */}
       {hasNextPage && (
         <Button
           onClick={() => fetchNextPage()}
           disabled={!hasNextPage}
           loading={isFetchingNextPage}
           mt={8}
+          loadingText="Carregando..."
           alignSelf="center"
           variant="surface"
         >
