@@ -4,8 +4,8 @@
 
 export * from './AsyncState';
 export * from './FormField';
-export * from './FormSelectField';
 export * from './MarkdownRender';
 export * from './Navbar';
 export * from './NavigationLink';
+export * from './SelectField';
 export * from './ui/index';

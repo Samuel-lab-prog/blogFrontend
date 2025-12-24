@@ -63,7 +63,7 @@ export function useLoginForm() {
   return {
     ...form,
     onSubmit,
+    ...loginMutation,
     generalError,
-    loading: loginMutation.isPending,
   };
 }

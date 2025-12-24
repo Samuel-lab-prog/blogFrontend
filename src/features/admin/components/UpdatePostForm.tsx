@@ -23,7 +23,6 @@ export function UpdatePostForm() {
 
   useEffect(() => {
     if (!post) return;
-
     reset({
       id: post.id,
       title: post.title,

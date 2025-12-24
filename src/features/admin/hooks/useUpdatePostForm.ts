@@ -76,10 +76,7 @@ function handleUpdatePostError(
 function useUpdatePost() {
   return useMutation({
     mutationFn: (updatedPost: UpdatePostType) =>
-      fetchHttp<
-        { id: number },
-        Omit<UpdatePostType, 'id' | 'status'>
-      >({
+      fetchHttp<{ id: number }, Omit<UpdatePostType, 'id'>>({
         path: '/posts',
         params: [Number(updatedPost.id)],
         method: 'PATCH',
@@ -89,6 +86,7 @@ function useUpdatePost() {
           excerpt: updatedPost.excerpt,
           content: updatedPost.content,
           tags: updatedPost.tags,
+          status: updatedPost.status,
         },
       }),
   });

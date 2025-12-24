@@ -61,7 +61,6 @@ export function CreatePostForm() {
                 .filter((tag) => tag.length > 0)
             : []
         }
-        error={errors.tags}
       />
 
       <SelectField
@@ -73,7 +72,6 @@ export function CreatePostForm() {
           { value: 'published', label: 'Publicado' },
         ]}
         error={errors.status}
-        required
       />
 
       <Button

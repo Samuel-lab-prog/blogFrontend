@@ -1,14 +1,14 @@
 import { Flex, Button, Text } from '@chakra-ui/react';
-import { useLoginForm } from '@features/auth';
 import { FormField } from '@features/base';
+import { useLoginForm } from '@features/auth';
 
 export function LoginForm() {
   const {
-    register,
     handleSubmit,
     formState: { errors, isValid },
     onSubmit,
-    loading,
+    isPending: loading,
+    control,
     generalError,
   } = useLoginForm();
 
@@ -29,20 +29,20 @@ export function LoginForm() {
       )}
 
       <FormField
+        name="email"
         label="E-mail"
         required
-        placeholder="Digite seu e-mail"
-        {...register('email')}
-        error={errors.email?.message}
+        control={control}
+        error={errors.email}
       />
 
       <FormField
+        name="password"
         label="Senha"
         required
+        control={control}
+        error={errors.password}
         type="password"
-        placeholder="Digite sua senha"
-        {...register('password')}
-        error={errors.password?.message}
       />
 
       <Button

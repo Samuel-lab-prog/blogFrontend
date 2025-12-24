@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Field, Input, Textarea } from '@chakra-ui/react';
 import {
   Controller,
@@ -17,7 +16,8 @@ interface Props<T extends FieldValues> {
   as?: 'input' | 'textarea';
   rows?: number;
   disabled?: boolean;
-  setValueAs?: (value: any) => any;
+  type?: string;
+  setValueAs?: (value: unknown) => unknown;
 }
 
 export function FormField<T extends FieldValues>({
@@ -28,8 +28,8 @@ export function FormField<T extends FieldValues>({
   error,
   as = 'input',
   rows,
+  type,
   setValueAs,
-  ...rest
 }: Props<T>) {
   const Component = as === 'textarea' ? Textarea : Input;
 
@@ -43,24 +43,20 @@ export function FormField<T extends FieldValues>({
       <Controller
         name={name}
         control={control}
-        render={({ field }) =>
-          setValueAs ? (
-            <Component
-              {...field}
-              {...rest}
-              rows={as === 'textarea' ? rows : undefined}
-              onChange={(e) =>
-                field.onChange(setValueAs(e.target.value))
-              }
-            />
-          ) : (
-            <Component
-              {...field}
-              {...rest}
-              rows={as === 'textarea' ? rows : undefined}
-            />
-          )
-        }
+        render={({ field }) => (
+          <Component
+            rows={as === 'textarea' ? rows : undefined}
+            type={type}
+            value={field.value ?? ''}
+            onChange={(e) => {
+              field.onChange(
+                setValueAs
+                  ? setValueAs(e.target.value)
+                  : e.target.value
+              );
+            }}
+          />
+        )}
       />
 
       <Field.ErrorText>{error?.message?.toString()}</Field.ErrorText>
