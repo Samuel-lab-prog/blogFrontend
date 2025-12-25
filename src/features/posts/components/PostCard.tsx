@@ -33,7 +33,9 @@ export function PostCard({ post }: PostCardProps) {
       <Card.Body p={0} flex="1" gap={2}>
         <Flex gap={2} flexWrap="wrap">
           {post.tags.map((tag) => (
-            <Tag key={tag.id}>{tag.name}</Tag>
+            <Tag key={tag.id} variant="solid" textStyle="xs">
+              {tag.name}
+            </Tag>
           ))}
         </Flex>
 
@@ -43,10 +45,7 @@ export function PostCard({ post }: PostCardProps) {
       </Card.Body>
 
       <Card.Footer p={0} justifyContent="flex-end" mt={3}>
-        <NavigationLink
-          to={`/posts/${post.slug}/${post.id}`}
-          variant="outline"
-        >
+        <NavigationLink to={`/posts/${post.slug}/${post.id}`}>
           Ler mais
         </NavigationLink>
       </Card.Footer>

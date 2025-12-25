@@ -3,17 +3,20 @@ import { z } from 'zod';
 export const createPostSchema = z.object({
   title: z
     .string()
-    .min(5, 'O título deve ter pelo menos 3 caracteres'),
+    .min(5, 'O título deve ter pelo menos 5 caracteres'),
   excerpt: z
     .string()
     .min(10, 'O resumo deve ter pelo menos 10 caracteres'),
   content: z
     .string()
-    .min(20, 'O conteúdo deve ter pelo menos 100 caracteres'),
+    .min(100, 'O conteúdo deve ter pelo menos 100 caracteres'),
+  // We gonna treat tags as a comma-separated string in the form and convert it to an array in the hook
   tags: z
-    .array(z.string())
-    .max(5, 'No máximo 5 tags são permitidas')
-    .optional(),
+    .string()
+    .regex(
+      /^(\s*\w+\s*)(,\s*\w+\s*)*$/,
+      'As tags devem ser uma lista separada por vírgulas'
+    ),
   status: z.enum(['draft', 'published']),
 });
 export const deletePostSchema = z.object({

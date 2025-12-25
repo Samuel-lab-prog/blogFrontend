@@ -29,7 +29,7 @@ export function UpdatePostForm() {
       excerpt: post.excerpt,
       content: post.content,
       status: post.status,
-      tags: post.tags.map((tag) => tag.name),
+      tags: post.tags.flatMap((tag) => tag.name).join(', '),
     });
   }, [post, reset]);
 
@@ -93,14 +93,6 @@ export function UpdatePostForm() {
         control={control}
         name="tags"
         error={errors.tags}
-        setValueAs={(v) =>
-          typeof v === 'string'
-            ? v
-                .split(',')
-                .map((t) => t.trim())
-                .filter(Boolean)
-            : []
-        }
         disabled={isLoading || !postId}
       />
 

@@ -23,7 +23,7 @@ export function AdminPage() {
         <Heading as="h1" textStyle="h1" mb={6}>
           Admin Dashboard
         </Heading>
-        <ButtonGroup variant="surface" gap={2} mb={8}>
+        <ButtonGroup gap={2} mb={8} variant="surface">
           <Button onClick={() => setActiveForm('create')}>
             Criar Post
           </Button>

@@ -53,14 +53,7 @@ export function CreatePostForm() {
         label="Tags"
         control={control}
         name="tags"
-        setValueAs={(v) =>
-          typeof v === 'string'
-            ? v
-                .split(',')
-                .map((tag) => tag.trim())
-                .filter((tag) => tag.length > 0)
-            : []
-        }
+        error={errors.tags}
       />
 
       <SelectField
@@ -75,9 +68,8 @@ export function CreatePostForm() {
       />
 
       <Button
-        type="submit"
         variant="surface"
-        colorPalette="gray"
+        type="submit"
         disabled={!isValid}
         loading={isPending}
         w="full"

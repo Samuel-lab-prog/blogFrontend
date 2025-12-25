@@ -21,8 +21,15 @@ export function useCreatePostForm() {
   const { mutateAsync, isPending } = useCreatePost();
 
   async function onSubmit(data: CreatePostType) {
+    const modifiedData = {
+      ...data,
+      tags: data.tags
+        ?.split(',')
+        .map((tag) => tag.trim())
+        .filter(Boolean),
+    };
     try {
-      await mutateAsync(data);
+      await mutateAsync(modifiedData);
       alert('Post criado com sucesso!');
     } catch (err) {
       handleCreatePostError(err, form.setError, setGeneralError);
@@ -71,10 +78,18 @@ function handleCreatePostError(
   );
 }
 
+type FinalCreatePostType = {
+  title: string;
+  excerpt: string;
+  content: string;
+  tags?: string[];
+  status?: 'draft' | 'published';
+};
+
 function useCreatePost() {
   return useMutation({
-    mutationFn: (newPost: CreatePostType) =>
-      fetchHttp<{ id: number }, CreatePostType>({
+    mutationFn: (newPost: FinalCreatePostType) =>
+      fetchHttp<{ id: number }, FinalCreatePostType>({
         path: '/posts',
         method: 'POST',
         credentials: 'include',

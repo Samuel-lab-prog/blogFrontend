@@ -8,14 +8,14 @@ export function HomePage() {
     <>
       <Flex as="section" direction="column" w="full" gap={2} pb={4}>
         <Heading as="h1" textStyle="h1">
-          Bem-vindo(a) ao Blog SA
+          Bem-vindo(a) ao Blog SG
         </Heading>
         <Text textStyle="body">
           Neste blog, você encontrará muitas citações interessantes de
           um indivíduo chamado Samuel Gomes.
         </Text>
       </Flex>
-      <Flex as="section" direction="column" py={4}>
+      <Flex as="section" direction="column" w="full" py={4}>
         <Heading as="h2" textStyle="h3" mb={2}>
           Últimas Publicações
         </Heading>
@@ -23,7 +23,7 @@ export function HomePage() {
           <AsyncState
             isLoading={isLoading}
             isError={isError}
-            isEmpty={!posts || posts.length === 0}
+            isEmpty={!posts || posts?.length === 0}
           >
             {posts.map((post) => (
               <PostCard key={post.id} post={post} />

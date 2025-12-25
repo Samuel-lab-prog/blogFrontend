@@ -17,7 +17,6 @@ interface Props<T extends FieldValues> {
   rows?: number;
   disabled?: boolean;
   type?: string;
-  setValueAs?: (value: unknown) => unknown;
 }
 
 export function FormField<T extends FieldValues>({
@@ -29,7 +28,6 @@ export function FormField<T extends FieldValues>({
   as = 'input',
   rows,
   type,
-  setValueAs,
 }: Props<T>) {
   const Component = as === 'textarea' ? Textarea : Input;
 
@@ -49,11 +47,7 @@ export function FormField<T extends FieldValues>({
             type={type}
             value={field.value ?? ''}
             onChange={(e) => {
-              field.onChange(
-                setValueAs
-                  ? setValueAs(e.target.value)
-                  : e.target.value
-              );
+              field.onChange(e.target.value);
             }}
           />
         )}
