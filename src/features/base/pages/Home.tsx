@@ -5,7 +5,11 @@ import { AsyncState } from '@features/base';
 export function HomePage() {
 	const { posts, isError, isLoading } = useRecentPosts({ limit: 4 });
 	return (
-		<>
+		<Flex
+			as='main'
+			layerStyle='main'
+			direction='column'
+		>
 			<Flex
 				as='section'
 				direction='column'
@@ -52,6 +56,6 @@ export function HomePage() {
 					</AsyncState>
 				</PostGrid>
 			</Flex>
-		</>
+		</Flex>
 	);
 }

@@ -12,7 +12,12 @@ export function AdminPage() {
 	const [activeForm, setActiveForm] = useState<ActiveForm>('create');
 
 	return (
-		<>
+		<Flex
+			as='main'
+			layerStyle='main'
+			direction='column'
+			gap={8}
+		>
 			<Flex
 				as='section'
 				direction='column'
@@ -91,6 +96,6 @@ export function AdminPage() {
 					)}
 				</Flex>
 			</Flex>
-		</>
+		</Flex>
 	);
 }

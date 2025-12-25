@@ -63,7 +63,11 @@ export function PostsPage() {
 	];
 
 	return (
-		<>
+		<Flex
+			as='main'
+			layerStyle='main'
+			direction='column'
+		>
 			<Flex
 				as='section'
 				mb={6}
@@ -139,6 +143,6 @@ export function PostsPage() {
 					{isFetchingNextPage ? 'Carregando...' : 'Carregar mais'}
 				</Button>
 			)}
-		</>
+		</Flex>
 	);
 }

@@ -11,8 +11,9 @@ import {
 	Flex,
 	Image,
 } from '@chakra-ui/react';
-import { NavigationLink } from '@root/features/base/components/NavigationLink';
+import { NavigationLink } from '@features/base';
 import { Menu } from 'lucide-react';
+import { Outlet } from 'react-router-dom';
 
 /* ---------------- LOGO ---------------- */
 const Logo = () => (
@@ -115,33 +116,36 @@ const MobileDrawer = ({
 /* ---------------- NAVBAR ---------------- */
 export function Navbar({ links }: { links: { label: string; to: string }[] }) {
 	return (
-		<Flex
-			as='nav'
-			align='center'
-			justify={{ base: 'space-between', md: 'flex-start' }}
-			wrap='wrap'
-			gap={{ base: 8, lg: 16 }}
-			px={{ base: 6, lg: 12 }}
-			py={3}
-			borderBottom='2px solid'
-			borderColor='gray.200'
-			mx='auto'
-			h={120}
-		>
-			<Logo />
-
-			{/* Desktop Menu */}
-			<Box
-				display={{ base: 'none', md: 'block' }}
-				ml={12}
+		<>
+			<Flex
+				as='nav'
+				align='center'
+				justify={{ base: 'space-between', md: 'flex-start' }}
+				wrap='wrap'
+				gap={{ base: 8, lg: 16 }}
+				px={{ base: 6, lg: 12 }}
+				py={3}
+				borderBottom='2px solid'
+				borderColor='gray.200'
+				mx='auto'
+				h={120}
 			>
-				<MenuLinks links={links} />
-			</Box>
+				<Logo />
 
-			{/* Mobile Drawer */}
-			<Box display={{ base: 'block', md: 'none' }}>
-				<MobileDrawer links={links} />
-			</Box>
-		</Flex>
+				{/* Desktop Menu */}
+				<Box
+					display={{ base: 'none', md: 'block' }}
+					ml={12}
+				>
+					<MenuLinks links={links} />
+				</Box>
+
+				{/* Mobile Drawer */}
+				<Box display={{ base: 'block', md: 'none' }}>
+					<MobileDrawer links={links} />
+				</Box>
+			</Flex>
+			<Outlet />
+		</>
 	);
 }

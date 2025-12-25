@@ -14,6 +14,5 @@ export * from './components/ui/toaster';
 export * from './components/ui/tooltip';
 export * from './pages/Error';
 export * from './pages/Home';
-export * from './pages/Layout';
 export * from './utils/AppError';
 export * from './utils/functions';

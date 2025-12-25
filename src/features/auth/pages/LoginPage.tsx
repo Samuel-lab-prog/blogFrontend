@@ -3,15 +3,18 @@ import { LoginForm } from '@features/auth';
 
 export function LoginPage() {
 	return (
-		<>
+		<Flex
+			as='main'
+			layerStyle='main'
+			direction='column'
+		>
 			<Flex
 				as='section'
 				px={4}
 				direction='column'
 				align='center'
-				justify='start'
-				w='full'
-				h='70vh'
+				justify='center'
+				h='50vh'
 			>
 				<Flex
 					direction='column'
@@ -34,6 +37,6 @@ export function LoginPage() {
 
 				<LoginForm />
 			</Flex>
-		</>
+		</Flex>
 	);
 }

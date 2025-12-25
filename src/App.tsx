@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import { BaseLayout } from '@features/base';
+import { Navbar } from '@features/base';
 import { HomePage } from '@features/base';
 import { ErrorPage } from '@features/base';
 
@@ -12,11 +12,16 @@ import { LoginPage } from '@features/auth';
 import { AdminPage } from '@features/admin';
 import { ProtectedRoutePage } from '@features/admin';
 
+const navLinks = [
+	{ to: '/', label: 'Home' },
+	{ to: '/posts', label: 'Posts' },
+];
+
 export default function App() {
 	const router = createBrowserRouter([
 		{
 			path: '/',
-			element: <BaseLayout />,
+			element: <Navbar links={navLinks} />,
 			errorElement: <ErrorPage />,
 			children: [
 				{ index: true, element: <HomePage /> },
