@@ -50,15 +50,18 @@ const MenuLinks = ({
 
 	return (
 		<Container
-			gap={isMobile ? 6 : 12}
+			gap={isMobile ? 3 : 12}
 			align='center'
 		>
 			{links.map((link) => (
 				<Link
 					asChild
 					color='gray.700'
+					w={['full', undefined, undefined, 'auto']}
 					padding={2}
 					textStyle='small'
+					display='flex'
+					justifyContent='center'
 					key={link.label}
 					onClick={onLinkClick}
 					_currentPage={{ fontWeight: 'bold', textDecoration: 'underline' }}
