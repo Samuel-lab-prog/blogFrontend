@@ -10,10 +10,10 @@ import {
 	Icon,
 	Flex,
 	Image,
+	Link,
 } from '@chakra-ui/react';
-import { NavigationLink } from '@features/base';
 import { Menu } from 'lucide-react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, NavLink } from 'react-router-dom';
 
 /* ---------------- LOGO ---------------- */
 const Logo = () => (
@@ -44,13 +44,15 @@ const MenuLinks = ({
 			align='center'
 		>
 			{links.map((link) => (
-				<NavigationLink
+				<Link
+					asChild
+					color='gray.700'
 					key={link.label}
-					to={link.to}
-					onClick={onLinkClick} // chama toggle ao clicar
+					onClick={onLinkClick}
+					_currentPage={{ fontWeight: 'bold', textDecoration: 'underline' }}
 				>
-					{link.label}
-				</NavigationLink>
+					<NavLink to={link.to}>{link.label}</NavLink>
+				</Link>
 			))}
 		</Container>
 	);

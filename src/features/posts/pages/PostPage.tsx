@@ -1,7 +1,7 @@
-import { useParams } from 'react-router-dom';
-import { Box } from '@chakra-ui/react';
+import { NavLink, useParams } from 'react-router-dom';
+import { Box, Button, Flex } from '@chakra-ui/react';
 
-import { AsyncState, NavigationLink, MarkdownRenderer } from '@features/base';
+import { AsyncState, MarkdownRenderer } from '@features/base';
 import { usePost, PostHeader } from '@features/posts';
 
 export function PostPage() {
@@ -9,7 +9,12 @@ export function PostPage() {
 	const { data: post, isError, isLoading } = usePost(Number(id));
 
 	return (
-		<>
+		<Flex
+			as='main'
+			layerStyle='main'
+			direction='column'
+			alignItems='center'
+		>
 			<Box
 				as='section'
 				maxW='4xl'
@@ -46,9 +51,14 @@ export function PostPage() {
 					mt={8}
 					w='fit'
 				>
-					<NavigationLink to='/'>← Início</NavigationLink>
+					<Button
+						asChild
+						variant='surface'
+					>
+						<NavLink to='/'>← Início</NavLink>
+					</Button>
 				</Box>
 			</Box>
-		</>
+		</Flex>
 	);
 }

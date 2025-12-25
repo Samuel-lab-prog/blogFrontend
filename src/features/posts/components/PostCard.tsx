@@ -6,9 +6,9 @@ import {
 	SkeletonText,
 	Stack,
 	HStack,
+	Button,
 } from '@chakra-ui/react';
-
-import { NavigationLink } from '@features/base';
+import { NavLink } from 'react-router-dom';
 import { formatDate } from '@features/base';
 
 import { Tag, type PostPreviewType } from '@features/posts';
@@ -76,9 +76,12 @@ export function PostCard({ post }: PostCardProps) {
 				justifyContent='flex-end'
 				mt={3}
 			>
-				<NavigationLink to={`/posts/${post.slug}/${post.id}`}>
-					Ler mais
-				</NavigationLink>
+				<Button
+					asChild
+					variant='surface'
+				>
+					<NavLink to={`/posts/${post.slug}/${post.id}`}>Ler mais</NavLink>
+				</Button>
 			</Card.Footer>
 		</Card.Root>
 	);

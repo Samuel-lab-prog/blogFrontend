@@ -138,7 +138,7 @@ export function PostsPage() {
 					mt={8}
 					loadingText='Carregando...'
 					alignSelf='center'
-					variant='surface'
+					variant='solid'
 				>
 					{isFetchingNextPage ? 'Carregando...' : 'Carregar mais'}
 				</Button>
