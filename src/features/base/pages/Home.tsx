@@ -36,7 +36,7 @@ export function HomePage() {
 			>
 				<Heading
 					as='h2'
-					textStyle='h3'
+					textStyle='h2'
 					mb={2}
 				>
 					Últimas Publicações

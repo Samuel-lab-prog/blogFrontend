@@ -28,7 +28,7 @@ export function ErrorPage() {
 				</Heading>
 
 				<Text
-					textStyle='description'
+					textStyle='small'
 					mt={1}
 				>
 					Try returning to the homepage or checking the URL.

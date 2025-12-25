@@ -130,19 +130,21 @@ export function PostsPage() {
 				</AsyncState>
 			</Flex>
 
-			{hasNextPage && (
-				<Button
-					onClick={() => fetchNextPage()}
-					disabled={!hasNextPage}
-					loading={isFetchingNextPage}
-					mt={8}
-					loadingText='Carregando...'
-					alignSelf='center'
-					variant='surface'
-				>
-					{isFetchingNextPage ? 'Carregando...' : 'Carregar mais'}
-				</Button>
-			)}
+			<Flex justify={['end', 'end', 'end', 'center']}>
+				{hasNextPage && (
+					<Button
+						onClick={() => fetchNextPage()}
+						disabled={!hasNextPage}
+						loading={isFetchingNextPage}
+						mt={8}
+						loadingText='Carregando...'
+						alignSelf='center'
+						variant='surface'
+					>
+						{isFetchingNextPage ? 'Carregando...' : 'Carregar mais'}
+					</Button>
+				)}
+			</Flex>
 		</Flex>
 	);
 }

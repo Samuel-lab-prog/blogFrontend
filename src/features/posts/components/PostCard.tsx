@@ -35,7 +35,10 @@ export function PostCard({ post }: PostCardProps) {
 					{post.title}
 				</Card.Title>
 
-				<Card.Description textStyle='description'>
+				<Card.Description
+					textStyle='small'
+					color='gray.500'
+				>
 					{post.excerpt}
 				</Card.Description>
 			</Card.Header>
@@ -52,7 +55,7 @@ export function PostCard({ post }: PostCardProps) {
 					{post.tags.map((tag) => (
 						<Tag
 							key={tag.id}
-							textStyle='description'
+							textStyle='small'
 						>
 							{tag.name}
 						</Tag>
@@ -60,8 +63,8 @@ export function PostCard({ post }: PostCardProps) {
 				</Flex>
 
 				<Text
-					fontSize='xs'
-					color='gray.500'
+					textStyle='smaller'
+					color='gray.600'
 				>
 					Criado em {formatDate(post.createdAt)}
 				</Text>
@@ -75,6 +78,7 @@ export function PostCard({ post }: PostCardProps) {
 				<Link
 					asChild
 					color='black'
+					textStyle='small'
 				>
 					<NavLink to={`/posts/${post.slug}/${post.id}`}>Ler mais</NavLink>
 				</Link>

@@ -2,6 +2,7 @@ import { defineTextStyles } from '@chakra-ui/react';
 
 export const textStyles = defineTextStyles({
 	body: {
+		description: 'The body text style - used in paragraphs and general text',
 		value: {
 			fontFamily: 'system-ui, sans-serif',
 			fontWeight: '400',
@@ -13,12 +14,26 @@ export const textStyles = defineTextStyles({
 			overflowWrap: 'break-word',
 		},
 	},
-	description: {
-		description: 'The description text style - used in descriptions',
+	small: {
+		description:
+			'The small text style - used in descriptions and less prominent text',
 		value: {
 			fontFamily: 'system-ui, sans-serif',
 			fontWeight: '400',
 			fontSize: ['xs', undefined, undefined, 'sm'],
+			lineHeight: ['tall', 'tall', 'shorter', 'shorter'],
+			letterSpacing: '0',
+			textDecoration: 'none',
+			textTransform: 'none',
+			overflowWrap: 'break-word',
+		},
+	},
+	smaller: {
+		description: 'The smaller text style - used in captions and fine print',
+		value: {
+			fontFamily: 'system-ui, sans-serif',
+			fontWeight: '400',
+			fontSize: ['2xs', undefined, 'xs', undefined],
 			lineHeight: ['tall', 'tall', 'shorter', 'shorter'],
 			letterSpacing: '0',
 			textDecoration: 'none',
@@ -41,8 +56,8 @@ export const textStyles = defineTextStyles({
 	h2: {
 		value: {
 			fontFamily: 'system-ui, sans-serif',
-			fontWeight: '700',
-			fontSize: ['xl', '2xl', '3xl', '4xl'],
+			fontWeight: '500',
+			fontSize: ['xl', '2xl', '3xl', '3xl'],
 			lineHeight: ['short', 'short', 'shorter', 'shorter'],
 			letterSpacing: '-0.015em',
 			textDecoration: 'none',
@@ -53,8 +68,8 @@ export const textStyles = defineTextStyles({
 	h3: {
 		value: {
 			fontFamily: 'system-ui, sans-serif',
-			fontWeight: '600',
-			fontSize: ['lg', 'xl', '2xl', '3xl'],
+			fontWeight: '500',
+			fontSize: ['lg', 'xl', undefined],
 			lineHeight: ['short', 'short', 'shorter', 'shorter'],
 			letterSpacing: '-0.01em',
 			textDecoration: 'none',

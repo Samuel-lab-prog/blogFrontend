@@ -49,7 +49,7 @@ export function PostPage() {
 				</AsyncState>
 				<Box
 					mt={8}
-					w='fit'
+					w='full'
 				>
 					<Link
 						asChild

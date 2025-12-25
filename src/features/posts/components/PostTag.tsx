@@ -13,7 +13,7 @@ export function Tag({ children, ...props }: TagProps) {
 			borderRadius='md'
 			px={3}
 			py={1}
-			textStyle='description'
+			textStyle='small'
 			fontWeight='medium'
 			bg='gray.300'
 			{...props}

@@ -47,7 +47,7 @@ const MenuLinks = ({
 					asChild
 					color='gray.700'
 					padding={2}
-					textStyle='description'
+					textStyle='small'
 					key={link.label}
 					onClick={onLinkClick}
 					_currentPage={{ fontWeight: 'bold', textDecoration: 'underline' }}
@@ -90,7 +90,7 @@ const MobileDrawer = ({
 				<Drawer.Content
 					bg='gray.100'
 					w='full'
-					maxW='300px'
+					maxW='220px'
 					display='flex'
 					flexDirection='column'
 				>
