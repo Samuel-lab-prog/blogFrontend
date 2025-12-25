@@ -30,15 +30,12 @@ export function PostCard({ post }: PostCardProps) {
 			>
 				<Card.Title
 					as='h3'
-					textStyle='h5'
+					textStyle='h3'
 				>
 					{post.title}
 				</Card.Title>
 
-				<Card.Description
-					textStyle='sm'
-					color='gray.600'
-				>
+				<Card.Description textStyle='description'>
 					{post.excerpt}
 				</Card.Description>
 			</Card.Header>

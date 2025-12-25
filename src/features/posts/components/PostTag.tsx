@@ -14,7 +14,7 @@ export function Tag({ children, ...props }: TagProps) {
 			px={3}
 			py={1}
 			textStyle='description'
-			fontWeight='bolder'
+			fontWeight='medium'
 			bg='gray.300'
 			{...props}
 		>

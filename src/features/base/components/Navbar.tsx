@@ -6,13 +6,12 @@ import {
 	Button,
 	useDisclosure,
 	Drawer,
-	CloseButton,
 	Icon,
 	Flex,
 	Image,
 	Link,
 } from '@chakra-ui/react';
-import { Menu } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Outlet, NavLink } from 'react-router-dom';
 
 /* ---------------- LOGO ---------------- */
@@ -47,6 +46,7 @@ const MenuLinks = ({
 				<Link
 					asChild
 					color='gray.700'
+					padding={2}
 					textStyle='description'
 					key={link.label}
 					onClick={onLinkClick}
@@ -75,12 +75,12 @@ const MobileDrawer = ({
 		>
 			<Drawer.Trigger asChild>
 				<Button
-					variant='ghost'
+					variant='plain'
 					size='sm'
 				>
 					<Icon
 						as={Menu}
-						color='blue.600'
+						size='2xl'
 					/>
 				</Button>
 			</Drawer.Trigger>
@@ -102,7 +102,12 @@ const MobileDrawer = ({
 							asChild
 							pos='initial'
 						>
-							<CloseButton size='md' />
+							<Button variant='plain'>
+								<Icon
+									as={X}
+									size='2xl'
+								/>
+							</Button>
 						</Drawer.CloseTrigger>
 					</Drawer.Header>
 					<Drawer.Body>
