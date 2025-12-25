@@ -1,13 +1,16 @@
-#  Blog Application — Frontend
+# Blog Application — Frontend
 
 This repository contains the **frontend application** of a blog project.  
-It is responsible for the user interface, client-side routing, form handling, animations, and data consumption from the backend API.
+It is responsible for the user interface, client-side routing, form handling,
+animations, and data consumption from the backend API.
 
-The project was built with a strong focus on **performance**, **scalability**, **type safety**, and **developer experience**, following modern best practices from the React ecosystem.
+The project was built with a strong focus on **performance**, **scalability**,
+**type safety**, and **developer experience**, following modern best practices
+from the React ecosystem.
 
 ---
 
-##  Tech Stack
+## Tech Stack
 
 - **TypeScript** — main programming language, ensuring type safety and better DX
 - **React** — JavaScript library for building component-based user interfaces
@@ -15,7 +18,7 @@ The project was built with a strong focus on **performance**, **scalability**, *
 
 ---
 
-##  Main Dependencies
+## Main Dependencies
 
 - **React Router DOM** — client-side routing and page navigation
 - **React Hook Form** — efficient and scalable form state management
@@ -27,10 +30,10 @@ The project was built with a strong focus on **performance**, **scalability**, *
 
 ---
 
-##  Project Structure (Overview)
+## Project Structure (Overview)
 
-The project follows a **feature-based architecture**, aiming for better scalability and separation of concerns.
-
+The project follows a **feature-based architecture**, aiming for better
+scalability and separation of concerns.
 
 ## How to Run Locally
 
@@ -55,7 +58,8 @@ npm run dev
 
 ## ✅ Code Quality & Best Practices
 
-This project adopts several conventions and patterns to keep the codebase **clean, maintainable, and easy to scale**.
+This project adopts several conventions and patterns to keep the codebase
+**clean, maintainable, and easy to scale**.
 
 ### 📌 General Practices
 
@@ -71,7 +75,8 @@ This project adopts several conventions and patterns to keep the codebase **clea
 
 ## 🧾 Commit Message Guidelines
 
-This repository follows a **conventional commit pattern** to maintain a clean, readable, and meaningful commit history.
+This repository follows a **conventional commit pattern** to maintain a clean,
+readable, and meaningful commit history.
 
 ### 🔹 Commit Prefixes
 
@@ -96,9 +101,8 @@ Use a prefix for every commit:
 
 3. **Write meaningful commit messages**
 
-  **❌ Bad** fix stuff
-  **✅ Good** fix: resolve issue with user login on Safari
-  
+   **❌ Bad** fix stuff **✅ Good** fix: resolve issue with user login on Safari
+
 ---
 
 ## 📌 Notes
@@ -108,4 +112,3 @@ Use a prefix for every commit:
 - Contributions, suggestions, and improvements are welcome.
 
 ---
-

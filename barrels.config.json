@@ -1,7 +1,8 @@
 {
-  "directory": "./src",
-  "singleQuotes": true,
-  "delete": true,
-  "name": "index",
-  "location": "all"
+	"directory": ["./src", "./src/features"],
+	"singleQuotes": true,
+	"delete": true,
+	"name": "index",
+	"location": "below",
+	"local": false
 }

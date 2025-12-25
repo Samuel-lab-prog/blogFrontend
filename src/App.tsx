@@ -1,7 +1,4 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { BaseLayout } from '@features/base';
 import { HomePage } from '@features/base';
@@ -16,29 +13,29 @@ import { AdminPage } from '@features/admin';
 import { ProtectedRoutePage } from '@features/admin';
 
 export default function App() {
-  const router = createBrowserRouter([
-    {
-      path: '/',
-      element: <BaseLayout />,
-      errorElement: <ErrorPage />,
-      children: [
-        { index: true, element: <HomePage /> },
-        { path: 'posts', element: <PostsPage /> },
-        { path: 'posts/:slug/:id', element: <PostPage /> },
-        { path: '/login', element: <LoginPage /> },
-        {
-          path: 'admin',
-          element: <ProtectedRoutePage />,
-          children: [
-            {
-              index: true,
-              element: <AdminPage />,
-            },
-          ],
-        },
-      ],
-    },
-  ]);
+	const router = createBrowserRouter([
+		{
+			path: '/',
+			element: <BaseLayout />,
+			errorElement: <ErrorPage />,
+			children: [
+				{ index: true, element: <HomePage /> },
+				{ path: 'posts', element: <PostsPage /> },
+				{ path: 'posts/:slug/:id', element: <PostPage /> },
+				{ path: '/login', element: <LoginPage /> },
+				{
+					path: 'admin',
+					element: <ProtectedRoutePage />,
+					children: [
+						{
+							index: true,
+							element: <AdminPage />,
+						},
+					],
+				},
+			],
+		},
+	]);
 
-  return <RouterProvider router={router} />;
+	return <RouterProvider router={router} />;
 }

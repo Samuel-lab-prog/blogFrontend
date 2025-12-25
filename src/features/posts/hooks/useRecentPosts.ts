@@ -3,23 +3,21 @@ import { fetchHttp } from '@features/base';
 import type { PaginatedPostsType } from '@features/posts';
 
 type UseRecentPostsOptions = {
-  limit?: number;
+	limit?: number;
 };
 
-export function useRecentPosts({
-  limit = 4,
-}: UseRecentPostsOptions = {}) {
-  const query = useQuery({
-    queryKey: ['posts', 'recent', limit],
-    queryFn: () =>
-      fetchHttp<PaginatedPostsType>({
-        path: '/posts',
-        query: { limit },
-      }),
-  });
+export function useRecentPosts({ limit = 4 }: UseRecentPostsOptions = {}) {
+	const query = useQuery({
+		queryKey: ['posts', 'recent', limit],
+		queryFn: () =>
+			fetchHttp<PaginatedPostsType>({
+				path: '/posts',
+				query: { limit },
+			}),
+	});
 
-  return {
-    posts: query.data?.posts ?? [],
-    ...query,
-  };
+	return {
+		posts: query.data?.posts ?? [],
+		...query,
+	};
 }
