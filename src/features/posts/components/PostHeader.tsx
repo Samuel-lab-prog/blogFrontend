@@ -39,8 +39,8 @@ export function PostHeader({ post }: PostHeaderProps) {
 
 			<VStack align='start'>
 				<Text
-					fontSize={['xs', 'sm']}
 					fontStyle='italic'
+					textStyle='small'
 				>
 					Criado em {formatDate(createdAt)}
 				</Text>
@@ -50,7 +50,7 @@ export function PostHeader({ post }: PostHeaderProps) {
 						fontSize={['xs', 'sm']}
 						fontStyle='italic'
 					>
-						Última atualização: {formatDate(updatedAt)}
+						Última atualização em {formatDate(updatedAt)}
 					</Text>
 				)}
 			</VStack>

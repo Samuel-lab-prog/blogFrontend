@@ -1,6 +1,7 @@
 import { NavLink, useParams } from 'react-router-dom';
 import { Box, Link, Flex } from '@chakra-ui/react';
-
+import { ArrowLeftIcon } from 'lucide-react';
+import { Icon } from '@chakra-ui/react';
 import { AsyncState, MarkdownRenderer } from '@features/base';
 import { usePost, PostHeader } from '@features/posts';
 
@@ -50,12 +51,18 @@ export function PostPage() {
 				<Box
 					mt={8}
 					w='full'
+					justifyContent={['end', undefined, undefined, 'center']}
+					display='flex'
 				>
 					<Link
+						px={4}
+						py={2}
 						asChild
 						color='black'
 					>
-						<NavLink to='/'>← Início</NavLink>
+						<NavLink to='/'>
+							<Icon as={ArrowLeftIcon} /> Voltar
+						</NavLink>
 					</Link>
 				</Box>
 			</Box>

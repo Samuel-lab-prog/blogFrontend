@@ -1,4 +1,5 @@
 import logo from '@assets/logo.svg';
+import { useNavigate } from 'react-router-dom';
 import {
 	Box,
 	HStack,
@@ -15,15 +16,25 @@ import { Menu, X } from 'lucide-react';
 import { Outlet, NavLink } from 'react-router-dom';
 
 /* ---------------- LOGO ---------------- */
-const Logo = () => (
-	<Box>
-		<Image
-			src={logo}
-			alt='Logo'
-			h='60px'
-		/>
-	</Box>
-);
+function Logo() {
+	const navigate = useNavigate();
+
+	return (
+		<Box
+			onClick={() => {
+				navigate('/');
+			}}
+			cursor='pointer'
+			_hover={{ opacity: 0.6, transition: 'all', animationDuration: '0.3s' }}
+		>
+			<Image
+				src={logo}
+				alt='Logo'
+				h={['60px', undefined, undefined, '80px']}
+			/>
+		</Box>
+	);
+}
 
 /* ---------------- MENU LINKS ---------------- */
 const MenuLinks = ({
@@ -72,6 +83,14 @@ const MobileDrawer = ({
 			size='md'
 			open={open}
 			onOpenChange={onToggle}
+			placement='end'
+			aria-label='Menu Drawer'
+			unmountOnExit
+			closeOnEscape
+			closeOnInteractOutside
+			contained
+			restoreFocus
+			role='dialog'
 		>
 			<Drawer.Trigger asChild>
 				<Button
@@ -85,12 +104,11 @@ const MobileDrawer = ({
 				</Button>
 			</Drawer.Trigger>
 
-			<Drawer.Backdrop />
+			<Drawer.Backdrop padding='0' />
 			<Drawer.Positioner>
 				<Drawer.Content
 					bg='gray.100'
-					w='full'
-					maxW='220px'
+					maxW='280px'
 					display='flex'
 					flexDirection='column'
 				>
@@ -128,12 +146,11 @@ export function Navbar({ links }: { links: { label: string; to: string }[] }) {
 		<>
 			<Flex
 				as='nav'
-				align='center'
+				align='end'
 				justify={{ base: 'space-between', md: 'flex-start' }}
 				wrap='wrap'
 				gap={{ base: 8, lg: 16 }}
 				px={{ base: 6, lg: 12 }}
-				py={3}
 				borderBottom='2px solid'
 				borderColor='gray.200'
 				mx='auto'

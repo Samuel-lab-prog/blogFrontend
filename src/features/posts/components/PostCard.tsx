@@ -79,6 +79,7 @@ export function PostCard({ post }: PostCardProps) {
 					asChild
 					color='black'
 					textStyle='small'
+					padding={2}
 				>
 					<NavLink to={`/posts/${post.slug}/${post.id}`}>Ler mais</NavLink>
 				</Link>
