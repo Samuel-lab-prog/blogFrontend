@@ -1,33 +1,44 @@
-# Blog Application (Frontend)
+#  Blog Application — Frontend
 
-This repository contains the entire **Frontend** for my blog project.
+This repository contains the **frontend application** of a blog project.  
+It is responsible for the user interface, client-side routing, form handling, animations, and data consumption from the backend API.
 
-## Technologies Used
+The project was built with a strong focus on **performance**, **scalability**, **type safety**, and **developer experience**, following modern best practices from the React ecosystem.
 
-- **TypeScript** — main programming language
-- **React** — chosen javascript framewwork
-- **TailwindCSS** — chosen CSS framework
-- **Vite** - chosen bundler
+---
 
-## Main Dependencies
+##  Tech Stack
 
-- **React** — library for building UI components
-- **React Router DOM** — for routing and page navigation
-- **React Hook Form** — for managing form state
-- **Zod** — for schema validation and type-safe form validation
-- **Framer Motion** — for smooth animations and transitions
-- **Marked** — for parsing Markdown content into HTML
-- **React Responsive** — for responsive design hooks
-- **Tailwind CSS (via Vite)** — for utility-first CSS styling
-- **@hookform/resolvers** — integrates Zod with React Hook Form
+- **TypeScript** — main programming language, ensuring type safety and better DX
+- **React** — JavaScript library for building component-based user interfaces
+- **Vite** — fast bundler and development server
+
+---
+
+##  Main Dependencies
+
+- **React Router DOM** — client-side routing and page navigation
+- **React Hook Form** — efficient and scalable form state management
+- **TanStack React Query** — data fetching, caching, and server state management
+- **Zod** — schema validation with strong TypeScript integration
+- **Framer Motion** — animations and transitions
+- **React Markdown** — rendering Markdown content as HTML
+- **Chakra UI** — accessible, responsive, and composable UI components
+
+---
+
+##  Project Structure (Overview)
+
+The project follows a **feature-based architecture**, aiming for better scalability and separation of concerns.
+
 
 ## How to Run Locally
 
 ### 1.Clone the repository
 
 ```
-git clone https://github.com/yourusername/blog.git
-cd blog
+git clone https://github.com/yourusername/blogFrontend.git
+cd blogFrontend
 ```
 
 ### 2.Install dependencies
@@ -42,33 +53,59 @@ npm install
 npm run dev
 ```
 
-## Good practices and code style
+## ✅ Code Quality & Best Practices
 
-This project follows several standards and patterns to ensure clean, maintainable and scalable code, making it easier for anyone to contribute and understand.
+This project adopts several conventions and patterns to keep the codebase **clean, maintainable, and easy to scale**.
 
-### Commits patterns
+### 📌 General Practices
 
-1.  Use a prefix for every commit. Commomn prefixes include:
+- Strong typing with TypeScript
+- Reusable and composable components
+- Feature-based folder organization
+- Clear separation between UI, logic, and data layers
+- Controlled side effects using React Query and custom hooks
+- Predictable state management and data flow
+- Consistent naming conventions across the codebase
 
-- feat: → for new features
-- fix: → for bug fixes
-- refactor: → for code restructuring without changing functionality
-- docs: → for documentation changes
-- style: → for formatting or code style adjustments
+---
 
-2.  Keep commits focused: Each commit should address only one clear purpose.
-    Avoid large, mixed commits — instead, split them into smaller and well-defined ones.
-3.  Write meaningful commit messages:
-    - **Bad:** fix stuff
-    - **Good:** fix: resolve user authentication token validation issue
+## 🧾 Commit Message Guidelines
 
-### Coding patterns
+This repository follows a **conventional commit pattern** to maintain a clean, readable, and meaningful commit history.
 
-1. **Always** use the command `npm run format` to format your code before commiting. This ensures consistent code style across the entire project.
-2. Keep logic where it belongs. There **shouldn't** be a component on the hooks folder.
-3. Write error proof code. Assume that anything that can fail will fail.
-   Use try/catch blocks when dealing with asynchronous code or external resources like API calls.
-4. Avoid unecesseary variables. If a value is only used once or is easily readable inline, don’t assign it to a variable.
-5. Keep functions small and focused: Each function should do one thing well.
-   If a function is getting too long or has multiple responsibilities, break it into smaller helper functions.
-6. Take a look in the existing code. Try to not diverge too much about the current style.
+### 🔹 Commit Prefixes
+
+Use a prefix for every commit:
+
+- `feat:` — new features
+- `fix:` — bug fixes
+- `refactor:` — code restructuring without changing behavior
+- `docs:` — documentation updates
+- `style:` — formatting or stylistic changes (no logic impact)
+- `test:` — adding or updating tests
+- `chore:` — tooling, configuration, or maintenance tasks
+
+### 🔹 Commit Rules
+
+1. **One purpose per commit**  
+   Each commit should solve a single, well-defined problem.
+
+2. **Keep commits small and focused**  
+   Avoid large commits that mix unrelated changes.  
+   Prefer multiple small commits over one large commit.
+
+3. **Write meaningful commit messages**
+
+  **❌ Bad** fix stuff
+  **✅ Good** fix: resolve issue with user login on Safari
+  
+---
+
+## 📌 Notes
+
+- This repository contains **only the frontend** of the application.
+- The backend is maintained in a **separate repository**.
+- Contributions, suggestions, and improvements are welcome.
+
+---
+
