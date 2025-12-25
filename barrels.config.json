@@ -1,5 +1,5 @@
 {
-	"directory": ["./src", "./src/features"],
+	"directory": ["./src/features"],
 	"singleQuotes": true,
 	"delete": true,
 	"name": "index",

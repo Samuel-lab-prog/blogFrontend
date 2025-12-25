@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { Provider } from '@features/base';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from './App.tsx';
-import { system } from '@themes';
+import { system } from '@themes/main';
 import { ChakraProvider } from '@chakra-ui/react';
 
 const queryClient = new QueryClient();

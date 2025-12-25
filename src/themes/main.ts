@@ -1,6 +1,8 @@
 import { createSystem, defaultConfig, defineConfig } from '@chakra-ui/react';
 
-import { animationStyles, textStyles, layerStyles } from './index';
+import { animationStyles } from './animation-styles';
+import { layerStyles } from './layer-styles';
+import { textStyles } from './text-styles';
 
 const config = defineConfig({
 	globalCss: {

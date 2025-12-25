@@ -11,7 +11,7 @@
 			"@root/*": ["./*"],
 			"@features/*": ["features/*"],
 			"@assets/*": ["assets/*"],
-			"@themes": ["themes"]
+			"@themes/*": ["themes/*"]
 		},
 
 		/* Bundler mode */
