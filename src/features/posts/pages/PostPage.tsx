@@ -1,5 +1,5 @@
 import { NavLink, useParams } from 'react-router-dom';
-import { Box, Button, Flex } from '@chakra-ui/react';
+import { Box, Link, Flex } from '@chakra-ui/react';
 
 import { AsyncState, MarkdownRenderer } from '@features/base';
 import { usePost, PostHeader } from '@features/posts';
@@ -51,12 +51,12 @@ export function PostPage() {
 					mt={8}
 					w='fit'
 				>
-					<Button
+					<Link
 						asChild
-						variant='surface'
+						color='black'
 					>
 						<NavLink to='/'>← Início</NavLink>
-					</Button>
+					</Link>
 				</Box>
 			</Box>
 		</Flex>

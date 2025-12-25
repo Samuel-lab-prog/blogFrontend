@@ -12,7 +12,7 @@
 		"format": "prettier --check .",
 		"format:fix": "prettier --write .",
 		"typecheck": "tsc --noEmit",
-		"generate": "cd ./src/themes/ && npx @chakra-ui/cli typegen ./index.ts",
+		"generate": "cd ./src/themes/ && npx @chakra-ui/cli typegen ./main.ts",
 		"barrels": "barrelsby --config barrels.config.json"
 	},
 	"dependencies": {

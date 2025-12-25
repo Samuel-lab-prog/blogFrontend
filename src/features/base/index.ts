@@ -6,7 +6,6 @@ export * from './components/AsyncState';
 export * from './components/FormField';
 export * from './components/MarkdownRender';
 export * from './components/Navbar';
-export * from './components/NavigationLink';
 export * from './components/SelectField';
 export * from './components/ui/color-mode';
 export * from './components/ui/provider';

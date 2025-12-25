@@ -40,13 +40,14 @@ const MenuLinks = ({
 
 	return (
 		<Container
-			gap={isMobile ? 4 : 8}
+			gap={isMobile ? 6 : 12}
 			align='center'
 		>
 			{links.map((link) => (
 				<Link
 					asChild
 					color='gray.700'
+					textStyle='description'
 					key={link.label}
 					onClick={onLinkClick}
 					_currentPage={{ fontWeight: 'bold', textDecoration: 'underline' }}
@@ -87,7 +88,7 @@ const MobileDrawer = ({
 			<Drawer.Backdrop />
 			<Drawer.Positioner>
 				<Drawer.Content
-					bg='white'
+					bg='gray.100'
 					w='full'
 					maxW='300px'
 					display='flex'
@@ -97,12 +98,14 @@ const MobileDrawer = ({
 						<Drawer.Title>
 							<Logo />
 						</Drawer.Title>
-						<Drawer.CloseTrigger asChild>
+						<Drawer.CloseTrigger
+							asChild
+							pos='initial'
+						>
 							<CloseButton size='md' />
 						</Drawer.CloseTrigger>
 					</Drawer.Header>
 					<Drawer.Body>
-						{/* Passa onToggle para fechar ao clicar */}
 						<MenuLinks
 							links={links}
 							isMobile
@@ -115,7 +118,6 @@ const MobileDrawer = ({
 	);
 };
 
-/* ---------------- NAVBAR ---------------- */
 export function Navbar({ links }: { links: { label: string; to: string }[] }) {
 	return (
 		<>

@@ -21,7 +21,7 @@ export function HomePage() {
 					as='h1'
 					textStyle='h1'
 				>
-					Bem-vindo(a) ao Blog SG
+					Bem-vindo(a) ao Samuel's Blog!
 				</Heading>
 				<Text textStyle='body'>
 					Neste blog, você encontrará muitas citações interessantes de um
@@ -46,6 +46,9 @@ export function HomePage() {
 						isLoading={isLoading}
 						isError={isError}
 						isEmpty={!posts || posts?.length === 0}
+						emptyElement={<Flex textStyle='body'>Nenhum post encontrado</Flex>}
+						errorElement={<Flex textStyle='body'>Erro ao carregar posts</Flex>}
+						loadingElement={<Flex textStyle='body'>Carregando posts...</Flex>}
 					>
 						{posts.map((post) => (
 							<PostCard

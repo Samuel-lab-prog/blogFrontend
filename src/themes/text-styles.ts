@@ -18,7 +18,7 @@ export const textStyles = defineTextStyles({
 		value: {
 			fontFamily: 'system-ui, sans-serif',
 			fontWeight: '400',
-			fontSize: ['sm', undefined, 'md', 'lg'],
+			fontSize: ['xs', undefined, undefined, 'sm'],
 			lineHeight: ['tall', 'tall', 'shorter', 'shorter'],
 			letterSpacing: '0',
 			textDecoration: 'none',

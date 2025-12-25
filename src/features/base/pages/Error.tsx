@@ -1,5 +1,5 @@
-import { Flex, Heading, Text, Box } from '@chakra-ui/react';
-import { NavigationLink } from '@features/base';
+import { Flex, Heading, Text, Box, Button } from '@chakra-ui/react';
+import { NavLink } from 'react-router-dom';
 
 export function ErrorPage() {
 	return (
@@ -14,30 +14,33 @@ export function ErrorPage() {
 			<Box maxW='md'>
 				<Heading
 					as='h1'
-					size='xl'
-					color='gray.800'
+					textStyle='h1'
 				>
 					Oops!
 				</Heading>
 
-				<Text
-					fontSize='lg'
-					color='gray.600'
+				<Heading
+					as='h2'
+					textStyle='h5'
 					mt={3}
 				>
 					Something went wrong — or this page doesn’t exist.
-				</Text>
+				</Heading>
 
 				<Text
-					fontSize='sm'
-					color='gray.500'
+					textStyle='description'
 					mt={1}
 				>
 					Try returning to the homepage or checking the URL.
 				</Text>
 
 				<Box mt={6}>
-					<NavigationLink to='/'>Go back home</NavigationLink>
+					<Button
+						asChild
+						variant='surface'
+					>
+						<NavLink to='/'>Go back home</NavLink>
+					</Button>
 				</Box>
 			</Box>
 		</Flex>
