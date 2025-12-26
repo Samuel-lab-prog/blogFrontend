@@ -55,7 +55,6 @@ export function PostCard({ post }: PostCardProps) {
 					{post.tags.map((tag) => (
 						<Tag
 							key={tag.id}
-							textStyle='small'
 						>
 							{tag.name}
 						</Tag>
@@ -100,7 +99,6 @@ export function PostCardSkeleton() {
 				h='full'
 				bg='gray.400'
 			>
-				{/* Header */}
 				<Stack gap={2}>
 					<Skeleton
 						height='20px'
@@ -109,7 +107,6 @@ export function PostCardSkeleton() {
 					<SkeletonText noOfLines={2} />
 				</Stack>
 
-				{/* Tags */}
 				<HStack
 					gap={2}
 					flexWrap='wrap'
@@ -131,14 +128,12 @@ export function PostCardSkeleton() {
 					/>
 				</HStack>
 
-				{/* Date */}
 				<Skeleton
 					height='12px'
 					width='120px'
 					bg='gray.400'
 				/>
 
-				{/* Footer (CTA) */}
 				<HStack
 					justify='flex-end'
 					mt='auto'

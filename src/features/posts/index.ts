@@ -9,6 +9,7 @@ export * from './components/PostHeader';
 export * from './components/PostTag';
 export * from './hooks/useInfinitePosts';
 export * from './hooks/usePost';
+export * from './hooks/usePostsFilters';
 export * from './hooks/useRecentPosts';
 export * from './hooks/useTags';
 export * from './pages/PostPage';

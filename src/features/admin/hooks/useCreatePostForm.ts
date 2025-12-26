@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import type { AppError } from '@features/base';
 import type { UseFormSetError } from 'react-hook-form';
 import { createPostSchema, type CreatePostType } from '@features/admin';
 import { useMutation } from '@tanstack/react-query';
-import { fetchHttp } from '@features/base';
+import { fetchHttp, type AppError } from '@features/base';
 
 export function useCreatePostForm() {
 	const [generalError, setGeneralError] = useState('');
@@ -34,7 +33,11 @@ export function useCreatePostForm() {
 	}
 
 	return {
-		...form,
+		handleSubmit: form.handleSubmit,
+    reset: form.reset,
+    formState: form.formState,
+    control: form.control,
+    watch: form.watch,
 		onSubmit,
 		isPending,
 		generalError,
@@ -68,7 +71,7 @@ function handleCreatePostError(
 		return;
 	}
 
-	setGeneralError(message || 'Erro ao criar post. Tente novamente mais tarde.');
+	setGeneralError('Erro ao criar post. Tente novamente mais tarde.');
 }
 
 type FinalCreatePostType = {
@@ -85,7 +88,6 @@ function useCreatePost() {
 			fetchHttp<{ id: number }, FinalCreatePostType>({
 				path: '/posts',
 				method: 'POST',
-				credentials: 'include',
 				body: newPost,
 			}),
 	});

@@ -2,38 +2,42 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { fetchHttp } from '@features/base';
 import type { PaginatedPostsType } from '@features/posts';
 
-const POSTS_LIMIT = 8;
 type OrderOption = 'newest' | 'oldest';
-type UsePostsInfiniteParams = {
-	tag?: string;
-	order: OrderOption;
+type UseInfinitePostsOption = {
+  tag?: string;
+  order: OrderOption;
+  limit?: number;
 };
 
-export function useInfinitePosts({ tag, order }: UsePostsInfiniteParams) {
-	const query = useInfiniteQuery({
-		queryKey: ['posts', tag, order],
-		staleTime: 1000 * 60 * 30,
-		initialPageParam: undefined as number | undefined,
+export function useInfinitePosts({ tag, order, limit = 8 }: UseInfinitePostsOption) {
+  const query = useInfiniteQuery({
+    queryKey: ['posts', { tag, order, limit }],
+    staleTime: 1000 * 60 * 30,
+    retry: 3,
+    initialPageParam: undefined as number | undefined,
 
-		queryFn: ({ pageParam }) =>
-			fetchHttp<PaginatedPostsType>({
-				path: '/posts',
-				query: {
-					limit: POSTS_LIMIT,
-					cursor: pageParam,
-					tag,
-					orderBy: 'createdAt',
-					orderDirection: order === 'newest' ? 'desc' : 'asc',
-				},
-			}),
+    queryFn: ({ pageParam }) =>
+      fetchHttp<PaginatedPostsType>({
+        path: '/posts',
+        query: {
+          limit,
+          cursor: pageParam,
+          tag,
+          orderBy: 'createdAt',
+          orderDirection: order === 'newest' ? 'desc' : 'asc',
+        },
+      }),
 
-		getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined,
-	});
+    getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined,
+  });
 
-	const posts = query.data?.pages.flatMap((page) => page.posts) ?? [];
-
-	return {
-		...query,
-		posts,
-	};
+  return {
+    posts: query.data?.pages.flatMap((page) => page.posts) ?? [],
+    isLoading: query.isLoading,
+    isError: query.isError,
+    error: query.error,
+    fetchNextPage: query.fetchNextPage,
+    isFetchingNextPage: query.isFetchingNextPage,
+    hasNextPage: query.hasNextPage,
+  };
 }

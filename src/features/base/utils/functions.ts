@@ -22,8 +22,8 @@ export type FetchHttpOptions<TBody> = {
 	path: string;
 	method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 	query?: Record<string, string | number | boolean | undefined>;
-	params?: string[] | number[] | boolean[];
-	body?: TBody;
+	params?: (string | number)[];
+	body?: TBody; // This allow to set a GET request with body. In the future, TS Overloads can be used to prevent that.
 	credentials?: RequestCredentials;
 	signal?: AbortSignal;
 	headers?: HeadersInit;
@@ -35,7 +35,7 @@ export async function fetchHttp<TResponse, TBody = undefined>({
 	query,
 	params,
 	body,
-	credentials = 'same-origin',
+	credentials = 'include',
 	signal,
 	headers,
 }: FetchHttpOptions<TBody>): Promise<TResponse> {
@@ -68,7 +68,7 @@ export async function fetchHttp<TResponse, TBody = undefined>({
 	const parsedBody = hasJson ? await response.json() : null;
 
 	if (!response.ok) {
-		const error: AppErrorType = {
+		const error: AppErrorType = { // API will always return an AppErrorType on errors
 			statusCode: response.status,
 			errorMessages: parsedBody?.errorMessages ?? [
 				`Erro HTTP ${response.status}`,

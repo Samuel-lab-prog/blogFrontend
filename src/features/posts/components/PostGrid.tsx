@@ -9,12 +9,12 @@ export function PostGrid({ children }: PostGridProps) {
 	return (
 		<Grid
 			templateColumns={[
-				'1fr', // mobile
-				undefined, // sm
-				'1fr 1fr', // md
-				undefined, // lg
-				undefined, // xl
-				'1fr 1fr 1fr 1fr', // 2xl
+				'1fr', 
+				undefined, 
+				'1fr 1fr', 
+				undefined, 
+				undefined, 
+				'1fr 1fr 1fr 1fr', 
 			]}
 			gap={2}
 		>

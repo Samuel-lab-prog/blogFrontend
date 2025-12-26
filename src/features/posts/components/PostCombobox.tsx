@@ -17,7 +17,7 @@ import { type PostMinimalDataType } from '@features/posts';
 
 // This component is meant to be used within react-hook-form forms
 // Normally you wanna use this to fetch a full post data after selection
-
+// May turn this into a more generic component in the future
 interface Props<T extends FieldValues> {
 	control: Control<T>;
 	posts?: PostMinimalDataType[];

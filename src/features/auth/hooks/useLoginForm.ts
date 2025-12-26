@@ -21,7 +21,6 @@ export function useLoginForm() {
 			fetchHttp<void, LoginDataType>({
 				path: '/auth/login',
 				method: 'POST',
-				credentials: 'include',
 				body: data,
 			}),
 
@@ -61,9 +60,13 @@ export function useLoginForm() {
 	}
 
 	return {
-		...form,
 		onSubmit,
-		...loginMutation,
 		generalError,
+    handleSubmit: form.handleSubmit,
+    reset: form.reset,
+    formState: form.formState,
+    control: form.control,
+    watch: form.watch,
+    isPending: loginMutation.isPending,
 	};
 }

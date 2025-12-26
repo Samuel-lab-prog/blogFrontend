@@ -2,9 +2,9 @@ import { Box } from '@chakra-ui/react';
 
 type TagProps = {
 	children: React.ReactNode;
-} & React.ComponentProps<typeof Box>;
+};
 
-export function Tag({ children, ...props }: TagProps) {
+export function Tag({ children }: TagProps) {
 	return (
 		<Box
 			display='inline-flex'
@@ -16,7 +16,6 @@ export function Tag({ children, ...props }: TagProps) {
 			textStyle='small'
 			fontWeight='medium'
 			bg='gray.300'
-			{...props}
 		>
 			{children}
 		</Box>

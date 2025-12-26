@@ -2,26 +2,28 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchHttp } from '@features/base';
 import type { PaginatedMinimalPostsType } from '@features/posts';
 
-type config = {
+type UsePostsMinimalOptions = {
 	deleted?: 'only' | 'exclude';
 	status?: 'published' | 'draft';
+  limit?: number;
 };
-export function usePostsMinimal(config: config) {
+export function usePostsMinimal({ deleted, status, limit = 150 }: UsePostsMinimalOptions) {
 	const query = useQuery({
-		queryKey: ['posts-minimal'],
-		staleTime: 1000 * 60 * 5, // 5 minutes
+		queryKey: ['posts-minimal', { deleted, status, limit }],
+		staleTime: 1000 * 60 * 30, // 30 minutes
 		queryFn: () =>
 			fetchHttp<PaginatedMinimalPostsType>({
 				path: '/posts/minimal',
-				credentials: 'include',
-				query: { limit: 500, ...config },
+				query: { limit, deleted, status },
 			}),
 	});
 
-	const posts = query.data?.posts ?? [];
 
 	return {
-		...query,
-		posts,
+		posts: query.data?.posts ?? [],
+    isLoading: query.isLoading,
+    isError: query.isError,
+    error: query.error,
+    refetch: query.refetch,
 	};
 }

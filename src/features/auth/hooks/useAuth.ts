@@ -9,16 +9,13 @@ export function useAuth() {
 				await fetchHttp<{ id: number }>({
 					path: '/auth',
 					method: 'POST',
-					credentials: 'include',
 				});
 				return true;
 			} catch (err) {
 				const error = err as AppErrorType;
-
-				if (error.statusCode === 401) {
+				if (error.statusCode !== 200) {
 					return false;
 				}
-
 				throw err;
 			}
 		},

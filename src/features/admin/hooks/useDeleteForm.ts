@@ -14,7 +14,7 @@ export function useDeletePostForm() {
 		mode: 'onChange',
 	});
 
-	const { mutateAsync, isPending, isSuccess } = useDeletePost();
+	const { mutateAsync, isPending } = useDeletePost();
 
 	async function onSubmit(data: DeletePostType) {
 		try {
@@ -28,10 +28,13 @@ export function useDeletePostForm() {
 	}
 
 	return {
-		...form,
+		handleSubmit: form.handleSubmit,
+    reset: form.reset,
+    formState: form.formState,
+    control: form.control,
+    watch: form.watch,
 		onSubmit,
 		isPending,
-		isSuccess,
 		generalError,
 	};
 }
@@ -43,7 +46,6 @@ function useDeletePost() {
 				path: '/posts',
 				params: [postId],
 				method: 'DELETE',
-				credentials: 'include',
 			}),
 	});
 }

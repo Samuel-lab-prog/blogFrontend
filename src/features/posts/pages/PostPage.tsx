@@ -7,7 +7,7 @@ import { usePost, PostHeader } from '@features/posts';
 
 export function PostPage() {
 	const { id } = useParams<{ id: string }>();
-	const { data: post, isError, isLoading } = usePost(Number(id));
+	const { post, isError, isLoading } = usePost(Number(id));
 
 	return (
 		<Flex
