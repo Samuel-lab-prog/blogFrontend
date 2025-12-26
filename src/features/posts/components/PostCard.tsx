@@ -53,11 +53,7 @@ export function PostCard({ post }: PostCardProps) {
 					flexWrap='wrap'
 				>
 					{post.tags.map((tag) => (
-						<Tag
-							key={tag.id}
-						>
-							{tag.name}
-						</Tag>
+						<Tag key={tag.id}>{tag.name}</Tag>
 					))}
 				</Flex>
 

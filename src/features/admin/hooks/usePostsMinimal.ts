@@ -5,9 +5,13 @@ import type { PaginatedMinimalPostsType } from '@features/posts';
 type UsePostsMinimalOptions = {
 	deleted?: 'only' | 'exclude';
 	status?: 'published' | 'draft';
-  limit?: number;
+	limit?: number;
 };
-export function usePostsMinimal({ deleted, status, limit = 150 }: UsePostsMinimalOptions) {
+export function usePostsMinimal({
+	deleted,
+	status,
+	limit = 150,
+}: UsePostsMinimalOptions) {
 	const query = useQuery({
 		queryKey: ['posts-minimal', { deleted, status, limit }],
 		staleTime: 1000 * 60 * 30, // 30 minutes
@@ -18,12 +22,11 @@ export function usePostsMinimal({ deleted, status, limit = 150 }: UsePostsMinima
 			}),
 	});
 
-
 	return {
 		posts: query.data?.posts ?? [],
-    isLoading: query.isLoading,
-    isError: query.isError,
-    error: query.error,
-    refetch: query.refetch,
+		isLoading: query.isLoading,
+		isError: query.isError,
+		error: query.error,
+		refetch: query.refetch,
 	};
 }

@@ -68,7 +68,8 @@ export async function fetchHttp<TResponse, TBody = undefined>({
 	const parsedBody = hasJson ? await response.json() : null;
 
 	if (!response.ok) {
-		const error: AppErrorType = { // API will always return an AppErrorType on errors
+		const error: AppErrorType = {
+			// API will always return an AppErrorType on errors
 			statusCode: response.status,
 			errorMessages: parsedBody?.errorMessages ?? [
 				`Erro HTTP ${response.status}`,

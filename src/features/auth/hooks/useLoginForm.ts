@@ -62,11 +62,11 @@ export function useLoginForm() {
 	return {
 		onSubmit,
 		generalError,
-    handleSubmit: form.handleSubmit,
-    reset: form.reset,
-    formState: form.formState,
-    control: form.control,
-    watch: form.watch,
-    isPending: loginMutation.isPending,
+		handleSubmit: form.handleSubmit,
+		reset: form.reset,
+		formState: form.formState,
+		control: form.control,
+		watch: form.watch,
+		isPending: loginMutation.isPending,
 	};
 }

@@ -34,10 +34,10 @@ export function useCreatePostForm() {
 
 	return {
 		handleSubmit: form.handleSubmit,
-    reset: form.reset,
-    formState: form.formState,
-    control: form.control,
-    watch: form.watch,
+		reset: form.reset,
+		formState: form.formState,
+		control: form.control,
+		watch: form.watch,
 		onSubmit,
 		isPending,
 		generalError,

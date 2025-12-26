@@ -4,40 +4,44 @@ import type { PaginatedPostsType } from '@features/posts';
 
 type OrderOption = 'newest' | 'oldest';
 type UseInfinitePostsOption = {
-  tag?: string;
-  order: OrderOption;
-  limit?: number;
+	tag?: string;
+	order: OrderOption;
+	limit?: number;
 };
 
-export function useInfinitePosts({ tag, order, limit = 8 }: UseInfinitePostsOption) {
-  const query = useInfiniteQuery({
-    queryKey: ['posts', { tag, order, limit }],
-    staleTime: 1000 * 60 * 30,
-    retry: 3,
-    initialPageParam: undefined as number | undefined,
+export function useInfinitePosts({
+	tag,
+	order,
+	limit = 8,
+}: UseInfinitePostsOption) {
+	const query = useInfiniteQuery({
+		queryKey: ['posts', { tag, order, limit }],
+		staleTime: 1000 * 60 * 30,
+		retry: 3,
+		initialPageParam: undefined as number | undefined,
 
-    queryFn: ({ pageParam }) =>
-      fetchHttp<PaginatedPostsType>({
-        path: '/posts',
-        query: {
-          limit,
-          cursor: pageParam,
-          tag,
-          orderBy: 'createdAt',
-          orderDirection: order === 'newest' ? 'desc' : 'asc',
-        },
-      }),
+		queryFn: ({ pageParam }) =>
+			fetchHttp<PaginatedPostsType>({
+				path: '/posts',
+				query: {
+					limit,
+					cursor: pageParam,
+					tag,
+					orderBy: 'createdAt',
+					orderDirection: order === 'newest' ? 'desc' : 'asc',
+				},
+			}),
 
-    getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined,
-  });
+		getNextPageParam: (lastPage) => lastPage.nextCursor ?? undefined,
+	});
 
-  return {
-    posts: query.data?.pages.flatMap((page) => page.posts) ?? [],
-    isLoading: query.isLoading,
-    isError: query.isError,
-    error: query.error,
-    fetchNextPage: query.fetchNextPage,
-    isFetchingNextPage: query.isFetchingNextPage,
-    hasNextPage: query.hasNextPage,
-  };
+	return {
+		posts: query.data?.pages.flatMap((page) => page.posts) ?? [],
+		isLoading: query.isLoading,
+		isError: query.isError,
+		error: query.error,
+		fetchNextPage: query.fetchNextPage,
+		isFetchingNextPage: query.isFetchingNextPage,
+		hasNextPage: query.hasNextPage,
+	};
 }
