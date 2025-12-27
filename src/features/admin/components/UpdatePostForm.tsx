@@ -29,7 +29,7 @@ export function UpdatePostForm() {
 			excerpt: post.excerpt,
 			content: post.content,
 			status: post.status,
-			tags: post.tags.flatMap((tag) => tag.name).join(', '),
+			tags: post.tags?.flatMap((tag) => tag.name).join(', '),
 		});
 	}, [post, reset]);
 
