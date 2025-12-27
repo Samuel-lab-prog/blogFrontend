@@ -8,7 +8,7 @@ export const createPostSchema = z.object({
 	tags: z
 		.string()
 		.regex(
-			/^(\s*\w+\s*)(,\s*\w+\s*)*$/,
+			/^(\s*[A-Za-zÀ-ÖØ-öø-ÿ0-9_-]+(\s+[A-Za-zÀ-ÖØ-öø-ÿ0-9_-]+)*\s*)(,\s*[A-Za-zÀ-ÖØ-öø-ÿ0-9_-]+(\s+[A-Za-zÀ-ÖØ-öø-ÿ0-9_-]+)*\s*)*$/,
 			'As tags devem ser uma lista separada por vírgulas',
 		),
 	status: z.enum(['draft', 'published']),

@@ -67,7 +67,7 @@ function handleUpdatePostError(
 		return;
 	}
 
-	setGeneralError('Erro ao criar post. Tente novamente mais tarde.');
+	setGeneralError('Erro ao atualizar post. Tente novamente mais tarde.');
 }
 
 function useUpdatePost() {
