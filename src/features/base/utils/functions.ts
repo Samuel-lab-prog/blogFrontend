@@ -18,18 +18,27 @@ export function formatDate(
 	});
 }
 
-export type FetchHttpOptions<TBody> = {
+export type Options<TBody> = {
 	path: string;
 	method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
-	query?: Record<string, string | number | boolean | undefined>;
+	query?: QueryParams;
 	params?: (string | number)[];
-	body?: TBody; // This allow to set a GET request with body. In the future, TS Overloads can be used to prevent that.
+	body?: TBody;
 	credentials?: RequestCredentials;
 	signal?: AbortSignal;
 	headers?: HeadersInit;
 };
 
-export async function fetchHttp<TResponse, TBody = undefined>({
+/**
+ * Sends an HTTP request to the given API endpoint and returns the parsed JSON response.
+ *
+ * @throws AppErrorType When the response status is not successful.
+ *
+ * Note: The request options allow a body for any HTTP method. Callers must ensure
+ * compatibility with the target server when sending a body with GET requests.
+ */
+
+export async function createHTTPRequest<TResponse, TBody = undefined>({
 	path,
 	method = 'GET',
 	query,
@@ -38,18 +47,13 @@ export async function fetchHttp<TResponse, TBody = undefined>({
 	credentials = 'include',
 	signal,
 	headers,
-}: FetchHttpOptions<TBody>): Promise<TResponse> {
+}: Options<TBody>): Promise<TResponse> {
 	const baseUrl = import.meta.env.VITE_API_URL;
+	if (!baseUrl) {
+		throw new Error('VITE_API_URL is not defined');
+	}
 
-	const searchParams = query
-		? new URLSearchParams(
-				Object.entries(query)
-					.filter(([, value]) => value !== undefined)
-					.map(([key, value]) => [key, String(value)]),
-			).toString()
-		: '';
-
-	const url = `${baseUrl}${path}${params ? `/${params.join('/')}` : ''}${searchParams ? `?${searchParams}` : ''}`;
+	const url = buildUrl(baseUrl, path, params, query);
 
 	const response = await fetch(url, {
 		method,
@@ -64,20 +68,44 @@ export async function fetchHttp<TResponse, TBody = undefined>({
 
 	const contentType = response.headers.get('content-type');
 	const hasJson = contentType?.includes('application/json');
-
 	const parsedBody = hasJson ? await response.json() : null;
 
 	if (!response.ok) {
 		const error: AppErrorType = {
-			// API will always return an AppErrorType on errors
 			statusCode: response.status,
 			errorMessages: parsedBody?.errorMessages ?? [
 				`Erro HTTP ${response.status}`,
 			],
 		};
-
 		throw error;
 	}
+	return parsedBody;
+}
 
-	return parsedBody as TResponse;
+type QueryParams = Record<string, string | number | boolean | undefined>;
+
+function buildUrl(
+	baseUrl: string,
+	path: string,
+	params?: (string | number)[],
+	query?: QueryParams,
+): string {
+	let url = `${baseUrl}${path}`;
+
+	if (params && params.length > 0) {
+		url += `/${params.join('/')}`;
+	}
+
+	if (query) {
+		const filteredEntries = Object.entries(query)
+			.filter(([, value]) => value !== undefined)
+			.map(([key, value]) => [key, String(value)]);
+
+		if (filteredEntries.length > 0) {
+			const searchParams = new URLSearchParams(filteredEntries).toString();
+			url += `?${searchParams}`;
+		}
+	}
+
+	return url;
 }

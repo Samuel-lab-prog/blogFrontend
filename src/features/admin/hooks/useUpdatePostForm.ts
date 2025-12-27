@@ -5,7 +5,7 @@ import type { AppError } from '@features/base';
 import type { UseFormSetError } from 'react-hook-form';
 import { updatePostSchema, type UpdatePostType } from '@features/admin';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { fetchHttp } from '@features/base';
+import { createHTTPRequest } from '@features/base';
 
 export function useUpdatePostForm() {
 	const queryClient = useQueryClient();
@@ -73,7 +73,7 @@ function handleUpdatePostError(
 function useUpdatePost() {
 	return useMutation({
 		mutationFn: (updatedPost: UpdatePostType) =>
-			fetchHttp<{ id: number }, Omit<UpdatePostType, 'id'>>({
+			createHTTPRequest<{ id: number }, Omit<UpdatePostType, 'id'>>({
 				path: '/posts',
 				params: [Number(updatedPost.id)],
 				method: 'PATCH',

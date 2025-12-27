@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchHttp } from '@features/base';
+import { createHTTPRequest } from '@features/base';
 import type { PaginatedPostsType } from '@features/posts';
 
 type UseRecentPostsOptions = {
@@ -12,7 +12,7 @@ export function useRecentPosts({ limit = 4 }: UseRecentPostsOptions) {
 		retry: 3,
 		staleTime: 1000 * 60 * 30,
 		queryFn: () =>
-			fetchHttp<PaginatedPostsType>({
+			createHTTPRequest<PaginatedPostsType>({
 				path: '/posts',
 				query: { limit, deleted: 'false', draft: 'false' },
 			}),

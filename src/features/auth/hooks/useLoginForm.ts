@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 
-import { fetchHttp, type AppErrorType } from '@features/base';
+import { createHTTPRequest, type AppErrorType } from '@features/base';
 import { loginSchema, type LoginDataType } from '@features/auth';
 
 export function useLoginForm() {
@@ -18,7 +18,7 @@ export function useLoginForm() {
 
 	const loginMutation = useMutation({
 		mutationFn: (data: LoginDataType) =>
-			fetchHttp<void, LoginDataType>({
+			createHTTPRequest<void, LoginDataType>({
 				path: '/auth/login',
 				method: 'POST',
 				body: data,

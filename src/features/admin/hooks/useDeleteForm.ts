@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deletePostSchema, type DeletePostType } from '@features/admin';
-import { type AppError, fetchHttp } from '@features/base';
+import { type AppError, createHTTPRequest } from '@features/base';
 
 export function useDeletePostForm() {
 	const queryClient = useQueryClient();
@@ -42,7 +42,7 @@ export function useDeletePostForm() {
 function useDeletePost() {
 	return useMutation({
 		mutationFn: (postId: number) =>
-			fetchHttp<{ id: number }>({
+			createHTTPRequest<{ id: number }>({
 				path: '/posts',
 				params: [postId],
 				method: 'DELETE',

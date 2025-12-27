@@ -1,5 +1,5 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { fetchHttp } from '@features/base';
+import { createHTTPRequest } from '@features/base';
 import type { PaginatedPostsType } from '@features/posts';
 
 type OrderOption = 'newest' | 'oldest';
@@ -21,7 +21,7 @@ export function useInfinitePosts({
 		initialPageParam: undefined as number | undefined,
 
 		queryFn: ({ pageParam }) =>
-			fetchHttp<PaginatedPostsType>({
+			createHTTPRequest<PaginatedPostsType>({
 				path: '/posts',
 				query: {
 					limit,

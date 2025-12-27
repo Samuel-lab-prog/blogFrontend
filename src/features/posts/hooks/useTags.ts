@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchHttp } from '@features/base';
+import { createHTTPRequest } from '@features/base';
 import type { TagType } from '@features/posts';
 
 export function useTags() {
@@ -8,7 +8,7 @@ export function useTags() {
 		staleTime: 1000 * 60 * 30,
 		retry: 3,
 		queryFn: () =>
-			fetchHttp<TagType[]>({
+			createHTTPRequest<TagType[]>({
 				path: '/posts/tags',
 			}),
 	});

@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchHttp, type AppErrorType } from '@features/base';
+import { createHTTPRequest, type AppErrorType } from '@features/base';
 
 export function useAuth() {
 	return useQuery({
 		queryKey: ['auth'],
 		queryFn: async () => {
 			try {
-				await fetchHttp<{ id: number }>({
+				await createHTTPRequest<{ id: number }>({
 					path: '/auth',
 					method: 'POST',
 				});

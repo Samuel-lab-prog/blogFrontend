@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { Center, Spinner, Heading, Text } from '@chakra-ui/react';
-import { fetchHttp, type AppError } from '@features/base';
+import { createHTTPRequest, type AppError } from '@features/base';
 
 export function ProtectedRoutePage() {
 	const navigate = useNavigate();
@@ -10,7 +10,7 @@ export function ProtectedRoutePage() {
 
 	const { mutateAsync: authenticate } = useMutation({
 		mutationFn: () =>
-			fetchHttp<void>({
+			createHTTPRequest<void>({
 				path: '/auth',
 				method: 'POST',
 				credentials: 'include',

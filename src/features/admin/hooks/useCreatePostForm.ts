@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import type { UseFormSetError } from 'react-hook-form';
 import { createPostSchema, type CreatePostType } from '@features/admin';
 import { useMutation } from '@tanstack/react-query';
-import { fetchHttp, type AppError } from '@features/base';
+import { createHTTPRequest, type AppError } from '@features/base';
 
 export function useCreatePostForm() {
 	const [generalError, setGeneralError] = useState('');
@@ -85,7 +85,7 @@ type FinalCreatePostType = {
 function useCreatePost() {
 	return useMutation({
 		mutationFn: (newPost: FinalCreatePostType) =>
-			fetchHttp<{ id: number }, FinalCreatePostType>({
+			createHTTPRequest<{ id: number }, FinalCreatePostType>({
 				path: '/posts',
 				method: 'POST',
 				body: newPost,

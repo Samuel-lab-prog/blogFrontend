@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchHttp } from '@features/base';
+import { createHTTPRequest } from '@features/base';
 import type { PaginatedMinimalPostsType } from '@features/posts';
 
 type UsePostsMinimalOptions = {
@@ -16,7 +16,7 @@ export function usePostsMinimal({
 		queryKey: ['posts-minimal', { deleted, status, limit }],
 		staleTime: 1000 * 60 * 30, // 30 minutes
 		queryFn: () =>
-			fetchHttp<PaginatedMinimalPostsType>({
+			createHTTPRequest<PaginatedMinimalPostsType>({
 				path: '/posts/minimal',
 				query: { limit, deleted, status },
 			}),
