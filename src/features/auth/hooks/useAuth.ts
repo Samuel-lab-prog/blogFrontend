@@ -13,7 +13,7 @@ export function useAuth() {
 				return true;
 			} catch (err) {
 				const error = err as AppErrorType;
-				if (error.statusCode !== 200) {
+				if (error.statusCode !== 204) {
 					return false;
 				}
 				throw err;
