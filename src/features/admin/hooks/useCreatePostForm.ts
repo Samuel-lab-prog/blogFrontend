@@ -17,7 +17,6 @@ export function useCreatePostForm() {
 	const { mutateAsync, isPending } = useCreatePost();
 
 	async function onSubmit(data: CreatePostType) {
-
 		try {
 			await mutateAsync(data);
 			alert('Post criado com sucesso!');

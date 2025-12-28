@@ -93,13 +93,12 @@ export function UpdatePostForm() {
 			/>
 
 			<TagsField
-				label="Tags"
+				label='Tags'
 				control={control}
-				name="tags"
+				name='tags'
 				error={errors.tags}
 				disabled={isLoading || !postId}
-
-				placeholder="Adicione suas tags"
+				placeholder='Adicione suas tags'
 			/>
 
 			<Button

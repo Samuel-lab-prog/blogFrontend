@@ -60,7 +60,10 @@ export function SelectField<T extends FieldValues>({
 							}}
 						>
 							{placeholder && (
-								<option value='' disabled>
+								<option
+									value=''
+									disabled
+								>
 									{placeholder}
 								</option>
 							)}

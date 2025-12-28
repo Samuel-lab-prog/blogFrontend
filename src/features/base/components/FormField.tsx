@@ -17,7 +17,7 @@ interface Props<T extends FieldValues> {
 	rows?: number;
 	disabled?: boolean;
 	type?: string;
-	transformValue?: (value: string) => unknown; 
+	transformValue?: (value: string) => unknown;
 }
 
 export function FormField<T extends FieldValues>({

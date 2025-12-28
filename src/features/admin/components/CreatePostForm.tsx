@@ -50,13 +50,12 @@ export function CreatePostForm() {
 			/>
 
 			<TagsField
-				label="Tags"
+				label='Tags'
 				control={control}
-				name="tags"
+				name='tags'
 				error={errors.tags}
 				disabled={isPending}
-
-				placeholder="Adicione suas tags"
+				placeholder='Adicione suas tags'
 			/>
 
 			<SelectField
