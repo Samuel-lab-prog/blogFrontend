@@ -17,15 +17,9 @@ export function useCreatePostForm() {
 	const { mutateAsync, isPending } = useCreatePost();
 
 	async function onSubmit(data: CreatePostType) {
-		const modifiedData = {
-			...data,
-			tags: data.tags
-				?.split(',')
-				.map((tag) => tag.trim())
-				.filter(Boolean),
-		};
+
 		try {
-			await mutateAsync(modifiedData);
+			await mutateAsync(data);
 			alert('Post criado com sucesso!');
 		} catch (err) {
 			handleCreatePostError(err, form.setError, setGeneralError);
@@ -73,19 +67,10 @@ function handleCreatePostError(
 
 	setGeneralError('Erro ao criar post. Tente novamente mais tarde.');
 }
-
-type FinalCreatePostType = {
-	title: string;
-	excerpt: string;
-	content: string;
-	tags?: string[];
-	status?: 'draft' | 'published';
-};
-
 function useCreatePost() {
 	return useMutation({
-		mutationFn: (newPost: FinalCreatePostType) =>
-			createHTTPRequest<{ id: number }, FinalCreatePostType>({
+		mutationFn: (newPost: CreatePostType) =>
+			createHTTPRequest<{ id: number }, CreatePostType>({
 				path: '/posts',
 				method: 'POST',
 				body: newPost,

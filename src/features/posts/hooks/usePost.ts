@@ -4,9 +4,10 @@ import type { FullPostType } from '@features/posts';
 
 export function usePost(id: number) {
 	const query = useQuery({
-		queryKey: ['post', { id }],
+		queryKey: ['post', id],
 		retry: 3,
 		staleTime: 1000 * 60 * 30,
+		enabled: !!id,
 		queryFn: () =>
 			createHTTPRequest<FullPostType>({ path: '/posts', params: [id] }),
 	});

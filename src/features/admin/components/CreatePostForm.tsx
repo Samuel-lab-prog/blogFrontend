@@ -1,6 +1,6 @@
 import { Flex, Button, Text } from '@chakra-ui/react';
 import { useCreatePostForm } from '@features/admin';
-import { FormField, SelectField } from '@features/base';
+import { FormField, SelectField, TagsField } from '@features/base';
 
 export function CreatePostForm() {
 	const {
@@ -49,11 +49,14 @@ export function CreatePostForm() {
 				error={errors.content}
 			/>
 
-			<FormField
-				label='Tags'
+			<TagsField
+				label="Tags"
 				control={control}
-				name='tags'
+				name="tags"
 				error={errors.tags}
+				disabled={isPending}
+
+				placeholder="Adicione suas tags"
 			/>
 
 			<SelectField

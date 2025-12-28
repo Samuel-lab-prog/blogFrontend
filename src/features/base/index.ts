@@ -7,6 +7,7 @@ export * from './components/FormField';
 export * from './components/MarkdownRender';
 export * from './components/Navbar';
 export * from './components/SelectField';
+export * from './components/TagsField';
 export * from './components/ui/color-mode';
 export * from './components/ui/provider';
 export * from './components/ui/toaster';

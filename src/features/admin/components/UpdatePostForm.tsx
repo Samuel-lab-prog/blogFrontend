@@ -2,7 +2,7 @@ import { Flex, Button, Text } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import { useUpdatePostForm, usePostsMinimal } from '@features/admin';
 import { usePost, PostCombobox } from '@features/posts';
-import { FormField, SelectField } from '@features/base';
+import { FormField, SelectField, TagsField } from '@features/base';
 
 export function UpdatePostForm() {
 	const { posts } = usePostsMinimal({ deleted: 'exclude' });
@@ -29,7 +29,7 @@ export function UpdatePostForm() {
 			excerpt: post.excerpt,
 			content: post.content,
 			status: post.status,
-			tags: post.tags?.flatMap((tag) => tag.name).join(', '),
+			tags: post.tags?.flatMap((tag) => tag.name),
 		});
 	}, [post, reset]);
 
@@ -92,12 +92,14 @@ export function UpdatePostForm() {
 				disabled={isLoading || !postId}
 			/>
 
-			<FormField
-				label='Tags'
+			<TagsField
+				label="Tags"
 				control={control}
-				name='tags'
+				name="tags"
 				error={errors.tags}
 				disabled={isLoading || !postId}
+
+				placeholder="Adicione suas tags"
 			/>
 
 			<Button

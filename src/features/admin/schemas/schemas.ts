@@ -6,11 +6,8 @@ export const createPostSchema = z.object({
 	content: z.string().min(100, 'O conteúdo deve ter pelo menos 100 caracteres'),
 	// We gonna treat tags as a comma-separated string in the form and convert it to an array in the hook
 	tags: z
-		.string()
-		.regex(
-			/^(\s*[A-Za-zÀ-ÖØ-öø-ÿ0-9_-]+(\s+[A-Za-zÀ-ÖØ-öø-ÿ0-9_-]+)*\s*)(,\s*[A-Za-zÀ-ÖØ-öø-ÿ0-9_-]+(\s+[A-Za-zÀ-ÖØ-öø-ÿ0-9_-]+)*\s*)*$/,
-			'As tags devem ser uma lista separada por vírgulas',
-		),
+		.array(z.string().min(1, 'Tag inválida'))
+		.optional(),
 	status: z.enum(['draft', 'published']),
 });
 export const deletePostSchema = z.object({

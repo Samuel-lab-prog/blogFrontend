@@ -21,6 +21,7 @@ interface SelectFieldProps<T extends FieldValues> {
 	required?: boolean;
 	placeholder?: string;
 	disabled?: boolean;
+	transformValue?: (value: string) => unknown; // ← nova prop
 }
 
 export function SelectField<T extends FieldValues>({
@@ -32,6 +33,7 @@ export function SelectField<T extends FieldValues>({
 	required,
 	disabled,
 	placeholder,
+	transformValue,
 }: SelectFieldProps<T>) {
 	return (
 		<Field.Root
@@ -52,13 +54,13 @@ export function SelectField<T extends FieldValues>({
 					<NativeSelect.Root>
 						<NativeSelect.Field
 							value={field.value ?? ''}
-							onChange={(e) => field.onChange(e.target.value)}
+							onChange={(e) => {
+								const value = e.target.value;
+								field.onChange(transformValue ? transformValue(value) : value);
+							}}
 						>
 							{placeholder && (
-								<option
-									value=''
-									disabled
-								>
+								<option value='' disabled>
 									{placeholder}
 								</option>
 							)}

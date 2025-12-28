@@ -40,6 +40,7 @@
 		"@types/react-dom": "^19.1.7",
 		"@vitejs/plugin-react": "^5.0.0",
 		"barrelsby": "^2.8.1",
+		"baseline-browser-mapping": "^2.9.11",
 		"eslint": "^9.33.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-prettier": "^5.5.4",
