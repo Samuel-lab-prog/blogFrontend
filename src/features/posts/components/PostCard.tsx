@@ -11,7 +11,8 @@ import {
 import { NavLink } from 'react-router-dom';
 import { formatDate } from '@features/base';
 
-import { Tag, type PostPreviewType } from '@features/posts';
+import { Tag } from './PostTag';
+import type { PostPreviewType } from '../types/types';
 
 type PostCardProps = {
 	post: PostPreviewType;

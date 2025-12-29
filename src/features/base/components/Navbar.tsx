@@ -1,5 +1,4 @@
 import logo from '@assets/logo.svg';
-import { useNavigate } from 'react-router-dom';
 import {
 	Box,
 	HStack,
@@ -13,7 +12,7 @@ import {
 	Link,
 } from '@chakra-ui/react';
 import { Menu, X } from 'lucide-react';
-import { Outlet, NavLink } from 'react-router-dom';
+import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 
 /* ---------------- LOGO ---------------- */
 function Logo() {

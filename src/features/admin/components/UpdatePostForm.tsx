@@ -1,6 +1,7 @@
 import { Flex, Button, Text } from '@chakra-ui/react';
 import { useEffect } from 'react';
-import { useUpdatePostForm, usePostsMinimal } from '@features/admin';
+import { useUpdatePostForm } from '../hooks/useUpdatePostForm';
+import { usePostsMinimal } from '../hooks/usePostsMinimal';
 import { usePost, PostCombobox } from '@features/posts';
 import { FormField, SelectField, TagsField } from '@features/base';
 

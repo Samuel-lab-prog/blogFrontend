@@ -13,7 +13,7 @@ import {
 	type FieldValues,
 } from 'react-hook-form';
 import { useEffect } from 'react';
-import { type PostMinimalDataType } from '@features/posts';
+import { type PostMinimalDataType } from '../types/types';
 
 // This component is meant to be used within react-hook-form forms
 // Normally you wanna use this to fetch a full post data after selection

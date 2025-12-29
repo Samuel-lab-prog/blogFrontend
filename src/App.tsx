@@ -1,16 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import { Navbar } from '@features/base';
-import { HomePage } from '@features/base';
-import { ErrorPage } from '@features/base';
-
-import { PostPage } from '@features/posts';
-import { PostsPage } from '@features/posts';
-
+import { Navbar, ErrorPage } from '@features/base';
+import { PostPage, PostsPage, HomePage } from '@features/posts';
 import { LoginPage } from '@features/auth';
-
-import { AdminPage } from '@features/admin';
-import { ProtectedRoutePage } from '@features/admin';
+import { AdminPage, ProtectedRoutePage } from '@features/admin';
 
 const navLinks = [
 	{ to: '/', label: 'Home' },

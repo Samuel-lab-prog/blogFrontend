@@ -1,5 +1,5 @@
 import { Flex, Heading, Text } from '@chakra-ui/react';
-import { LoginForm } from '@features/auth';
+import { LoginForm } from '../components/LoginForm';
 
 export function LoginPage() {
 	return (

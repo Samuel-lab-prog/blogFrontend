@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, type UseFormSetError } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import type { UseFormSetError } from 'react-hook-form';
-import { createPostSchema, type CreatePostType } from '@features/admin';
+import { createPostSchema, type CreatePostType } from '../schemas/schemas';
 import { useMutation } from '@tanstack/react-query';
 import { createHTTPRequest, type AppError } from '@features/base';
 

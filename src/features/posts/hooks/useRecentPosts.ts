@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { createHTTPRequest } from '@features/base';
-import type { PaginatedPostsType } from '@features/posts';
+import type { PaginatedPostsType } from '../types/types';
 
 type UseRecentPostsOptions = {
 	limit?: number;

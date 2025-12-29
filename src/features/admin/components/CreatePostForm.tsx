@@ -1,5 +1,5 @@
 import { Flex, Button, Text } from '@chakra-ui/react';
-import { useCreatePostForm } from '@features/admin';
+import { useCreatePostForm } from '../hooks/useCreatePostForm';
 import { FormField, SelectField, TagsField } from '@features/base';
 
 export function CreatePostForm() {

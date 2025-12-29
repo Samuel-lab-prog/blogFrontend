@@ -12,6 +12,7 @@ export * from './hooks/usePost';
 export * from './hooks/usePostsFilters';
 export * from './hooks/useRecentPosts';
 export * from './hooks/useTags';
+export * from './pages/HomePage';
 export * from './pages/PostPage';
 export * from './pages/PostsPage';
 export * from './types/types';

@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { Flex, Heading, Button, ButtonGroup } from '@chakra-ui/react';
-import {
-	CreatePostForm,
-	DeletePostForm,
-	UpdatePostForm,
-} from '@features/admin';
+import { CreatePostForm } from '../components/CreatePostForm';
+import { UpdatePostForm } from '../components/UpdatePostForm';
+import { DeletePostForm } from '../components/DeletePostForm';
 
 type ActiveForm = 'create' | 'update' | 'delete';
 

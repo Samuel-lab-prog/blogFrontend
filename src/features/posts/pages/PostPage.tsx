@@ -1,9 +1,9 @@
 import { NavLink, useParams } from 'react-router-dom';
-import { Box, Link, Flex } from '@chakra-ui/react';
+import { Box, Link, Flex, Icon } from '@chakra-ui/react';
 import { ArrowLeftIcon } from 'lucide-react';
-import { Icon } from '@chakra-ui/react';
 import { AsyncState, MarkdownRenderer } from '@features/base';
-import { usePost, PostHeader } from '@features/posts';
+import { usePost } from '../hooks/usePost';
+import { PostHeader } from '../components/PostHeader';
 
 export function PostPage() {
 	const { id } = useParams<{ id: string }>();

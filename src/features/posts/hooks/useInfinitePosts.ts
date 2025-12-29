@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { createHTTPRequest } from '@features/base';
-import type { PaginatedPostsType } from '@features/posts';
+import type { PaginatedPostsType } from '../types/types';
 
 type OrderOption = 'newest' | 'oldest';
 type UseInfinitePostsOption = {

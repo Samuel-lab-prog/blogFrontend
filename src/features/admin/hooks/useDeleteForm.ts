@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deletePostSchema, type DeletePostType } from '@features/admin';
+import { deletePostSchema, type DeletePostType } from '../schemas/schemas';
 import { type AppError, createHTTPRequest } from '@features/base';
 
 export function useDeletePostForm() {

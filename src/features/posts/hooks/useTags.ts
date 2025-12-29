@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { createHTTPRequest } from '@features/base';
-import type { TagType } from '@features/posts';
+import type { TagType } from '../types/types';
 
 export function useTags() {
 	const query = useQuery({

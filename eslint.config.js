@@ -23,18 +23,33 @@ export default defineConfig([
 			globals: globals.browser,
 		},
 		rules: {
-			/* =====================
-			 * React
-			 * ===================== */
+			'@typescript-eslint/no-unused-vars': 'error',
+			'no-var': 'error',
+			'prefer-const': 'error',
+			'no-await-in-loop': 'error',
+			'no-constructor-return': 'error',
+			'no-duplicate-imports': 'error',
+			'no-self-compare': 'error',
+			'no-unmodified-loop-condition': 'error',
+			'no-useless-assignment': 'error',
+			'no-eval': 'error',
+
+			'array-callback-return': 'error',
+			'default-case': 'error',
+			eqeqeq: ['error', 'always'],
+
+			'max-classes-per-file': ['error', 1],
+			'max-depth': ['error', 4],
+			'max-lines': ['warn', 300],
+			'max-lines-per-function': ['error', { max: 150, skipComments: true }],
+			'max-nested-callbacks': ['error', 2],
+			'max-params': ['error', 4],
+
+			'require-await': 'warn',
 			'react-hooks/rules-of-hooks': 'error',
 			'react-hooks/exhaustive-deps': 'warn',
-
-			/* =====================
-			 * TypeScript
-			 * ===================== */
 			'no-unused-vars': 'off',
 			'no-undef': 'off',
-
 			'@typescript-eslint/no-unused-vars': [
 				'warn',
 				{
@@ -43,15 +58,7 @@ export default defineConfig([
 				},
 			],
 			'@typescript-eslint/no-explicit-any': 'warn',
-
-			/* =====================
-			 * Code Style
-			 * ===================== */
 			'arrow-body-style': ['error', 'as-needed'],
-
-			/* =====================
-			 * Architecture
-			 * ===================== */
 			'no-restricted-imports': [
 				'error',
 				{

@@ -1,12 +1,10 @@
 import { Flex, Heading, Button } from '@chakra-ui/react';
 import { AsyncState, SelectField } from '@features/base';
-import {
-	useInfinitePosts,
-	useTags,
-	PostCard,
-	PostGrid,
-	usePostsFilters,
-} from '@features/posts';
+import { PostCard } from '../components/PostCard';
+import { PostGrid } from '../components/PostGrid';
+import { useInfinitePosts } from '../hooks/useInfinitePosts';
+import { usePostsFilters } from '../hooks/usePostsFilters';
+import { useTags } from '../hooks/useTags';
 
 export function PostsPage() {
 	const { control, tag, order } = usePostsFilters();

@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, type UseFormSetError } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import type { AppError } from '@features/base';
-import type { UseFormSetError } from 'react-hook-form';
-import { updatePostSchema, type UpdatePostType } from '@features/admin';
+import { type AppError, createHTTPRequest } from '@features/base';
+import { updatePostSchema, type UpdatePostType } from '../schemas/schemas';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { createHTTPRequest } from '@features/base';
 
 export function useUpdatePostForm() {
 	const queryClient = useQueryClient();

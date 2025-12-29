@@ -1,5 +1,6 @@
 import { formatDate } from '@features/base';
-import { Tag, type FullPostType } from '@features/posts';
+import { Tag } from './PostTag';
+import { type FullPostType } from '../types/types';
 import { Heading, Text, Flex, VStack } from '@chakra-ui/react';
 
 type PostHeaderProps = {

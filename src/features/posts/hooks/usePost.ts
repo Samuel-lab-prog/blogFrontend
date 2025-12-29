@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { createHTTPRequest } from '@features/base';
-import type { FullPostType } from '@features/posts';
+import type { FullPostType } from '../types/types';
 
 export function usePost(id: number) {
 	const query = useQuery({

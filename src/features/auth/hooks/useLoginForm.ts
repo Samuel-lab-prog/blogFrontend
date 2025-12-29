@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 
 import { createHTTPRequest, type AppErrorType } from '@features/base';
-import { loginSchema, type LoginDataType } from '@features/auth';
+import { loginSchema, type LoginDataType } from '../schemas/loginSchema';
 
 export function useLoginForm() {
 	const [generalError, setGeneralError] = useState('');

@@ -1,5 +1,6 @@
 import { Flex, Button, Text } from '@chakra-ui/react';
-import { useDeletePostForm, usePostsMinimal } from '@features/admin';
+import { useDeletePostForm } from '../hooks/useDeleteForm';
+import { usePostsMinimal } from '../hooks/usePostsMinimal';
 import { PostCombobox } from '@features/posts';
 
 export function DeletePostForm() {

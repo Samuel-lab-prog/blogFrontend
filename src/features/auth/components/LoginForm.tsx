@@ -1,6 +1,6 @@
 import { Flex, Button, Text } from '@chakra-ui/react';
 import { FormField } from '@features/base';
-import { useLoginForm } from '@features/auth';
+import { useLoginForm } from '../hooks/useLoginForm';
 
 export function LoginForm() {
 	const {

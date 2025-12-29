@@ -1,5 +1,7 @@
 import { Flex, Heading, Text } from '@chakra-ui/react';
-import { PostCard, PostGrid, useRecentPosts } from '@features/posts';
+import { PostCard } from '../components/PostCard';
+import { PostGrid } from '../components/PostGrid';
+import { useRecentPosts } from '../hooks/useRecentPosts';
 import { AsyncState } from '@features/base';
 
 export function HomePage() {
