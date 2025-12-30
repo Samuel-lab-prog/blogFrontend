@@ -71,7 +71,7 @@ export function HomePage() {
 					as='section'
 					direction='column'
 					w='full'
-					h={['40vh']}
+					h={['50vh', undefined, '40vh']}
 					justifyContent='center'
 					py={4}
 				>
