@@ -41,7 +41,7 @@ export function FormField<T extends FieldValues>({
 		>
 			<Field.Label
 				textStyle='small'
-				fontWeight='bold'
+				fontWeight='medium'
 			>
 				{label}
 				{required && <Field.RequiredIndicator />}

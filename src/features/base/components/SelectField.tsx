@@ -41,7 +41,10 @@ export function SelectField<T extends FieldValues>({
 			invalid={!!error}
 			w='full'
 		>
-			<Field.Label>
+			<Field.Label
+				textStyle='small'
+				fontWeight='medium'
+			>
 				{label}
 				{required && <Field.RequiredIndicator />}
 			</Field.Label>
