@@ -14,7 +14,7 @@ export function LoginPage() {
 				direction='column'
 				align='center'
 				justify='center'
-				h='50vh'
+				h={['70vh', undefined, '60vh']}
 			>
 				<Flex
 					direction='column'
@@ -24,13 +24,16 @@ export function LoginPage() {
 					textAlign='center'
 				>
 					<Heading
-						as='h2'
-						textStyle='h2'
+						as='h1'
+						textStyle='h1'
 					>
 						Entrar
 					</Heading>
 
-					<Text color='gray.600'>
+					<Text
+						color='gray.600'
+						textStyle='small'
+					>
 						Por favor, insira suas credenciais para entrar.
 					</Text>
 				</Flex>

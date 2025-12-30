@@ -73,6 +73,7 @@ export function AdminPage() {
 								as='h2'
 								textStyle='h2'
 								mb={4}
+								textAlign='center'
 							>
 								Criar Post
 							</Heading>
@@ -86,6 +87,7 @@ export function AdminPage() {
 								as='h2'
 								textStyle='h2'
 								mb={4}
+								textAlign='center'
 							>
 								Atualizar Post
 							</Heading>
@@ -99,6 +101,7 @@ export function AdminPage() {
 								as='h2'
 								textStyle='h2'
 								mb={4}
+								textAlign='center'
 							>
 								Deletar Post
 							</Heading>

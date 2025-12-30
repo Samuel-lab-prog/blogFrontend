@@ -39,7 +39,10 @@ export function FormField<T extends FieldValues>({
 			required={required}
 			invalid={!!error}
 		>
-			<Field.Label>
+			<Field.Label
+				textStyle='small'
+				fontWeight='bold'
+			>
 				{label}
 				{required && <Field.RequiredIndicator />}
 			</Field.Label>
@@ -49,6 +52,7 @@ export function FormField<T extends FieldValues>({
 				control={control}
 				render={({ field }) => (
 					<Component
+						textStyle='small'
 						rows={as === 'textarea' ? rows : undefined}
 						type={type}
 						value={field.value ?? ''}

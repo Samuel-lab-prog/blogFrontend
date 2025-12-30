@@ -75,6 +75,7 @@ export function UpdatePostForm() {
 			<FormField
 				label='Resumo'
 				as='textarea'
+				rows={5}
 				control={control}
 				name='excerpt'
 				error={errors.excerpt}
@@ -85,7 +86,7 @@ export function UpdatePostForm() {
 			<FormField
 				label='Conteúdo (Markdown)'
 				as='textarea'
-				rows={10}
+				rows={20}
 				control={control}
 				name='content'
 				error={errors.content}

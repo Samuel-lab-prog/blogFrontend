@@ -34,6 +34,7 @@ export function CreatePostForm() {
 				label='Resumo'
 				required
 				as='textarea'
+				rows={5}
 				control={control}
 				name='excerpt'
 				error={errors.excerpt}
@@ -43,7 +44,7 @@ export function CreatePostForm() {
 				label='Conteúdo (Markdown)'
 				required
 				as='textarea'
-				rows={10}
+				rows={20}
 				control={control}
 				name='content'
 				error={errors.content}
