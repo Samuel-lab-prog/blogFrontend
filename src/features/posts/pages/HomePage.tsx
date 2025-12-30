@@ -1,66 +1,121 @@
-import { Flex, Heading, Text } from '@chakra-ui/react';
+import { Flex, Heading, Text, Button } from '@chakra-ui/react';
 import { PostCard } from '../components/PostCard';
 import { PostGrid } from '../components/PostGrid';
 import { useRecentPosts } from '../hooks/useRecentPosts';
-import { AsyncState } from '@features/base';
+import { AsyncState, Footer } from '@features/base';
+import { NavLink } from 'react-router-dom';
 
 export function HomePage() {
 	const { posts, isError, isLoading } = useRecentPosts({ limit: 4 });
 	return (
-		<Flex
-			as='main'
-			layerStyle='main'
-			direction='column'
-		>
+		<>
 			<Flex
-				as='section'
+				as='main'
+				layerStyle='main'
 				direction='column'
-				w='full'
-				gap={2}
-				pb={4}
 			>
-				<Heading
-					as='h1'
-					textStyle='h1'
+				<Flex
+					as='section'
+					direction='column'
+					w='full'
+					gap={2}
+					pb={4}
 				>
-					Bem-vindo(a) ao Samuel's Blog!
-				</Heading>
-				<Text textStyle='body'>
-					Neste blog, você encontrará muitas citações interessantes de um
-					indivíduo chamado Samuel Gomes.
-				</Text>
-			</Flex>
-			<Flex
-				as='section'
-				direction='column'
-				w='full'
-				py={4}
-			>
-				<Heading
-					as='h2'
-					textStyle='h2'
-					mb={2}
-				>
-					Últimas Publicações
-				</Heading>
-				<PostGrid>
-					<AsyncState
-						isLoading={isLoading}
-						isError={isError}
-						isEmpty={!posts || posts?.length === 0}
-						emptyElement={<Flex textStyle='body'>Nenhum post encontrado</Flex>}
-						errorElement={<Flex textStyle='body'>Erro ao carregar posts</Flex>}
-						loadingElement={<Flex textStyle='body'>Carregando posts...</Flex>}
+					<Heading
+						as='h1'
+						textStyle='h1'
 					>
-						{posts.map((post) => (
-							<PostCard
-								key={post.id}
-								post={post}
-							/>
-						))}
-					</AsyncState>
-				</PostGrid>
+						Bem-vindo(a) ao Samuel's Blog!
+					</Heading>
+					<Text textStyle='body'>
+						Neste blog, você encontrará muitas citações interessantes de um
+						indivíduo chamado Samuel Gomes.
+					</Text>
+				</Flex>
+				<Flex
+					as='section'
+					direction='column'
+					w='full'
+					py={4}
+				>
+					<Heading
+						as='h2'
+						textStyle='h2'
+						mb={2}
+					>
+						Últimas Publicações
+					</Heading>
+					<PostGrid>
+						<AsyncState
+							isLoading={isLoading}
+							isError={isError}
+							isEmpty={!posts || posts?.length === 0}
+							emptyElement={
+								<Flex textStyle='body'>Nenhum post encontrado</Flex>
+							}
+							errorElement={
+								<Flex textStyle='body'>Erro ao carregar posts</Flex>
+							}
+							loadingElement={<Flex textStyle='body'>Carregando posts...</Flex>}
+						>
+							{posts.map((post) => (
+								<PostCard
+									key={post.id}
+									post={post}
+								/>
+							))}
+						</AsyncState>
+					</PostGrid>
+				</Flex>
+				<Flex
+					as='section'
+					direction='column'
+					w='full'
+					h={['40vh']}
+					justifyContent='center'
+					py={4}
+				>
+					<Heading
+						as='h2'
+						textStyle='h2'
+						mb={2}
+						w='full'
+					>
+						Sobre mim
+					</Heading>
+					<Text
+						textStyle='body'
+						maxW={['100%', undefined, undefined, '80%']}
+					>
+						Samuel Gomes (no caso, eu), é um desenvolvedor de software,
+						entusiasta de tecnologia e amante de boas citações. Mas ele faz mais
+						coisas também: música, literatura, arte... Enfim, um indivíduo
+						multifacetado que adora compartilhar suas ideias e pensamentos
+						através deste blog.
+					</Text>
+					<Flex
+						display='flex'
+						justifyContent={['end', undefined, undefined, 'start']}
+						alignItems='center'
+					>
+						<Button
+							asChild
+							variant='surface'
+							mt={4}
+							w='fit'
+						>
+							<NavLink to='/about'>Saiba mais</NavLink>
+						</Button>
+					</Flex>
+				</Flex>
 			</Flex>
-		</Flex>
+			<Footer
+				links={[
+					{ label: 'Home', to: '/' },
+					{ label: 'About', to: '/about' },
+					{ label: 'Posts', to: '/posts' },
+				]}
+			></Footer>
+		</>
 	);
 }
