@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Flex, Heading, Button, ButtonGroup } from '@chakra-ui/react';
+import { Flex, Heading, Button } from '@chakra-ui/react';
 import { CreatePostForm } from '../components/CreatePostForm';
 import { UpdatePostForm } from '../components/UpdatePostForm';
 import { DeletePostForm } from '../components/DeletePostForm';
@@ -30,17 +30,30 @@ export function AdminPage() {
 				>
 					Admin Dashboard
 				</Heading>
-				<ButtonGroup
+				<Flex
 					gap={2}
 					mb={8}
-					variant='surface'
+					direction={['column', undefined, 'row']}
 				>
-					<Button onClick={() => setActiveForm('create')}>Criar Post</Button>
-					<Button onClick={() => setActiveForm('update')}>
+					<Button
+						variant='surface'
+						onClick={() => setActiveForm('create')}
+					>
+						Criar Post
+					</Button>
+					<Button
+						variant='surface'
+						onClick={() => setActiveForm('update')}
+					>
 						Atualizar Post
 					</Button>
-					<Button onClick={() => setActiveForm('delete')}>Deletar Post</Button>
-				</ButtonGroup>
+					<Button
+						variant='surface'
+						onClick={() => setActiveForm('delete')}
+					>
+						Deletar Post
+					</Button>
+				</Flex>
 			</Flex>
 			<Flex
 				as='section'
