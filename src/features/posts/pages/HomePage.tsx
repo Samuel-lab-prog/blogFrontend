@@ -70,7 +70,7 @@ export function HomePage() {
 					as='section'
 					direction='column'
 					w='full'
-					h={['30vh']}
+					h={['40vh']}
 					justifyContent='end'
 					py={4}
 				>
