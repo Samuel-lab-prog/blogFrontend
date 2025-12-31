@@ -1,9 +1,8 @@
-import { Flex, Heading, Text, Button } from '@chakra-ui/react';
+import { Flex, Heading, Text } from '@chakra-ui/react';
 import { PostCard } from '../components/PostCard';
 import { PostGrid } from '../components/PostGrid';
 import { useRecentPosts } from '../hooks/useRecentPosts';
 import { AsyncState, Footer } from '@features/base';
-import { NavLink } from 'react-router-dom';
 
 export function HomePage() {
 	const { posts, isError, isLoading } = useRecentPosts({ limit: 4 });
@@ -97,22 +96,12 @@ export function HomePage() {
 						display='flex'
 						justifyContent={['end', undefined, undefined, 'start']}
 						alignItems='center'
-					>
-						<Button
-							asChild
-							variant='surface'
-							mt={4}
-							w='fit'
-						>
-							<NavLink to='/about'>Saiba mais</NavLink>
-						</Button>
-					</Flex>
+					></Flex>
 				</Flex>
 			</Flex>
 			<Footer
 				links={[
 					{ label: 'Home', to: '/' },
-					{ label: 'About', to: '/about' },
 					{ label: 'Posts', to: '/posts' },
 				]}
 			></Footer>
