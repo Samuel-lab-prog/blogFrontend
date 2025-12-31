@@ -26,7 +26,7 @@ function FooterLogo() {
 			<Image
 				src={logo}
 				alt='Logo'
-				h='50px'
+				h='70px'
 			/>
 		</Box>
 	);
@@ -64,7 +64,7 @@ export function Footer({ links }: { links: { label: string; to: string }[] }) {
 			borderTop='2px solid'
 			borderColor='gray.200'
 			px={{ base: 6, lg: 12 }}
-			py={10}
+			pb={10}
 		>
 			<VStack
 				gap={6}

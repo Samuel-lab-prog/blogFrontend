@@ -70,8 +70,8 @@ export function HomePage() {
 					as='section'
 					direction='column'
 					w='full'
-					h={['50vh', undefined, '40vh']}
-					justifyContent='center'
+					h={['30vh']}
+					justifyContent='end'
 					py={4}
 				>
 					<Heading
@@ -86,9 +86,9 @@ export function HomePage() {
 						textStyle='body'
 						maxW={['100%', undefined, undefined, '80%']}
 					>
-						Samuel Gomes (no caso, eu), é um desenvolvedor de software,
-						entusiasta de tecnologia e amante de boas citações. Mas ele faz mais
-						coisas também: música, literatura, arte... Enfim, um indivíduo
+						Samuel Gomes, é um desenvolvedor de software, entusiasta de
+						tecnologia e amante de boas citações. Mas ele faz mais coisas
+						também: música, literatura, arte... Enfim, um indivíduo
 						multifacetado que adora compartilhar suas ideias e pensamentos
 						através deste blog.
 					</Text>

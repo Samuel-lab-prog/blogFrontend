@@ -62,6 +62,7 @@ const components: Components = {
 	strong: (p) => (
 		<Mark
 			as='strong'
+			textStyle='body'
 			fontWeight='bold'
 			{...p}
 		/>
@@ -69,7 +70,17 @@ const components: Components = {
 	em: (p) => (
 		<Mark
 			as='em'
+			textStyle='body'
 			fontStyle='italic'
+			{...p}
+		/>
+	),
+
+	mark: (p) => (
+		<Mark
+			as='mark'
+			bg='yellow.200'
+			textStyle='body'
 			{...p}
 		/>
 	),
