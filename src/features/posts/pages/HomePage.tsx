@@ -70,7 +70,6 @@ export function HomePage() {
 					as='section'
 					direction='column'
 					w='full'
-					h={['40vh']}
 					justifyContent='end'
 					py={4}
 				>
@@ -85,12 +84,19 @@ export function HomePage() {
 					<Text
 						textStyle='body'
 						maxW={['100%', undefined, undefined, '80%']}
+						mb={4}
 					>
 						Samuel Gomes, é um desenvolvedor de software, entusiasta de
 						tecnologia e amante de boas citações. Mas ele faz mais coisas
-						também: música, literatura, arte... Enfim, um indivíduo
-						multifacetado que adora compartilhar suas ideias e pensamentos
-						através deste blog.
+						também: música, literatura, arte...
+					</Text>
+					<Text
+						textStyle='body'
+						maxW={['100%', undefined, undefined, '80%']}
+					>
+						Este blog é um espaço onde compartilho minhas citações favoritas,
+						pensamentos e reflexões sobre diversos temas. Espero que você
+						encontre inspiração e conhecimento aqui!
 					</Text>
 					<Flex
 						display='flex'

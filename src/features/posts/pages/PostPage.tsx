@@ -35,13 +35,22 @@ export function PostPage() {
 				>
 					{post && (
 						<>
-							<PostHeader post={post} />
+							<PostHeader
+								post={{
+									title: post.title,
+									excerpt: post.excerpt,
+									tags: post.tags,
+									createdAt: post.createdAt,
+									updatedAt: post.updatedAt,
+								}}
+							/>
 							<Box
 								as='article'
 								textAlign='justify'
 								mt={50}
 								whiteSpace='pre-wrap'
 								wordBreak='break-word'
+								textStyle='small'
 							>
 								<MarkdownRenderer content={post.content} />
 							</Box>
