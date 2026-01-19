@@ -64,6 +64,8 @@ const components: Components = {
 			as='strong'
 			textStyle='body'
 			fontWeight='bold'
+			display='inline'
+			whiteSpace='normal'
 			{...p}
 		/>
 	),
@@ -72,6 +74,8 @@ const components: Components = {
 			as='em'
 			textStyle='body'
 			fontStyle='italic'
+			display='inline'
+			whiteSpace='normal'
 			{...p}
 		/>
 	),
