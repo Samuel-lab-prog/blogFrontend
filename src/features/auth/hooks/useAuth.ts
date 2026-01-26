@@ -19,7 +19,7 @@ export function useAuth() {
 				throw err;
 			}
 		},
-		staleTime: 1000 * 60 * 5,
+		staleTime: 1000 * 60 * 60 * 24 * 1,
 		retry: false,
 	});
 }

@@ -6,7 +6,7 @@ export function usePost(id: number) {
 	const query = useQuery({
 		queryKey: ['post', id],
 		retry: 3,
-		staleTime: 1000 * 60 * 30,
+		staleTime: 1000 * 60 * 60 * 24 * 7,
 		enabled: !!id,
 		queryFn: () =>
 			createHTTPRequest<FullPostType>({ path: '/posts', params: [id] }),

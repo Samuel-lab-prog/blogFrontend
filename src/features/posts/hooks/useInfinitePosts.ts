@@ -16,7 +16,7 @@ export function useInfinitePosts({
 }: UseInfinitePostsOption) {
 	const query = useInfiniteQuery({
 		queryKey: ['posts', { tag, order, limit }],
-		staleTime: 1000 * 60 * 30,
+		staleTime: 1000 * 60 * 60 * 24 * 7,
 		retry: 3,
 		initialPageParam: undefined as number | undefined,
 

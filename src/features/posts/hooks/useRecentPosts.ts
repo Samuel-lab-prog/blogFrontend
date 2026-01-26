@@ -10,7 +10,7 @@ export function useRecentPosts({ limit = 4 }: UseRecentPostsOptions) {
 	const query = useQuery({
 		queryKey: ['posts-recent', { limit }],
 		retry: 3,
-		staleTime: 1000 * 60 * 30,
+		staleTime: 1000 * 60 * 60 * 24 * 7,
 		queryFn: () =>
 			createHTTPRequest<PaginatedPostsType>({
 				path: '/posts',
